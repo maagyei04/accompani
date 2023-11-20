@@ -28,8 +28,8 @@ class MainApp extends StatelessWidget {
        theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      home: SplashScreen(
-        child: StepIndicatorScreen(),
+      home: const SplashScreen(
+        child: WelcomeScreen(),
       ),
       );
   }
