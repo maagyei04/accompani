@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '32942490702',
     projectId: 'accompani-app',
     storageBucket: 'accompani-app.appspot.com',
-    iosBundleId: 'com.example.accompani',
+    iosBundleId: 'com.ios.accompani',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
