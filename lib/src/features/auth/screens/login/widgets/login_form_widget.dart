@@ -225,7 +225,7 @@ class _LoginFormState extends State<LoginForm> {
                 }, 
                 child: const Text(tLogin, style: TextStyle(fontWeight: FontWeight.bold),),
               ),
-            )
+            ) 
           ],
         ),
       )
