@@ -2,13 +2,17 @@ import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddSocialMedia extends StatelessWidget {
   const AddSocialMedia({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final ProcessController stepController = Get.find();
+    
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(tDefaultSize - 10),
@@ -94,7 +98,9 @@ class AddSocialMedia extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+                            stepController.nextPage();
+                          }, 
                           child: const Text(tSkip)
                         ),
                       ),

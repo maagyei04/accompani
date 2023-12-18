@@ -11,6 +11,7 @@ class UserModel {
   final String phoneNumber;
   final List<String> photos;
   final String bio;
+  final String password;
 
 
   const UserModel({
@@ -23,6 +24,7 @@ class UserModel {
     required this.lastName,
     required this.email,
     required this.phoneNumber,
+    required this.password,
   });
 
   toJson() {
@@ -32,6 +34,7 @@ class UserModel {
       "Email": email,
       "Phone": phoneNumber,
       "Bio": bio,
+      "Password": password,
       "Interests": List<String>.from(interests),
       "Languages": List<String>.from(languages),
       "Photos": List<String>.from(photos),
@@ -59,7 +62,8 @@ factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) 
     photos: List<String>.from(data?["Photos"] ?? [
       'Default...',
       'Default...',
-    ]),
+    ]), 
+    password: 'Default..',
   );
 }
 

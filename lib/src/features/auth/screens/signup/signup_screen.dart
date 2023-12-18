@@ -12,28 +12,12 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final size = mediaQuery.size;
-
 
     return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 80.0,),
-                SignupHeaderWidget(size: size),
-                const SignupForm(),
-                const SignupFooterWidget()
-              ],
-            ),
-            
-          ),
+      child:  Container(
+          padding: const EdgeInsets.all(tDefaultSize),
+          child: const SignupForm(),
         ),
-      ),
-    );
+      );
   }
 }

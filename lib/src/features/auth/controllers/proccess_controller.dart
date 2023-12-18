@@ -11,4 +11,15 @@ class ProcessController extends GetxController {
   
   onPageChangeCallback(int activePageIndex) => currentPage.value = activePageIndex;
 
+    void nextPage() {
+    if (currentPage.value < steps.length - 1) {
+      currentPage.value++; // Update the current page value
+      pageController.animateToPage(
+        currentPage.value,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
+    }
+  }
+
 }

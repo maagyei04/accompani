@@ -11,6 +11,8 @@ const String tContinue = "Continue";
 const String tWelcome = "Welcome,";
 const String tGetStarted = "Get Started";
 const String tPhoneNumber = "Phone Number";
+const String tBackToLogin = "Back To Login";
+
 
 // -- Welcome Screen Text
 const String tWelcomeScreenTitle = "Get accompanied by a local to help you explore every city  with ease";
@@ -44,3 +46,9 @@ const String tOtpTitle = "CO\nDE";
 const String tOtpSubTitle = "Verification";
 const String tOtpMessage = "Enter the verification code sent from ";
 const String tOtpMessage2 = "Enter the 6-digit code sent to you.";
+
+// -- Email Verification Screen Text
+const String tEmailVTitle = "Verify your email address";
+const String tEmailVContent = "We have just sent email verification link to your email. Please chack email and click on that link to verify your email address.";
+const String tEmailVSubTitle = "If not auto-redirected after verification, click on the Continue button";
+const String tEmailVResend = "Resend E-mail Link";

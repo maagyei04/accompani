@@ -1,21 +1,35 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math';
+
+import 'package:accompani/src/features/auth/controllers/image_picker_controller%20_2.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller_3.dart';
+import 'package:accompani/src/features/auth/models/interest_model.dart';
+import 'package:accompani/src/features/auth/models/personal_info_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
+import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
+  final controller = Get.put(AuthenticationRepository());
+    final controller2 = Get.put(ImagePickerController());
+    final controller3 = Get.put(ImagePickerController2());
+    final controller4 = Get.put(ImagePickerController3());
 
   final _db = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  Future<bool> doesPhoneNumberExist(String phoneNumber) async {
+  Future<bool> doesEmailExist(String email) async {
     try {
       final querySnapshot = await _db
           .collection('Users') // Replace 'users' with your collection name
-          .where('Phone', isEqualTo: phoneNumber)
+          .where('Emali', isEqualTo: email)
           .get();
 
         print (querySnapshot.docs.isNotEmpty);
@@ -23,15 +37,15 @@ class UserRepository extends GetxController {
 
     } catch (e) {
       // Handle any errors in database query
-      print('Error checking phone number existence: $e');
+      print('Error checking email existence: $e');
       return false;
     }
   }
 
 
-   Future<DocumentReference> createUser(UserModel user) async {
+   Future<void> createUser(UserModel user) async {
     try {
-      final result = await _db.collection("Users").add(user.toJson());
+      await _db.collection("Users").doc(controller.getUserID).set(user.toJson());
       Get.snackbar(
         'Success',
         'Your account has been successfully created.',
@@ -40,7 +54,6 @@ class UserRepository extends GetxController {
         colorText: Colors.green,
         duration: const Duration(seconds: 5),
       );
-      return result; // Return the DocumentReference
     } catch (error) {
       Get.snackbar(
         "Error",
@@ -56,9 +69,9 @@ class UserRepository extends GetxController {
   }
 
 
-  Future<UserModel?> getUserDetails(String phoneNumber) async {
+  Future<UserModel?> getUserDetails(String email) async {
     final snapshot = await _db.collection("Users")
-      .where("Phone", isEqualTo: phoneNumber)
+      .where("Email", isEqualTo: email)
       .get();
 
     if (snapshot.docs.isNotEmpty) {
@@ -99,6 +112,145 @@ class UserRepository extends GetxController {
       );
       print("ERROR: $error");
       rethrow;
+    }
+  } 
+
+    Future<void> updatePersonalRecord(PersonalInfoModel user) async {
+        try {
+       final result = await _db.collection("Users").doc(user.id).update(user.toJson());
+      Get.snackbar(
+        'Success',
+        'Your Presonal Info has been added!!.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.green.withOpacity(0.3),
+        colorText: Colors.green,
+        duration: const Duration(seconds: 5),
+      );
+      return result; // Return the DocumentReference
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      print("ERROR: $error");
+      rethrow;
+    }
+  } 
+
+ Future<void> updateUserInterest(InterestModel user) async {
+        try {
+       final result = await _db.collection("Users").doc(user.id).update(user.toJson());
+      Get.snackbar(
+        'Success',
+        'Your Interests has been added!!.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.green.withOpacity(0.3),
+        colorText: Colors.green,
+        duration: const Duration(seconds: 5),
+      );
+      return result; // Return the DocumentReference
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      print("ERROR: $error");
+      rethrow;
+    }
+  } 
+
+    Future<String> uploadPostImage() async {
+    String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
+
+
+    try {
+      Reference ref = _storage.ref().child('postImages/$fileName');
+
+      UploadTask uploadTask = ref.putFile(controller2.image.value);
+
+      print(controller2.image.value);
+
+      TaskSnapshot snapshot = await uploadTask;
+       String downloadUrl =  await snapshot.ref.getDownloadURL();
+
+      return downloadUrl;
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Image Upload Fail. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      return '';
+    }
+  }
+
+  Future<String> uploadPostImage2() async {
+    String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
+
+
+    try {
+      Reference ref = _storage.ref().child('postImages/$fileName');
+
+      UploadTask uploadTask = ref.putFile(controller3.image.value);
+
+      print(controller3.image.value);
+
+      TaskSnapshot snapshot = await uploadTask;
+       String downloadUrl =  await snapshot.ref.getDownloadURL();
+
+      return downloadUrl;
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Image Upload Fail. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      return '';
+    }
+  }
+
+    Future<String> uploadPostImage3() async {
+    String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
+
+
+    try {
+      Reference ref = _storage.ref().child('postImages/$fileName');
+
+      UploadTask uploadTask = ref.putFile(controller4.image.value);
+
+      print(controller4.image.value);
+
+      TaskSnapshot snapshot = await uploadTask;
+       String downloadUrl =  await snapshot.ref.getDownloadURL();
+
+      return downloadUrl;
+    } catch (e) {
+      print(e);
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Image Upload Fail. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      return '';
     }
   }
 

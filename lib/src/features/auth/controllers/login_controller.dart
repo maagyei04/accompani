@@ -13,11 +13,11 @@ class LoginController extends GetxController {
   var otpController = Get.put(AuthenticationRepository());
   final userRepo = Get.put(UserRepository());
 
+  final email  = TextEditingController();
+  final password = TextEditingController();
 
-  final phoneNumber = TextEditingController();
-
-  void loginUserWithPhoneNumber(String phoneNumber) async {
-    var proceed = await userRepo.doesPhoneNumberExist(phoneNumber);
+  void loginUserWithPhoneNumber(String email, String phoneNumber) async {
+    var proceed = await userRepo.doesEmailExist(email);
     if (proceed == true) {
       AuthenticationRepository.instance.phoneAuthentication(phoneNumber);
       Get.to(() => const LoginOTPScreen());
@@ -41,4 +41,22 @@ class LoginController extends GetxController {
     var isVerified = await AuthenticationRepository.instance.verifyOTP(otp);
     isVerified ? Get.offAll(const HomeScreen()) : Get.back();
   }
+
+  void loginUser(String email, String password) async {
+    try {
+      final auth = AuthenticationRepository.instance;
+      await auth.loginUserWithEmailAndPassword(email, password);
+      auth.setInitialScreen(auth.user);
+    } catch (e) {
+       Get.snackbar(
+        'Oh Snap!!',
+        e.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+    }
+  }
+
 }

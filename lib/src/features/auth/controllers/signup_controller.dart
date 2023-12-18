@@ -3,6 +3,7 @@
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/otp_screen.dart';
+import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
 import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome2/welcome_screen2.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
@@ -28,32 +29,38 @@ class SignUpController extends GetxController {
     AuthenticationRepository.instance.phoneAuthentication(phoneNumber);
   }
 
-  Future<void> createUser(UserModel user) async {
-    var proceed = await userRepo.doesPhoneNumberExist(user.phoneNumber);
+Future<void> registerUser(UserModel user) async {
+  try {
+    final auth = AuthenticationRepository.instance;
 
-    if (proceed == false) {
+    // Create user in Firebase Authentication
+    await auth.createUserWithEmailAndPassword(user.email, user.password);
+
+    // Delay the execution of createUser function by 2 seconds (adjust as needed)
+    await Future.delayed(const Duration(seconds: 3), () async {
       await userRepo.createUser(user);
-      phoneAuthentication(user.phoneNumber);
-      Get.to(() => const OTPScreen());
-    } else {
-      print ('User creation failed !!');
-          Get.snackbar(
-            "Error",
-            "Account Already Exist!",
-            snackPosition: SnackPosition.TOP,
-            backgroundColor: Colors.redAccent.withOpacity(0.3),
-            colorText: Colors.red,
-            duration: const Duration(seconds: 5),
-          );  
-    }
+    });
 
+    // Navigate to verification screen
+    Get.offAll(() => const MailVerificationScreen());
+  } catch (e) {
+    // Handle authentication or Firestore errors
+    Get.snackbar(
+      "Error",
+      e.toString(),
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.redAccent.withOpacity(0.3),
+      colorText: Colors.red,
+      duration: const Duration(seconds: 5),
+    );
   }
+}  
 
   Future<UserModel?> getUserData() {
-  final phoneNumber = _authRepo.firebaseUser.value?.phoneNumber;
-  print(_authRepo.firebaseUser.value?.phoneNumber);
-  if (phoneNumber != null) {
-    return userRepo.getUserDetails(phoneNumber);
+
+  if (email != null) {
+    final userEmail = _authRepo.getUserEmail;
+    return userRepo.getUserDetails(userEmail);
   } else {
     Get.snackbar('Error', 'Login to continue', duration: const Duration(seconds: 6));
     return Future.value(null); // Return a Future that resolves to null

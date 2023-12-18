@@ -1,13 +1,33 @@
+// ignore_for_file: avoid_print
+
+import 'package:accompani/src/common_widgets/categories/vertical_categories.dart';
+import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller%20_2.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller_3.dart';
+import 'package:accompani/src/features/auth/controllers/language_controller.dart';
+import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
+import 'package:accompani/src/features/auth/models/personal_info_model.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/personal_info/widgets/multiple_image_upload.dart';
+import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PersonalInfoScreen extends StatelessWidget {
   const PersonalInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final LanguageController controller = Get.put(LanguageController());
+    final controller2 = Get.put(AuthenticationRepository());
+
+    final controller6 = Get.put(UserRepository());
+    final ProcessController stepController = Get.find();
+
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -26,26 +46,53 @@ class PersonalInfoScreen extends StatelessWidget {
               const SizedBox(height: 5,),
 
               const Text('Languages You Speak',style: TextStyle(fontWeight: FontWeight.bold),),
-              const Text('Select the languages you speak',style: TextStyle(fontSize: 12),),
+              const Text('Input the languages you speak',style: TextStyle(fontSize: 12),),
+              const Text('Press Enter after every language you input',style: TextStyle(fontSize: 12),),
 
               const SizedBox(height: 10,),
 
                 TextFormField(
+                  controller: controller.textEditingController,
+                  onFieldSubmitted: (text) {
+                    controller.addToTopOfList(text);
+                  },
+                  style: const TextStyle(fontSize: 15.0),
                   decoration: const InputDecoration(
-                    labelText: 'Select Language',
+                    labelText: 'Input Languages',
                     hintText: 'Input the languages you speak with \',\' seperating them',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
                   ),
-                ),
-
+                ), 
               const SizedBox(height: 10,),
+
+                 Obx(
+                   () => SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.languageList.length, 
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, index) {
+                      return TVerticalCategories(
+                        backgroundColor: tPrimaryColor,
+                        textColor: tWhiteColor,
+                        title: controller.languageList[index],
+                        onTap: (){},
+                      );
+                      
+                    }),
+                                   ),
+                 ),
+
               const Text('Your Bio',style: TextStyle(fontWeight: FontWeight.bold),),
         
               const SizedBox(height: 10,),
 
                 TextFormField(
+                  style: const TextStyle(fontSize: 15.0),
+                  controller: controller.bio,
                   maxLines: 8,
                   decoration: const InputDecoration(
                     hintText: 'About You',
@@ -68,14 +115,38 @@ class PersonalInfoScreen extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+                            stepController.nextPage();
+                          }, 
                           child: const Text(tSkip)
                         ),
                       ),
                       const SizedBox(width: 10.0,),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: () async {
+                            String imageUrl = await controller6.uploadPostImage();
+                            String imageUrl2 = await controller6.uploadPostImage2();
+                            String imageUrl3 = await controller6.uploadPostImage3();
+                            print(controller.languageList);
+
+                            final user = PersonalInfoModel(
+                                id: controller2.getUserID,
+                                languages: controller.languageList,
+                                photos: [
+                                  imageUrl,
+                                  imageUrl2,
+                                  imageUrl3,
+                                ],
+                                bio: controller.bio.text.trim(),
+                              );
+                 
+                              controller6.updatePersonalRecord(user);
+                                         print(user);
+
+                              stepController.nextPage();
+                                    
+                          },
                           child: const Text(tNext)
                         ),
                       )

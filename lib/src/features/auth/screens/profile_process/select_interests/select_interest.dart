@@ -1,6 +1,11 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
+import 'package:accompani/src/features/auth/models/interest_model.dart';
+import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
@@ -21,6 +26,10 @@ class _SelectionScreenState extends State<SelectionScreen> {
       }
     });
   }
+  
+  final ProcessController stepController = Get.find();
+  final controller = Get.put(AuthenticationRepository());
+  final controller2 = Get.put(UserRepository());
 
   Widget buildInterestButton(String interest) {
     bool isSelected = selectedInterests.contains(interest);
@@ -91,14 +100,29 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+                            stepController.nextPage();
+                          }, 
                           child: const Text(tSkip)
                         ),
                       ),
                       const SizedBox(width: 10.0,),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            print(selectedInterests);
+
+                            final user = InterestModel(
+                                id: controller.getUserID,
+                                interests: selectedInterests,
+                              );
+                 
+                              controller2.updateUserInterest(user);
+                              
+                              print(user);
+
+                              stepController.nextPage();                            
+                          },
                           child: const Text(tNext)
                         ),
                       )

@@ -16,6 +16,7 @@ class SignupFooterWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+          
           const Text("or"),
 
           const SizedBox(height: tFormHeight -20,),

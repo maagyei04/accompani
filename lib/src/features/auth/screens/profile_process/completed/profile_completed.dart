@@ -1,3 +1,4 @@
+import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/screens/survey/survey.dart';
@@ -14,7 +15,7 @@ class ProfileCompleteScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(image: AssetImage(tCheckLogo)),
+            Image(image: AssetImage(tCheckLogo), color: tPrimaryColor,),
 
             SizedBox(height: 15.0,),
 

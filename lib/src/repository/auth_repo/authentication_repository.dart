@@ -1,8 +1,10 @@
+import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/me.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/personal_info/personal_info.dart';
 import 'package:accompani/src/features/auth/screens/splashscreen/splash_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:accompani/src/features/core/screens/home/home.dart';
+import 'package:accompani/src/repository/auth_repo/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,17 +18,29 @@ class AuthenticationRepository extends GetxController {
   late final Rx<User?> firebaseUser;
   var verificationId = ''.obs;
 
+  User? get user => firebaseUser.value;
+
+  String get getUserID => user?.uid ?? '';
+
+  String get getUserEmail => user?.email ?? '';
+
+  String get getUserPhone => user?.phoneNumber ?? '';
+
+ DateTime? get getUserDateJoined => user?.metadata.creationTime;  
+
   @override
   void onReady() {
     Future.delayed(const Duration(seconds: 3));
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
+    setInitialScreen(firebaseUser.value);
   }
 
-
-  _setInitialScreen(User? user) {
-    user == null ? Get.offAll(() => const WelcomeScreen()) : Get.offAll(() => const HomeScreen());
+  setInitialScreen(User? user) {
+    user == null ? Get.offAll(() => const WelcomeScreen()) 
+    : user.emailVerified 
+      ? Get.offAll(() => StepIndicatorScreen()) 
+      : Get.offAll(() => const MailVerificationScreen());
   }
 
   String? getUserId() {
@@ -102,6 +116,42 @@ class AuthenticationRepository extends GetxController {
     }
     
   }
+
+  Future<void> createUserWithEmailAndPassword(String email, String password) async {
+    try { 
+     await _auth.createUserWithEmailAndPassword(email: email, password: password);
+     Get.snackbar('success', 'User successfuly created!');
+     //firebaseUser.value != null ? Get.offAll(() => const SchoolSelectScreen()) : Get.to(() => const WelcomeScreen());
+    } on FirebaseAuthException catch(e) {
+      final ex = SignUpWithEmailAndpasswordFailure.code(e.code);
+      Get.snackbar('FIREBASE AUTH EXCEPTION', ex.message, duration: const Duration(seconds: 5),);
+      throw ex;
+    }  catch (_) {
+      const ex = SignUpWithEmailAndpasswordFailure();
+      Get.snackbar('FIREBASE AUTH EXCEPTION', ex.message, duration: const Duration(seconds: 5));
+      throw ex;
+    }
+  }  
+
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      final ex = SignUpWithEmailAndpasswordFailure.code(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = SignUpWithEmailAndpasswordFailure();
+      throw ex.message;
+    }
+  }  
   
+  Future<void> loginUserWithEmailAndPassword(String email, String password) async {
+    try { 
+     await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException {
+      //login with email and password logic
+    }  catch (_) {}
+  }
+
   Future<void> logout() async => await _auth.signOut();
 }
