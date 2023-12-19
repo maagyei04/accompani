@@ -126,7 +126,7 @@ class AuthenticationRepository extends GetxController {
             "User successfuly created!",
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green.withOpacity(0.1),
-            colorText: Colors.red,
+            colorText: Colors.green,
             duration: const Duration(seconds: 5),
           );  
      //firebaseUser.value != null ? Get.offAll(() => const SchoolSelectScreen()) : Get.to(() => const WelcomeScreen());
