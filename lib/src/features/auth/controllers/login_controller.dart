@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_print
 
+import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/features/auth/screens/email/email.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
-import 'package:accompani/src/features/core/screens/home/home.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ class LoginController extends GetxController {
 
   void verifyOTPLogin(String otp) async {
     var isVerified = await AuthenticationRepository.instance.verifyOTP(otp);
-    isVerified ? Get.offAll(const HomeScreen()) : Get.back();
+    isVerified ? Get.offAll(const NavigationMenu()) : Get.back();
   }
 
   void loginUser(String email, String password) async {

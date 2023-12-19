@@ -1,5 +1,4 @@
 import 'package:accompani/src/features/auth/screens/email/email.dart';
-import 'package:accompani/src/features/core/screens/home/home.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:get/get.dart';
 

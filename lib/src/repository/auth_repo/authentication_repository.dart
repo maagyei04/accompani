@@ -1,9 +1,10 @@
+import 'package:accompani/navigation_menu.dart';
+import 'package:accompani/src/features/auth/screens/login/login_screen.dart';
 import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/me.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/personal_info/personal_info.dart';
 import 'package:accompani/src/features/auth/screens/splashscreen/splash_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
-import 'package:accompani/src/features/core/screens/home/home.dart';
 import 'package:accompani/src/repository/auth_repo/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,9 +38,9 @@ class AuthenticationRepository extends GetxController {
   }
 
   setInitialScreen(User? user) {
-    user == null ? Get.offAll(() => const WelcomeScreen()) 
+    user == null ? Get.offAll(() => const LoginScreen()) 
     : user.emailVerified 
-      ? Get.offAll(() => StepIndicatorScreen()) 
+      ? Get.offAll(() => const NavigationMenu()) 
       : Get.offAll(() => const MailVerificationScreen());
   }
 
@@ -120,15 +121,36 @@ class AuthenticationRepository extends GetxController {
   Future<void> createUserWithEmailAndPassword(String email, String password) async {
     try { 
      await _auth.createUserWithEmailAndPassword(email: email, password: password);
-     Get.snackbar('success', 'User successfuly created!');
+          Get.snackbar(
+            "Success!!",
+            "User successfuly created!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.green.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          );  
      //firebaseUser.value != null ? Get.offAll(() => const SchoolSelectScreen()) : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch(e) {
       final ex = SignUpWithEmailAndpasswordFailure.code(e.code);
-      Get.snackbar('FIREBASE AUTH EXCEPTION', ex.message, duration: const Duration(seconds: 5),);
+          Get.snackbar(
+            "Oh Snap!!",
+            ex.message,
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          );      
       throw ex;
     }  catch (_) {
       const ex = SignUpWithEmailAndpasswordFailure();
-      Get.snackbar('FIREBASE AUTH EXCEPTION', ex.message, duration: const Duration(seconds: 5));
+          Get.snackbar(
+            "Oh Snap!!",
+            ex.message,
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          );      
       throw ex;
     }
   }  
@@ -153,5 +175,16 @@ class AuthenticationRepository extends GetxController {
     }  catch (_) {}
   }
 
-  Future<void> logout() async => await _auth.signOut();
-}
+  Future<void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw e.message!;
+    } on FormatException catch (e) {
+      throw e.message;
+    } catch (e) {
+      throw 'Unable to logout. Try again';
+    }
+  }
+} 

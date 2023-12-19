@@ -1,5 +1,4 @@
-
-import 'package:accompani/src/features/core/screens/home/home.dart';
+import 'package:accompani/navigation_menu.dart';
 import 'package:get/get.dart';
 
 class FadeInAnimationController extends GetxController{
@@ -13,7 +12,7 @@ class FadeInAnimationController extends GetxController{
     await Future.delayed(const Duration(milliseconds: 3000));
     animate.value = false;
     await Future.delayed(const Duration(milliseconds: 2000));
-    Get.offAll(() => const HomeScreen());
+    Get.offAll(() => const NavigationMenu());
   }
 
   Future startWelcomeAnimation() async {
@@ -21,4 +20,4 @@ class FadeInAnimationController extends GetxController{
     animate.value = true;
   }
 
-} 
+}  
