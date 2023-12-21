@@ -26,9 +26,7 @@ class _SignupFormState extends State<SignupForm> {
   Widget build(BuildContext context) {
 
     var mediaQuery = MediaQuery.of(context);
-    var brightness = mediaQuery.platformBrightness;
     final size = mediaQuery.size;
-    final isDarkMode = brightness == Brightness.dark;
 
     final formKey = GlobalKey<FormState>();
 
@@ -76,7 +74,8 @@ class _SignupFormState extends State<SignupForm> {
                       onPressed: () {
                         setState(() {
                           _isPasswordVisible = !_isPasswordVisible;
-                        });             
+                        });    
+                        FocusScope.of(context).requestFocus(FocusNode());         
                 })
               ),
               

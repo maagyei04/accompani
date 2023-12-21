@@ -65,7 +65,8 @@ class _LoginFormState extends State<LoginForm> {
                       onPressed: () {
                         setState(() {
                           _isPasswordVisible = !_isPasswordVisible;
-                        });             
+                        });         
+                        FocusScope.of(context).requestFocus(FocusNode());    
                 })
               ),
               

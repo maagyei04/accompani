@@ -20,7 +20,7 @@ class ImagePickerController extends GetxController {
 
       if (imagePick == null) {
         print("Image is null");
-        return;
+        return 'Default...';
       }
 
       final imageTmp = File(imagePick.path);
@@ -42,7 +42,7 @@ class ImagePickerController extends GetxController {
 
       if (imagePick == null) {
         print("Image is null");
-        return;
+        return 'Default...';
       }
 
       final imageTmp = File(imagePick.path);

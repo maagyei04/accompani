@@ -159,6 +159,11 @@ class UserRepository extends GetxController {
   } 
 
     Future<String> uploadPostImage() async {
+      if (controller2.image.value == null) {
+        return 'Default...';
+      }
+
+
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
 
@@ -168,11 +173,11 @@ class UserRepository extends GetxController {
       UploadTask uploadTask = ref.putFile(controller2.image.value);
 
       TaskSnapshot snapshot = await uploadTask;
-       String downloadUrl =  await snapshot.ref.getDownloadURL();
+      String downloadUrl =  await snapshot.ref.getDownloadURL();
 
       return downloadUrl;
     } catch (e) {
-      Get.snackbar(
+       Get.snackbar(
         "Error",
         "Something went wrong. Image Upload Fail. Try Again",
         snackPosition: SnackPosition.TOP,
@@ -180,11 +185,15 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      return '';
+      return 'Error';
     }
   }
 
   Future<String> uploadPostImage2() async {
+      if (controller3.image.value == null) {
+        return 'Default...';
+      }
+
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
 
@@ -206,11 +215,15 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      return '';
+      return 'Error';
     }
   }
 
     Future<String> uploadPostImage3() async {
+      if (controller4.image.value == null) {
+        return 'Default...';
+      }
+
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
 
@@ -232,7 +245,7 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      return '';
+      return 'Error';
     }
   }
 

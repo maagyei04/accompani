@@ -138,9 +138,9 @@ class PersonalInfoScreen extends StatelessWidget {
                                 languages: controller.languageList,
                                 bio: controller.bio.text.trim(),
                                 photos: [
-                                  imageUrl,
-                                  imageUrl2,
-                                  imageUrl3,
+                                  if (imageUrl != null && imageUrl.isNotEmpty) imageUrl,
+                                  if (imageUrl2 != null && imageUrl2.isNotEmpty) imageUrl2,
+                                  if (imageUrl3 != null && imageUrl3.isNotEmpty) imageUrl3,
                                 ],
                               );
 
