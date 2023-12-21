@@ -45,11 +45,21 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSAccessibilitySpeechUsageDescription</key>
+		<string>Speech Usage</string>
+	<key>NSAccessibilityMediaUsageDescription</key>
+		<string>Media Usage</string>
+	<key>NSFileProviderDomainUsageDescription</key>
+		<string>File Provider Usage</string>	
+	<key>NSContactsUsageDescription</key>
+		<string>Access to Contacts</string>						
 	<key>NSPhotoLibraryUsageDescription</key>
 		<string>Photo Library Usage</string>	
 	<key>NSCameraUsageDescription</key>
 		<string>Camera Usage</string>	
 	<key>NSMicrophoneUsageDescription</key>
 		<string>Microphone Usage</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+		<string>Location Access Always</string>		
 </dict>
 </plist>
