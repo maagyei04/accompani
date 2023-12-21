@@ -1,4 +1,3 @@
-import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 

@@ -1,15 +1,9 @@
-// ignore_for_file: avoid_print
-
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
-import 'package:accompani/src/features/auth/controllers/login_controller.dart';
 import 'package:accompani/src/features/auth/controllers/signup_controller.dart';
-import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
-import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_options/forgot_password_modal_buttom_sheet.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_number_field/intl_phone_number_field.dart';
@@ -32,12 +26,6 @@ class _EmailFormState extends State<EmailForm> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    var mediaQuery = MediaQuery.of(context);
-    var brightness = mediaQuery.platformBrightness;
-
-    final isDarkMode = brightness == Brightness.dark;
 
     final formKey = GlobalKey<FormState>();
 
@@ -66,7 +54,6 @@ class _EmailFormState extends State<EmailForm> {
                   var fullNumber = '${number.dial_code} ${number.number}';
                   fullNumber = fullNumber.replaceAll(' ', '');
                   controller.phoneNumber.text = fullNumber;
-                  print(fullNumber);
                   },
                   dialogConfig: DialogConfig(
                     backgroundColor: tWhiteColor,

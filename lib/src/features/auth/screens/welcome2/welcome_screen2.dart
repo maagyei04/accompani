@@ -5,7 +5,6 @@ import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/me.dart';
-import 'package:accompani/src/features/auth/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,9 +16,6 @@ class WelcomeScreen2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(FadeInAnimationController());
     controller.startWelcomeAnimation();
-
-    var mediaQuery = MediaQuery.of(context);
-    var height = mediaQuery.size.height;
 
 
     return Scaffold(

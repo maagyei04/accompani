@@ -3,7 +3,6 @@ import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
-import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,14 +1,9 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
-import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
-import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/otp_screen.dart';
-import 'package:accompani/src/features/auth/screens/login/login_screen.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/completed/profile_completed.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/personal_info/personal_info.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/select_interests/select_interest.dart';
 import 'package:accompani/src/features/auth/screens/profile_process/social_link/social_link.dart';
-import 'package:accompani/src/features/auth/screens/signup/signup_screen.dart';
-import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stepindicator/flutter_stepindicator.dart';
 import 'package:get/get.dart';

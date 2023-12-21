@@ -1,10 +1,6 @@
-// ignore_for_file: avoid_print
-
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
-import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/otp_screen.dart';
 import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
-import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome2/welcome_screen2.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';

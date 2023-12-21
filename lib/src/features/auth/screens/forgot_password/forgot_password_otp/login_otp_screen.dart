@@ -5,7 +5,6 @@ import 'package:accompani/src/features/auth/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginOTPScreen extends StatelessWidget {
   const LoginOTPScreen({super.key});

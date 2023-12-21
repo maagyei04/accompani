@@ -1,9 +1,6 @@
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/features/auth/screens/login/login_screen.dart';
 import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
-import 'package:accompani/src/features/auth/screens/profile_process/me.dart';
-import 'package:accompani/src/features/auth/screens/profile_process/personal_info/personal_info.dart';
-import 'package:accompani/src/features/auth/screens/splashscreen/splash_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:accompani/src/repository/auth_repo/exceptions/signup_email_password_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,7 +36,7 @@ class AuthenticationRepository extends GetxController {
  DateTime? get getUserDateJoined => user?.metadata.creationTime; 
 
   setInitialScreen(User? user) {
-    user == null ? Get.offAll(() => const LoginScreen()) 
+    user == null ? Get.offAll(() => const WelcomeScreen()) 
     : user.emailVerified 
       ? Get.offAll(() => const NavigationMenu()) 
       : Get.offAll(() => const MailVerificationScreen());

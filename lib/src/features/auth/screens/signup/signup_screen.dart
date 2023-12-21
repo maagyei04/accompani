@@ -1,10 +1,5 @@
 import 'package:accompani/src/constants/sizes.dart';
-import 'package:accompani/src/features/auth/screens/login/widgets/login_footer_widget.dart';
-import 'package:accompani/src/features/auth/screens/login/widgets/login_form_widget.dart';
-import 'package:accompani/src/features/auth/screens/login/widgets/login_header_widget.dart';
-import 'package:accompani/src/features/auth/screens/signup/widgets/signup_footer_widget.dart';
 import 'package:accompani/src/features/auth/screens/signup/widgets/signup_form_widget.dart';
-import 'package:accompani/src/features/auth/screens/signup/widgets/signup_header_widget.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatelessWidget {

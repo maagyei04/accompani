@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_stepindicator/flutter_stepindicator.dart';
 import 'package:get/get.dart';
 
 class ProcessController extends GetxController {

@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_print
-
 import 'package:accompani/navigation_menu.dart';
-import 'package:accompani/src/features/auth/screens/email/email.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
@@ -22,7 +19,6 @@ class LoginController extends GetxController {
       AuthenticationRepository.instance.phoneAuthentication(phoneNumber);
       Get.to(() => const LoginOTPScreen());
     } else {
-      print('User Doesn\'t Exist');
       Get.snackbar(
         'Error',
         'User Doesn\'t Exist',

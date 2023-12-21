@@ -1,5 +1,4 @@
 import 'package:accompani/firebase_options.dart';
-import 'package:accompani/src/features/auth/screens/profile_process/me.dart';
 import 'package:accompani/src/features/auth/screens/splashscreen/splash_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';

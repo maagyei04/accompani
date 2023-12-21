@@ -4,9 +4,6 @@ import 'package:accompani/src/common_widgets/categories/vertical_categories.dart
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
-import 'package:accompani/src/features/auth/controllers/image_picker_controller%20_2.dart';
-import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
-import 'package:accompani/src/features/auth/controllers/image_picker_controller_3.dart';
 import 'package:accompani/src/features/auth/controllers/language_controller.dart';
 import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
 import 'package:accompani/src/features/auth/models/personal_info_model.dart';
