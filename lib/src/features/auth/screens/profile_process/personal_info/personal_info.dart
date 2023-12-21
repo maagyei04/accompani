@@ -128,21 +128,19 @@ class PersonalInfoScreen extends StatelessWidget {
                             String imageUrl = await controller6.uploadPostImage();
                             String imageUrl2 = await controller6.uploadPostImage2();
                             String imageUrl3 = await controller6.uploadPostImage3();
-                            print(controller.languageList);
 
                             final user = PersonalInfoModel(
                                 id: controller2.getUserID,
                                 languages: controller.languageList,
+                                bio: controller.bio.text.trim(),
                                 photos: [
                                   imageUrl,
                                   imageUrl2,
                                   imageUrl3,
                                 ],
-                                bio: controller.bio.text.trim(),
                               );
                  
                               controller6.updatePersonalRecord(user);
-                                         print(user);
 
                               stepController.nextPage();
                                     

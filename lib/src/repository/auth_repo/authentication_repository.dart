@@ -17,7 +17,16 @@ class AuthenticationRepository extends GetxController {
   //Variable
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
-  var verificationId = ''.obs;
+  var verificationId = ''.obs; 
+
+  @override
+  void onReady() {
+    Future.delayed(const Duration(seconds: 3));
+    firebaseUser = Rx<User?>(_auth.currentUser);
+    firebaseUser.bindStream(_auth.userChanges());
+    setInitialScreen(firebaseUser.value);
+  }
+
 
   User? get user => firebaseUser.value;
 
@@ -27,15 +36,7 @@ class AuthenticationRepository extends GetxController {
 
   String get getUserPhone => user?.phoneNumber ?? '';
 
- DateTime? get getUserDateJoined => user?.metadata.creationTime;  
-
-  @override
-  void onReady() {
-    Future.delayed(const Duration(seconds: 3));
-    firebaseUser = Rx<User?>(_auth.currentUser);
-    firebaseUser.bindStream(_auth.userChanges());
-    setInitialScreen(firebaseUser.value);
-  }
+ DateTime? get getUserDateJoined => user?.metadata.creationTime; 
 
   setInitialScreen(User? user) {
     user == null ? Get.offAll(() => const LoginScreen()) 

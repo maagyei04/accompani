@@ -172,7 +172,7 @@ class UserRepository extends GetxController {
 
 
     try {
-      Reference ref = _storage.ref().child('postImages/$fileName');
+      Reference ref = _storage.ref().child('UserImages/$fileName');
 
       UploadTask uploadTask = ref.putFile(controller2.image.value);
 
@@ -201,7 +201,7 @@ class UserRepository extends GetxController {
 
 
     try {
-      Reference ref = _storage.ref().child('postImages/$fileName');
+      Reference ref = _storage.ref().child('UserImages/$fileName');
 
       UploadTask uploadTask = ref.putFile(controller3.image.value);
 
@@ -230,7 +230,7 @@ class UserRepository extends GetxController {
 
 
     try {
-      Reference ref = _storage.ref().child('postImages/$fileName');
+      Reference ref = _storage.ref().child('UserImages/$fileName');
 
       UploadTask uploadTask = ref.putFile(controller4.image.value);
 

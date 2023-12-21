@@ -48,16 +48,7 @@ class _EmailFormState extends State<EmailForm> {
       ),
       body: Container(
         padding: const EdgeInsets.all(tFormHeight - 10),
-
-        child: FutureBuilder(
-          future: controller.getUserData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasData) {
-                print('Data available: ${snapshot.data}');
-                UserModel userData = snapshot.data as UserModel;
-                return 
-          Form(
+        child: Form(
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,37 +184,8 @@ class _EmailFormState extends State<EmailForm> {
                 )
               ],
             )
-          );
-                
-                
-                          
-              } else if (snapshot.hasError) {
-                                  // ignore: avoid_print
-                                  print(snapshot.error.toString());
-                return Center(
-                  child: Text(snapshot.error.toString()),
-                );
-              } else if (!snapshot.hasData || snapshot.data == null) {
-      return const Center(
-        child: Text('No data available'),
-      );
-    }else {
-                return const Center(
-                  child: Text('Something went wrong'),
-                );
-              }
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.green,
-                ),
-              );
-            }            
-          },
-         
-        ),
-      ),
-    );
-  }
-  
-  }
+          ),
+          ),
+);
+}
+}

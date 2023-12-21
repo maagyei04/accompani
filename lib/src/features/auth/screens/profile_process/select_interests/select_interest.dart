@@ -11,10 +11,10 @@ class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
 
   @override
-  _SelectionScreenState createState() => _SelectionScreenState();
+  SelectionScreenState createState() => SelectionScreenState();
 }
 
-class _SelectionScreenState extends State<SelectionScreen> {
+class SelectionScreenState extends State<SelectionScreen> {
   List<String> selectedInterests = [];
 
   void toggleInterest(String interest) {
@@ -110,8 +110,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: (){
-                            print(selectedInterests);
-
                             final user = InterestModel(
                                 id: controller.getUserID,
                                 interests: selectedInterests,
@@ -119,8 +117,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
                  
                               controller2.updateUserInterest(user);
                               
-                              print(user);
-
                               stepController.nextPage();                            
                           },
                           child: const Text(tNext)
