@@ -38,8 +38,7 @@ class _SignupFormState extends State<SignupForm> {
 
     final formKey = GlobalKey<FormState>();
 
-    return Scaffold(
-      body: Form(
+    return Form(
         key: formKey,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: tFormHeight - 20),
@@ -275,8 +274,7 @@ class _SignupFormState extends State<SignupForm> {
             ],
           ),
         )
-      ),
-    );
+      );
   }
   
   }

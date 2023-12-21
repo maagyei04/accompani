@@ -14,10 +14,14 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return SafeArea(
-      child:  Container(
-          padding: const EdgeInsets.all(tDefaultSize),
-          child: const SignupForm(),
+      child:  Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+              padding: const EdgeInsets.all(tDefaultSize),
+              child: const SignupForm(),
+            ),
         ),
+      ),
       );
   }
 }
