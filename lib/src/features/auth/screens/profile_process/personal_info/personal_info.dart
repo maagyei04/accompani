@@ -122,11 +122,18 @@ class PersonalInfoScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () async {
-                            String imageUrl = await controller6.uploadPostImage();
-                            String imageUrl2 = await controller6.uploadPostImage2();
-                            String imageUrl3 = await controller6.uploadPostImage3();
+                            try {
+                              List<String> imageUrls = await Future.wait([
+                                controller6.uploadPostImage(),
+                                controller6.uploadPostImage2(),
+                                controller6.uploadPostImage3(),
+                              ]);
 
-                            final user = PersonalInfoModel(
+                              String imageUrl = imageUrls[0];
+                              String imageUrl2 = imageUrls[1];
+                              String imageUrl3 = imageUrls[2];
+
+                              final user = PersonalInfoModel(
                                 id: controller2.getUserID,
                                 languages: controller.languageList,
                                 bio: controller.bio.text.trim(),
@@ -136,12 +143,22 @@ class PersonalInfoScreen extends StatelessWidget {
                                   imageUrl3,
                                 ],
                               );
-                 
-                              controller6.updatePersonalRecord(user);
+
+                              await controller6.updatePersonalRecord(user);
 
                               stepController.nextPage();
-                                    
+                            } catch (e) {
+                              Get.snackbar(
+                                "Error",
+                                "Error during image upload or update: $e",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.redAccent.withOpacity(0.1),
+                                colorText: Colors.red,
+                                duration: const Duration(seconds: 5),
+                              ); 
+                            }
                           },
+
                           child: const Text(tNext)
                         ),
                       )
