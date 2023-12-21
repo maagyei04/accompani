@@ -1,9 +1,6 @@
-// ignore_for_file: avoid_print
-
 import 'dart:math';
-
-import 'package:accompani/src/features/auth/controllers/image_picker_controller%20_2.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller_2.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller_3.dart';
 import 'package:accompani/src/features/auth/models/interest_model.dart';
 import 'package:accompani/src/features/auth/models/personal_info_model.dart';
@@ -32,12 +29,10 @@ class UserRepository extends GetxController {
           .where('Emali', isEqualTo: email)
           .get();
 
-        print (querySnapshot.docs.isNotEmpty);
       return querySnapshot.docs.isNotEmpty;
 
     } catch (e) {
       // Handle any errors in database query
-      print('Error checking email existence: $e');
       return false;
     }
   }
@@ -63,7 +58,6 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      print("ERROR: $error");
       rethrow;
     }
   }
@@ -110,7 +104,6 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      print("ERROR: $error");
       rethrow;
     }
   } 
@@ -136,7 +129,6 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      print("ERROR: $error");
       rethrow;
     }
   } 
@@ -162,7 +154,6 @@ class UserRepository extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
-      print("ERROR: $error");
       rethrow;
     }
   } 
@@ -176,14 +167,11 @@ class UserRepository extends GetxController {
 
       UploadTask uploadTask = ref.putFile(controller2.image.value);
 
-      print(controller2.image.value);
-
       TaskSnapshot snapshot = await uploadTask;
        String downloadUrl =  await snapshot.ref.getDownloadURL();
 
       return downloadUrl;
     } catch (e) {
-      print(e);
       Get.snackbar(
         "Error",
         "Something went wrong. Image Upload Fail. Try Again",
@@ -205,14 +193,11 @@ class UserRepository extends GetxController {
 
       UploadTask uploadTask = ref.putFile(controller3.image.value);
 
-      print(controller3.image.value);
-
       TaskSnapshot snapshot = await uploadTask;
        String downloadUrl =  await snapshot.ref.getDownloadURL();
 
       return downloadUrl;
     } catch (e) {
-      print(e);
       Get.snackbar(
         "Error",
         "Something went wrong. Image Upload Fail. Try Again",
@@ -234,14 +219,11 @@ class UserRepository extends GetxController {
 
       UploadTask uploadTask = ref.putFile(controller4.image.value);
 
-      print(controller4.image.value);
-
       TaskSnapshot snapshot = await uploadTask;
        String downloadUrl =  await snapshot.ref.getDownloadURL();
 
       return downloadUrl;
     } catch (e) {
-      print(e);
       Get.snackbar(
         "Error",
         "Something went wrong. Image Upload Fail. Try Again",

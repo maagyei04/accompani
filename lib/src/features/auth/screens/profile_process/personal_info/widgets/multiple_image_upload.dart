@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
-import 'package:accompani/src/features/auth/controllers/image_picker_controller%20_2.dart';
+import 'package:accompani/src/features/auth/controllers/image_picker_controller_2.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller_3.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_options/forgot_password_btn_widget.dart';
