@@ -18,7 +18,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
   final controller = Get.put(LoginController());
 
 
@@ -67,11 +67,8 @@ class _LoginFormState extends State<LoginForm> {
                           onPressed: () {
                             setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
-                            });         
-                            // Trigger a layout change in the parent SingleChildScrollView
-                            WidgetsBinding.instance!.addPostFrameCallback((_) {
-                              Scrollable.ensureVisible(context, alignment: 0.5);
-                            });})
+                            }); 
+                    })
                   ),
                   
                 );

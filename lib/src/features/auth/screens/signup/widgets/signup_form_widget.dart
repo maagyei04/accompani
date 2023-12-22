@@ -20,7 +20,7 @@ class SignupForm extends StatefulWidget {
 class _SignupFormState extends State<SignupForm> {
 
   final controller = Get.put(SignUpController());
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +77,6 @@ class _SignupFormState extends State<SignupForm> {
                             setState(() {
                               _isPasswordVisible = !_isPasswordVisible;
                             });    
-                            WidgetsBinding.instance!.addPostFrameCallback((_) {
-                              Scrollable.ensureVisible(context, alignment: 0.5);
-                            });
                     })
                   ),
                   
