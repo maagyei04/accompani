@@ -3,6 +3,7 @@
 
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,17 +20,29 @@ class ImagePickerController3 extends GetxController {
       final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
 
       if (imagePick == null) {
-        print("Image is null");
-        return;
+          Get.snackbar(
+            "Error",
+            "Image is null",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          );        
+          return;
       }
 
       final imageTmp = File(imagePick.path);
 
       image.value = imageTmp; 
-      print(image.value);
     } on PlatformException catch (e) {
-      print("Error: $e");
-      print(image.value);
+          Get.snackbar(
+            "Error",
+            "Image is null $e!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          ); 
     }
 
   }
@@ -41,17 +54,29 @@ class ImagePickerController3 extends GetxController {
       final imagePick = await ImagePicker().pickImage(source: ImageSource.camera);
 
       if (imagePick == null) {
-        print("Image is null");
+          Get.snackbar(
+            "Error",
+            "Image is null!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          ); 
         return;
       }
 
       final imageTmp = File(imagePick.path);
 
       image.value = imageTmp; 
-      print(image.value);
     } on PlatformException catch (e) {
-      print("Error: $e");
-      print(image.value);
+          Get.snackbar(
+            "Error",
+            "Image is null $e!",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.redAccent.withOpacity(0.1),
+            colorText: Colors.red,
+            duration: const Duration(seconds: 5),
+          ); 
     }
 
   }

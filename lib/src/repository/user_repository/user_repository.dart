@@ -159,10 +159,6 @@ class UserRepository extends GetxController {
   } 
 
     Future<String> uploadPostImage() async {
-      if (controller2.image.value == null) {
-        return 'Default...';
-      }
-
 
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
@@ -190,9 +186,6 @@ class UserRepository extends GetxController {
   }
 
   Future<String> uploadPostImage2() async {
-      if (controller3.image.value == null) {
-        return 'Default...';
-      }
 
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
@@ -220,9 +213,6 @@ class UserRepository extends GetxController {
   }
 
     Future<String> uploadPostImage3() async {
-      if (controller4.image.value == null) {
-        return 'Default...';
-      }
 
     String fileName = '${DateTime.now().millisecondsSinceEpoch}_${Random().nextInt(10000)}.png';
 
