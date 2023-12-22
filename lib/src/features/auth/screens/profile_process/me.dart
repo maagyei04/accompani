@@ -60,7 +60,6 @@ class StepIndicatorScreen extends StatelessWidget {
                         negativeColor: Colors.grey.withOpacity(0.1), // Customize inactive step color
                         progressColor: tPrimaryColor, // Customize progress line color
                         division: 4, 
-                        disableAutoScroll: false,
                          height: 25, // Number of divisions (adjust based on your steps)
                       ),
                     )),
