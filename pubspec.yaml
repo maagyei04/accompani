@@ -34,13 +34,13 @@ dependencies:
   liquid_swipe: ^3.1.0
   smooth_page_indicator: ^1.1.0  
   google_fonts: ^6.1.0
-  flutter_stepindicator: ^0.0.2
+  flutter_stepindicator: ^0.1.7
   flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

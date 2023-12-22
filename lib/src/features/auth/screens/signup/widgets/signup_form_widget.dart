@@ -74,8 +74,8 @@ class _SignupFormState extends State<SignupForm> {
                       onPressed: () {
                         setState(() {
                           _isPasswordVisible = !_isPasswordVisible;
-                        });    
-                })
+                        });         
+              })
               ),
               
             ),
