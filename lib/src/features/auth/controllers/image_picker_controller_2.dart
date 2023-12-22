@@ -25,7 +25,7 @@ class ImagePickerController2 extends GetxController {
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
           );          
-          return 'Default...';
+          return;
       }
 
       final imageTmp = File(imagePick.path);
@@ -60,7 +60,7 @@ class ImagePickerController2 extends GetxController {
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
           );  
-        return 'Default...';
+        return;
       }
 
       final imageTmp = File(imagePick.path);

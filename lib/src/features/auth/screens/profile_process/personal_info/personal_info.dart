@@ -122,6 +122,7 @@ class PersonalInfoScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () async {
+
                             try {
                               List<String> imageUrls = await Future.wait([
                                 controller6.uploadPostImage(),
@@ -129,24 +130,39 @@ class PersonalInfoScreen extends StatelessWidget {
                                 controller6.uploadPostImage3(),
                               ]);
 
-                              String imageUrl = imageUrls[0];
-                              String imageUrl2 = imageUrls[1];
-                              String imageUrl3 = imageUrls[2];
+                              if (imageUrls[0].isNotEmpty &&
+                                  imageUrls[1].isNotEmpty &&
+                                  imageUrls[2].isNotEmpty
+                                ) {
+                                  String imageUrl = imageUrls[0];
+                                  String imageUrl2 = imageUrls[1];
+                                  String imageUrl3 = imageUrls[2];
 
-                              final user = PersonalInfoModel(
-                                id: controller2.getUserID,
-                                languages: controller.languageList,
-                                bio: controller.bio.text.trim(),
-                                photos: [
-                                  if (imageUrl != null && imageUrl.isNotEmpty) imageUrl,
-                                  if (imageUrl2 != null && imageUrl2.isNotEmpty) imageUrl2,
-                                  if (imageUrl3 != null && imageUrl3.isNotEmpty) imageUrl3,
-                                ],
-                              );
+                                  final user = PersonalInfoModel(
+                                    id: controller2.getUserID,
+                                    languages: controller.languageList,
+                                    bio: controller.bio.text.trim(),
+                                    photos: [
+                                      imageUrl,
+                                      imageUrl2,
+                                      imageUrl3,
+                                    ],
+                                  );
 
-                              await controller6.updatePersonalRecord(user);
+                                  await controller6.updatePersonalRecord(user);
 
-                              stepController.nextPage();
+                                  stepController.nextPage();
+                              } else {
+                                Get.snackbar(
+                                  "Error",
+                                  "Please select 3 images",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor: Colors.redAccent.withOpacity(0.1),
+                                  colorText: Colors.red,
+                                  duration: const Duration(seconds: 5),
+                                ); 
+                              }
+
                             } catch (e) {
                               Get.snackbar(
                                 "Error",

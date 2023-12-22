@@ -58,27 +58,33 @@ class _SignupFormState extends State<SignupForm> {
       
               const SizedBox(height: tFormHeight - 20,),
               
-            TextFormField(
-              style: const TextStyle(fontSize: 15.0),
-              obscureText: !_isPasswordVisible,
-              controller: controller.password,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.fingerprint),
-                labelText: tPassword,
-                hintText: tPassword,
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                ),
-                suffixIcon: IconButton(
-                      icon: _isPasswordVisible ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                      onPressed: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });    
-                        FocusScope.of(context).requestFocus(FocusNode());         
-                })
-              ),
-              
+            Builder(
+              builder: (context) {
+                return TextFormField(
+                  style: const TextStyle(fontSize: 15.0),
+                  obscureText: !_isPasswordVisible,
+                  controller: controller.password,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.fingerprint),
+                    labelText: tPassword,
+                    hintText: tPassword,
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                    suffixIcon: IconButton(
+                          icon: _isPasswordVisible ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });    
+                            WidgetsBinding.instance!.addPostFrameCallback((_) {
+                              Scrollable.ensureVisible(context, alignment: 0.5);
+                            });
+                    })
+                  ),
+                  
+                );
+              }
             ),
       /* --
               TextFormField(

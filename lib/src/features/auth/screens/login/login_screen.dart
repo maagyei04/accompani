@@ -13,22 +13,20 @@ class LoginScreen extends StatelessWidget {
     final size = mediaQuery.size;
 
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(tDefaultSize),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 80.0,),
-                LoginHeaderWidget(size: size),
-                const LoginForm(),
-                const LoginFooterWidget()
-              ],
-            ),
-            
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(tDefaultSize),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 80.0,),
+              LoginHeaderWidget(size: size),
+              const LoginForm(),
+              const LoginFooterWidget()
+            ],
           ),
+          
         ),
       ),
     );
