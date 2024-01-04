@@ -130,9 +130,7 @@ class PersonalInfoScreen extends StatelessWidget {
                                 controller6.uploadPostImage3(),
                               ]);
 
-                              if (imageUrls[0].isNotEmpty &&
-                                  imageUrls[1].isNotEmpty &&
-                                  imageUrls[2].isNotEmpty
+                              if (imageUrls[0].isNotEmpty && imageUrls[1].isNotEmpty && imageUrls[2].isNotEmpty
                                 ) {
                                   String imageUrl = imageUrls[0];
                                   String imageUrl2 = imageUrls[1];

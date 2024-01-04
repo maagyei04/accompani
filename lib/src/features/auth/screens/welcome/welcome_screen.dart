@@ -1,12 +1,13 @@
 import 'package:accompani/src/common_widgets/fade_in_animation/animation_design.dart';
 import 'package:accompani/src/common_widgets/fade_in_animation/fade_in_animation_controller.dart';
 import 'package:accompani/src/common_widgets/fade_in_animation/fade_in_animation_model.dart';
-import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/auth/controllers/video_controller.dart';
 import 'package:accompani/src/features/auth/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 
 class WelcomeScreen extends StatelessWidget {
@@ -17,24 +18,21 @@ class WelcomeScreen extends StatelessWidget {
     final controller = Get.put(FadeInAnimationController());
     controller.startWelcomeAnimation();
 
+    final VideoController videoController = Get.put(VideoController());
+
     var mediaQuery = MediaQuery.of(context);
     var height = mediaQuery.size.height;
 
 
     return Scaffold(
       body: Stack(
+
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(tWelcomeImage),
-                fit: BoxFit.cover,
-              ),
+            AspectRatio(
+                  aspectRatio: height,
+                  child: VideoPlayer(videoController.videoPlayerController),
             ),
-          ),
-          Container(
-            color: Colors.black.withOpacity(0.4), // Adjust the opacity as needed
-          ),
+      
           TFadeInAnimation(
             durationInMs: 1200,
             animatePosition: TAnimatePosition(
@@ -50,14 +48,6 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(tDefaultSize),
               child: Column(
                 children: [
-                  Hero(
-                    tag: 'Welcome-image-tag',
-                    child: Image(
-                      image: const AssetImage(tAppLogoImage),
-                      height: height * 0.6,
-                    ),
-                  ),
-
                   Text(
                     tWelcomeScreenTitle,
                     textAlign: TextAlign.start,
@@ -69,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
 
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    child: ElevatedButton(  
                       onPressed: () {
                         Get.to(() => const SignUpScreen());
                       },
