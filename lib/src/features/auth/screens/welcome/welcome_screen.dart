@@ -22,17 +22,31 @@ class WelcomeScreen extends StatelessWidget {
 
     var mediaQuery = MediaQuery.of(context);
     var height = mediaQuery.size.height;
-
+    var width = mediaQuery.size.width;
 
     return Scaffold(
       body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
 
-        children: [
-            AspectRatio(
-                  aspectRatio: height,
-                  child: VideoPlayer(videoController.videoPlayerController),
+          FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: double.infinity,
+              height:double.infinity,
+              child: AnimatedOpacity(
+                opacity: 1.0, 
+                duration: const Duration(milliseconds: 1000),
+                child:VideoPlayer(videoController.videoPlayerController),
+          ),
             ),
-      
+          ),
+          
+
+          Container(
+            color: Colors.black.withAlpha(50),
+          ),
+
           TFadeInAnimation(
             durationInMs: 1200,
             animatePosition: TAnimatePosition(
@@ -59,7 +73,7 @@ class WelcomeScreen extends StatelessWidget {
 
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(  
+                    child: ElevatedButton(
                       onPressed: () {
                         Get.to(() => const SignUpScreen());
                       },

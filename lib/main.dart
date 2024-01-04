@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();  
-
+  WidgetsFlutterBinding.ensureInitialized();
+ 
   await Firebase.initializeApp(options:
     DefaultFirebaseOptions.currentPlatform,
   ).then((value) => Get.put(AuthenticationRepository()));
