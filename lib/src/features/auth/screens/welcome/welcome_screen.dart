@@ -33,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
             child: SizedBox(
               width: width,
-              height: 60,
+              height: height,
               child: AnimatedOpacity(
                 opacity: 1.0, 
                 duration: const Duration(milliseconds: 1000),
