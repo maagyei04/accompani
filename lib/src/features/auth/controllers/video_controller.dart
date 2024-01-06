@@ -21,6 +21,10 @@ class VideoController extends GetxController {
       });
   }
 
+  void stopVideo() {
+    _videoPlayerController.dispose();
+  }
+
   @override
   void onClose() {
     _videoPlayerController.dispose();

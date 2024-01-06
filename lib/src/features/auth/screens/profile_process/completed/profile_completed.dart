@@ -36,7 +36,7 @@ class ProfileCompleteScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: (){
-                            Get.to(() => const SurveyScreen());
+                            Get.offAll(() => const SurveyScreen());
                           },
                           child: const Text(tGetStarted)
                         ),

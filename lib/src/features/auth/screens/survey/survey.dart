@@ -12,7 +12,8 @@ class SurveyScreen extends StatefulWidget {
 }
 
 class _SurveyScreenState extends State<SurveyScreen> {
-  int _selectedValue = 0;
+  int _selectedValue = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,11 +37,11 @@ class _SurveyScreenState extends State<SurveyScreen> {
               children: <Widget>[
                 RadioListTile<int>(
                   title: const Text('local', style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: tDarkColor),),
-                  value: 1,
+                  value: 2,
                   activeColor: tPrimaryColor,
                   groupValue: _selectedValue,
                   splashRadius: 30.0,
-                  onChanged: (value) {
+                  onChanged: (int? value) {
                     setState(() {
                       _selectedValue = value!;
                     });
@@ -48,14 +49,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
                 ),
                 RadioListTile<int>(
                   title: const Text('Planning a Trip', style: TextStyle(fontSize: 17, fontWeight: FontWeight.normal, color: tDarkColor),),
-                  value: 2,
+                  value: 3,
                   activeColor: tPrimaryColor,
                   groupValue: _selectedValue,
-                  onChanged: (value) {
+                  onChanged: (int? value) {
                     setState(() {
                       _selectedValue = value!;
                     });
-                  },
+                  },  
                 ),
               ],
             )
@@ -71,16 +72,19 @@ class _SurveyScreenState extends State<SurveyScreen> {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: (){}, 
-                          child: const Text('Cancel')
+                          child: const Text('Skip')
                         ),
                       ),
                       const SizedBox(width: 10.0,),
                       Expanded(
-                        child: ElevatedButton(
-                          onPressed: (){
-                            Get.to(() => const NavigationMenu());
-                          },
-                          child: const Text(tNext)
+                        child: Visibility(
+                          visible: _selectedValue == 2 || _selectedValue == 3,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.offAll(() => const NavigationMenu());
+                            },
+                            child: const Text(tNext),
+                          ),
                         ),
                       )
                     ],

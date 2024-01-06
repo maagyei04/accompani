@@ -13,13 +13,14 @@ class ImagePickerController extends GetxController {
 
   Rx<File> image = File('').obs;
 
+
   Future pickImage() async {
     
     try {
       
       final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      if (imagePick == null) {
+      if (image == null) {
           Get.snackbar(
             "Error",
             "Image is null!",
@@ -28,10 +29,14 @@ class ImagePickerController extends GetxController {
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
           ); 
-          return;
-      }
+          const defaultImagePath = 'assets/logo/accompani.png';
+          final defaultImage = File(defaultImagePath);
+          image.value = defaultImage;
 
-      final imageTmp = File(imagePick.path);
+          return;
+      }  
+
+      final imageTmp = File(imagePick!.path);
 
       image.value = imageTmp; 
     } on PlatformException catch (e) {
@@ -53,7 +58,7 @@ class ImagePickerController extends GetxController {
       
       final imagePick = await ImagePicker().pickImage(source: ImageSource.camera);
 
-      if (imagePick == null) {
+      if (image == null) {
           Get.snackbar(
             "Error",
             "Image is null!",
@@ -62,10 +67,14 @@ class ImagePickerController extends GetxController {
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
           ); 
-          return;
-      }
+          const defaultImagePath = 'assets/logo/accompani.png';
+          final defaultImage = File(defaultImagePath);
+          image.value = defaultImage;
 
-      final imageTmp = File(imagePick.path);
+          return;
+      } 
+
+      final imageTmp = File(imagePick!.path);
 
       image.value = imageTmp; 
     } on PlatformException catch (e) {

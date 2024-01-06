@@ -33,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
             fit: BoxFit.cover,
             child: SizedBox(
               width: width,
-              height: height,
+              height: 60,
               child: AnimatedOpacity(
                 opacity: 1.0, 
                 duration: const Duration(milliseconds: 1000),
@@ -65,7 +65,7 @@ class WelcomeScreen extends StatelessWidget {
                   Text(
                     tWelcomeScreenTitle,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                   const SizedBox(
                     height: 40.0,
@@ -75,7 +75,8 @@ class WelcomeScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const SignUpScreen());
+                        videoController.videoPlayerController.dispose();
+                        Get.offAll(() => const SignUpScreen());
                       },
                       child: const Text(tGetStarted, style: TextStyle(fontWeight: FontWeight.bold),),
                     ),

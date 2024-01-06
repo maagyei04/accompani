@@ -19,23 +19,23 @@ class NavigationMenu extends StatelessWidget {
     final isDarkMode = brightness == Brightness.dark;
 
     final tBackgroundColor = isDarkMode ? tSecondaryColor : tWhiteColor;
-    final tIconColor = isDarkMode ? tWhiteColor : Colors.black54;
+    final tIconColor = isDarkMode ? tWhiteColor : const Color.fromARGB(255, 123, 123, 123);
 
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
           backgroundColor: tBackgroundColor,
           indicatorColor: tPrimaryColor.withOpacity(0.1),
-          height: 72.0,
-          elevation: 8,
+          height: 80.0,
+          elevation: 1,
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) => controller.selectedIndex.value = index,
           destinations: 
           [        
-            NavigationDestination(icon: Icon(Icons.search_rounded, color:tIconColor, size: 30.0,), label: 'Explore',),
-            NavigationDestination(icon: Icon(Icons.refresh_rounded, color: tIconColor, size: 30.0), label: 'Experience'),
-            NavigationDestination(icon: Icon(Icons.inbox_rounded, color: tIconColor, size: 30.0), label: 'Inbox'),
-            NavigationDestination(icon: Icon(Icons.person_3_rounded, color: tIconColor, size: 30.0), label: 'Profile'),
+            NavigationDestination(icon: Icon(Icons.search_outlined, color:tIconColor, size: 25.0,), label: 'Explore',),
+            NavigationDestination(icon: Icon(Icons.refresh_outlined, color: tIconColor, size: 25.0), label: 'Experience'),
+            NavigationDestination(icon: Icon(Icons.message_outlined, color: tIconColor, size: 25.0), label: 'Inbox'),
+            NavigationDestination(icon: Icon(Icons.person_3_outlined, color: tIconColor, size: 25.0), label: 'Profile'),
           ]
       
         ),

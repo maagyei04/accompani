@@ -175,7 +175,7 @@ class UserRepository extends GetxController {
     } catch (e) {
        Get.snackbar(
         "Error",
-        "Something went wrong. Image Upload Fail. Try Again",
+        "Something went wrong. Image Upload Fail. Try Again, $e",
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
@@ -202,7 +202,7 @@ class UserRepository extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        "Something went wrong. Image Upload Fail. Try Again",
+        "Something went wrong. Image Upload Fail. Try Again, $e",
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
@@ -229,7 +229,7 @@ class UserRepository extends GetxController {
     } catch (e) {
       Get.snackbar(
         "Error",
-        "Something went wrong. Image Upload Fail. Try Again",
+        "Something went wrong. Image Upload Fail. Try Again, $e",
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,

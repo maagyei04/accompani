@@ -65,6 +65,11 @@ class TTextTheme {
         fontSize: 15,
         fontWeight: FontWeight.bold,
       ),
+      labelSmall: GoogleFonts.montserrat(
+        color: Colors.white,
+        fontSize: 19,
+        fontWeight: FontWeight.bold,
+      ),
 
     );
   static TextTheme darkTextTheme = TextTheme(
@@ -126,6 +131,11 @@ class TTextTheme {
       labelMedium: GoogleFonts.montserrat(
         color: Colors.white,
         fontSize: 15,
+        fontWeight: FontWeight.bold,
+      ),
+      labelSmall: GoogleFonts.montserrat(
+        color: Colors.white,
+        fontSize: 19,
         fontWeight: FontWeight.bold,
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -19,6 +20,18 @@ class ProfileScreen extends StatelessWidget {
           Text("Profile", style: Theme.of(context).textTheme.bodyMedium,),
           Center(child: Text("Yet To Build The Profile Screen, #Michan", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium,), ),
         ],
+      ),
+            bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  AuthenticationRepository.instance.logout();
+                },
+                child: const Text("Logout"),
+              ),
+            ),
       ),
     );
   }

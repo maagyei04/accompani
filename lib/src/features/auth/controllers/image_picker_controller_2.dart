@@ -16,19 +16,23 @@ class ImagePickerController2 extends GetxController {
       
       final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      if (imagePick == null) {
+      if (image == null) {
           Get.snackbar(
             "Error",
-            "Image is null !",
+            "Image is null!",
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.redAccent.withOpacity(0.1),
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
-          );          
-          return;
-      }
+          ); 
+          const defaultImagePath = 'assets/logo/accompani.png';
+          final defaultImage = File(defaultImagePath);
+          image.value = defaultImage;
 
-      final imageTmp = File(imagePick.path);
+          return;
+      } 
+
+      final imageTmp = File(imagePick!.path);
 
       image.value = imageTmp; 
 
@@ -51,19 +55,23 @@ class ImagePickerController2 extends GetxController {
       
       final imagePick = await ImagePicker().pickImage(source: ImageSource.camera);
 
-      if (imagePick == null) {
+      if (image == null) {
           Get.snackbar(
             "Error",
-            "Image is null !",
+            "Image is null!",
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.redAccent.withOpacity(0.1),
             colorText: Colors.red,
             duration: const Duration(seconds: 5),
-          );  
-        return;
-      }
+          ); 
+          const defaultImagePath = 'assets/logo/accompani.png';
+          final defaultImage = File(defaultImagePath);
+          image.value = defaultImage;
 
-      final imageTmp = File(imagePick.path);
+          return;
+      } 
+
+      final imageTmp = File(imagePick!.path);
 
       image.value = imageTmp; 
     } on PlatformException catch (e) {

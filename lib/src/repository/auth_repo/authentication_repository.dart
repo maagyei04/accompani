@@ -33,7 +33,7 @@ class AuthenticationRepository extends GetxController {
 
   String get getUserPhone => user?.phoneNumber ?? '';
 
- DateTime? get getUserDateJoined => user?.metadata.creationTime; 
+  DateTime? get getUserDateJoined => user?.metadata.creationTime; 
 
   setInitialScreen(User? user) {
     user == null ? Get.offAll(() => const WelcomeScreen()) 

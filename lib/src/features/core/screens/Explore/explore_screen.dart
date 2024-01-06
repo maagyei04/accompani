@@ -1,3 +1,6 @@
+import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/constants/image_strings.dart';
+import 'package:accompani/src/features/core/screens/Explore/widgets/explore_appbar.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -6,33 +9,45 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    var widthSize = mediaQuery.size.width;
+    var heightSize = mediaQuery.size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Explore", style: Theme.of(context).textTheme.displayLarge),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text("Explore", style: Theme.of(context).textTheme.bodyMedium,),
-          Center(child: Text("Yet To Build The Explore Screen, #Michan", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium,), ),
-        ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  AuthenticationRepository.instance.logout();
-                },
-                child: const Text("Logout"),
-              ),
-            ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const ExploreAppBar(),
+                Container(
+                  decoration: BoxDecoration(
+                    color: tDarkColor,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  width: widthSize,
+                  height: heightSize /1.3,
+                  margin: const EdgeInsets.all(20),   
+                  child:  Stack(
+                    children : [ 
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: const Image(image: AssetImage(tWelcomeImage2), fit: BoxFit.cover,),
+                      ),                      
+                      const Positioned(
+                        top: 10,
+                        left: 10,
+                        child: CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.yellow,
+                          backgroundImage: AssetImage(tWelcomeImage),
+                        )
+                      ),
+
+                    ]
+                  ),
+                ),
+          ],
+        ),
       ),
     );
   }
-}
+} 
