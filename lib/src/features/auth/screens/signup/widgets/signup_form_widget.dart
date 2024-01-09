@@ -230,6 +230,12 @@ class _SignupFormState extends State<SignupForm> {
                                 'Default...',
                                 'Default...',
                               ],
+                              priceTag: 'Default...',
+                              location: 'Default...',
+                              paymentMethods: [
+                                'Default...',
+                                'Deafult...',
+                              ]
                             );
 
                         SignUpController.instance.registerUser(user);

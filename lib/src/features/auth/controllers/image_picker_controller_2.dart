@@ -1,3 +1,6 @@
+
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -7,84 +10,51 @@ import 'package:image_picker/image_picker.dart';
 
 
 class ImagePickerController2 extends GetxController {
-
   Rx<File> image = File('').obs;
 
-  Future pickImage() async {
-    
+  Future<void> pickImage() async {
     try {
-      
       final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
 
-      if (image == null) {
-          Get.snackbar(
-            "Error",
-            "Image is null!",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red,
-            duration: const Duration(seconds: 5),
-          ); 
-          const defaultImagePath = 'assets/logo/accompani.png';
-          final defaultImage = File(defaultImagePath);
-          image.value = defaultImage;
+      if (imagePick == null) {
+        image.value = File('assets/logo/accompani.png');
+        return;
+      }
 
-          return;
-      } 
-
-      final imageTmp = File(imagePick!.path);
-
-      image.value = imageTmp; 
-
+      final imageTmp = File(imagePick.path);
+      image.value = imageTmp;
     } on PlatformException catch (e) {
-          Get.snackbar(
-            "Error",
-            "Image is null $e!",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red,
-            duration: const Duration(seconds: 5),
-          );  
+      Get.snackbar(
+        "Error",
+        "Error picking image: $e",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent.withOpacity(0.1),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
     }
-
   }
 
-  Future pickImageCamera() async {
-    
+  Future<void> pickImageCamera() async {
     try {
-      
       final imagePick = await ImagePicker().pickImage(source: ImageSource.camera);
 
-      if (image == null) {
-          Get.snackbar(
-            "Error",
-            "Image is null!",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red,
-            duration: const Duration(seconds: 5),
-          ); 
-          const defaultImagePath = 'assets/logo/accompani.png';
-          final defaultImage = File(defaultImagePath);
-          image.value = defaultImage;
+      if (imagePick == null) {
+        image.value = File('assets/logo/accompani.png');
+        return;
+      }
 
-          return;
-      } 
-
-      final imageTmp = File(imagePick!.path);
-
-      image.value = imageTmp; 
+      final imageTmp = File(imagePick.path);
+      image.value = imageTmp;
     } on PlatformException catch (e) {
-          Get.snackbar(
-            "Error",
-            "Image is null, $e !",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.redAccent.withOpacity(0.1),
-            colorText: Colors.red,
-            duration: const Duration(seconds: 5),
-          );  
+      Get.snackbar(
+        "Error",
+        "Error picking image from camera: $e",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.redAccent.withOpacity(0.1),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
     }
-
   }
-
 }

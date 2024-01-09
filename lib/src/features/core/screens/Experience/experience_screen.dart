@@ -1,3 +1,4 @@
+import 'package:accompani/src/features/core/screens/Experience/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
 
 class ExperienceScreen extends StatelessWidget {
@@ -5,21 +6,56 @@ class ExperienceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    var widthSize = mediaQuery.size.width;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Experience", style: Theme.of(context).textTheme.displayLarge),
+        title: Text("Trips", style: Theme.of(context).textTheme.displayLarge),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text("Analytics", style: Theme.of(context).textTheme.bodyMedium,),
-          Center(child: Text("Yet To Build The Experience Screen, #Michan", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium,), ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TripCard(
+              widthSize: widthSize,
+              description: "Nestled among snow-capped mountains, Snowflake Valley is a picturesque retreat that transforms into a magical haven during the holiday season.",
+              title: 'Business Trip',
+              name: "Emily Todd",
+              verified: true,
+            ),
+            TripCard(
+              widthSize: widthSize,
+              description: "Nestled among snow-capped mountains, Snowflake Valley is a picturesque retreat that transforms into a magical haven during the holiday season.",
+              title: 'Christmas Holidays',
+              name: "Emilly Todd",
+              verified: true,
+            ),
+          ],
+        ),
       ),
-    );
+      bottomNavigationBar: SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //
+                        },
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_circle_rounded),
+                            SizedBox(width: 10.0,),
+                            Text('Create A New Trip', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+                          ],
+                        )
+                        
+                      ),
+                    ),
+    ));
   }
 }
