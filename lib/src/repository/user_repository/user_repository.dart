@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller_2.dart';
@@ -5,6 +7,7 @@ import 'package:accompani/src/features/auth/controllers/image_picker_controller_
 import 'package:accompani/src/features/auth/models/interest_model.dart';
 import 'package:accompani/src/features/auth/models/personal_info_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
+import 'package:accompani/src/features/core/models/trip_model.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
@@ -14,7 +17,7 @@ import 'package:get/get.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
-  final controller = Get.put(AuthenticationRepository());
+    final controller = Get.put(AuthenticationRepository());
     final controller2 = Get.put(ImagePickerController());
     final controller3 = Get.put(ImagePickerController2());
     final controller4 = Get.put(ImagePickerController3());
@@ -63,6 +66,30 @@ class UserRepository extends GetxController {
   }
 
 
+   Future<void> createTrip(TripModel trip) async {
+    try {
+      await _db.collection("Trips").doc(controller.getUserID).set(trip.toJson());
+      Get.snackbar(
+        'Success',
+        'Your Trip has been successfully created.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.green.withOpacity(0.3),
+        colorText: Colors.green,
+        duration: const Duration(seconds: 5),
+      );
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 5),
+      );
+      rethrow;
+    }
+  }
+
   Future<UserModel?> getUserDetails(String email) async {
     final snapshot = await _db.collection("Users")
       .where("Email", isEqualTo: email)
@@ -75,6 +102,15 @@ class UserRepository extends GetxController {
       return null; // Return null when no data is found
     }
   }
+
+  Future<UserModel> getUserInfoById(String userId) async {
+    final snapshot = await _db.collection("Users")
+    .where("UserId", isEqualTo: userId)
+      .get();
+
+      final userInfo = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+      return userInfo;
+  } 
 
 
   Future<List<UserModel>> allUsers() async {

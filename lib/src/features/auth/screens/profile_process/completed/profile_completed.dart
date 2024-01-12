@@ -1,7 +1,7 @@
+import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/text_strings.dart';
-import 'package:accompani/src/features/auth/screens/survey/survey.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +36,7 @@ class ProfileCompleteScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: (){
-                            Get.offAll(() => const SurveyScreen());
+                            Get.offAll(() => const NavigationMenu());
                           },
                           child: const Text(tGetStarted)
                         ),

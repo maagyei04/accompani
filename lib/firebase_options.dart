@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBQGyTH8_pFDbJUrGoWWw-murKb9VfKZzE',
-    appId: '1:32942490702:ios:227ab956bef537f3aa2f1f',
+    appId: '1:32942490702:ios:c6ea9a898fcc3ca9aa2f1f',
     messagingSenderId: '32942490702',
     projectId: 'accompani-app',
     storageBucket: 'accompani-app.appspot.com',

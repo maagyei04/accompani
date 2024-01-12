@@ -1,6 +1,8 @@
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/core/screens/Booking_Process/locals_screen.dart';
+import 'package:accompani/src/features/core/screens/Booking_Process/visitors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -71,7 +73,9 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     children: [
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: (){}, 
+                          onPressed: (){
+                            Get.to(() => const NavigationMenu());
+                          }, 
                           child: const Text('Skip')
                         ),
                       ),
@@ -81,7 +85,9 @@ class _SurveyScreenState extends State<SurveyScreen> {
                           visible: _selectedValue == 2 || _selectedValue == 3,
                           child: ElevatedButton(
                             onPressed: () {
-                              Get.offAll(() => const NavigationMenu());
+                              _selectedValue == 2 
+                              ? Get.to(() => const LocalsScreen()) 
+                              : Get.to(() => const VisitorScreen());
                             },
                             child: const Text(tNext),
                           ),

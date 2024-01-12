@@ -53,7 +53,7 @@ class UserModel {
       "Photos": List<String>.from(photos),
       "PriceTag": priceTag,
       "Location": location,
-      "PaymentMethods": paymentMethods,
+      "PaymentMethods": List<String>.from(paymentMethods!),
     };
   }
 
@@ -84,8 +84,10 @@ factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) 
     password: 'Default..',
     priceTag: data?["PriceTag"] ?? 'Default..',
     location: data?["Location"] ?? 'Default...',
-    paymentMethods: List<String>.from("Paymentmethods" as Iterable),
-  );
+    paymentMethods: List<String>.from(data?["PaymentMethods"] ?? [
+      'Default...',
+      'Default...',
+    ]),  );
 }
 
 

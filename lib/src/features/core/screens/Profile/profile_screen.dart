@@ -1,6 +1,14 @@
+// ignore_for_file: avoid_print
+
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/constants/image_strings.dart';
+import 'package:accompani/src/features/auth/models/user_model.dart';
+import 'package:accompani/src/features/core/screens/Profile/widgets/button_tile.dart';
+import 'package:accompani/src/features/core/screens/Profile/widgets/profile_card.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +20,29 @@ class ProfileScreen extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context);
     var widthSize = mediaQuery.size.width;
 
-    return Scaffold(
+    final controller = Get.put(UserRepository());
+
+    final String myUid = FirebaseAuth.instance.currentUser!.uid;
+
+    return FutureBuilder<UserModel>(
+      future: controller.getUserInfoById(myUid),
+      builder: (context, snapshot) {
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+        }
+
+        if (snapshot.hasError || snapshot.data == null) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.red,
+            ),
+          ); // Replace with a suitable error widget
+        }
+
+        final user = snapshot.data!;
+      
+      return Scaffold(
       appBar: AppBar(
         title: Text("Profile", style: Theme.of(context).textTheme.displayLarge),
         backgroundColor: Colors.transparent,
@@ -29,40 +59,16 @@ class ProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey, width: 1),
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                width: widthSize,
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                        Row(
-                          children: [
-                          const CircleAvatar(
-                          radius: 30.0,
-                          backgroundColor: tSecondaryColor,
-                          ),
-                        const SizedBox(width: 15.0,),
-                        Row(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text('Linda', style: Theme.of(context).textTheme.displayLarge,),
-                                const Text('Guest')
-                              ],
-                            ),                                                ],
-                        ),
-                      ],
-                    ),
-                              const Icon(Icons.edit_note_outlined, size: 40,),
-                  ],
-                ),
+
+              ProfileCard(
+                widthSize: widthSize,
+                picture: user.photos[0] != null ? NetworkImage(user.photos[0]) : const NetworkImage(tWelcomeImage),
+                name: user.firstName,
+                userType: user.userType!,
               ),
+
               const SizedBox(height: 10.0,),
+
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey, width: 1),
@@ -166,43 +172,10 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class ButtonTile extends StatelessWidget {
-  const ButtonTile({
-    super.key,
-    required this.title,
-    this.screen,
+      
   });
-
-  final String title;
-  final Widget? screen;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(() => screen);
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          border:Border.all(
-            color: Colors.grey,
-            width: 1.0,
-          )
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.displayMedium,),
-            const Icon(Icons.arrow_forward_ios_rounded)
-          ],
-        ),
-      ),
-    );
+    
+    
+  
   }
 }

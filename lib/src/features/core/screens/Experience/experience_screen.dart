@@ -1,5 +1,7 @@
+import 'package:accompani/src/features/core/screens/Booking_Process/get_started.dart';
 import 'package:accompani/src/features/core/screens/Experience/widgets/trip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ExperienceScreen extends StatelessWidget {
   const ExperienceScreen({super.key});
@@ -43,7 +45,7 @@ class ExperienceScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          //
+                          Get.to(() => const GetTripStarted());
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

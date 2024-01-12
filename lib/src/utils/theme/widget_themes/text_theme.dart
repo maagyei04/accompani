@@ -52,7 +52,7 @@ class TTextTheme {
       ),
       bodySmall: GoogleFonts.montserrat(
         color: Colors.black,
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: FontWeight.normal,
       ),
       displaySmall: GoogleFonts.montserrat(
@@ -120,7 +120,7 @@ class TTextTheme {
       ),
       bodySmall: GoogleFonts.montserrat(
         color: Colors.white,
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: FontWeight.normal,
       ),
       displaySmall: GoogleFonts.montserrat(
