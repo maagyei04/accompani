@@ -182,20 +182,8 @@ class BookRequestScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('\$79 * 5', style: Theme.of(context).textTheme.bodySmall,),
-                            Text('Taxes', style: Theme.of(context).textTheme.bodySmall,)
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('\$395.00', style: Theme.of(context).textTheme.bodySmall),
-                            Text('\$16.00', style: Theme.of(context).textTheme.bodySmall,)
-                          ],
-                        ),
+                        Text('Total', style: Theme.of(context).textTheme.bodySmall,),
+                        Text('\$411.00', style: Theme.of(context).textTheme.bodySmall),
                       ],
                     ),                  ],
                 ),
