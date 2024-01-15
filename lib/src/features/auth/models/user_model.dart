@@ -17,12 +17,16 @@ class UserModel {
   final String? userType;
   final String? priceTag;
   final String? location;
+  final String? rank;
+  final String? reviewRate;
   final List<String>? paymentMethods;
 
 
   const UserModel({
     this.id,
     this.userId,
+    this.rank,
+    this.reviewRate,
     required this.interests,
     required this.languages, 
     required this.photos, 
@@ -42,6 +46,8 @@ class UserModel {
     return {
       "UserId": FirebaseAuth.instance.currentUser!.uid,
       "UserType": 'Guest',
+      "Rank": '0.0',
+      "ReviewRate": '0.0',
       "FirstName": firstName,
       "LastName": lastName,
       "Email": email,
@@ -69,6 +75,8 @@ factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) 
     email: data?["Email"] ?? 'Default...',
     phoneNumber: data?["Phone"] ?? 'Default...',
     bio: data?["Bio"] ?? 'Default...',
+    reviewRate: data?["ReviewRate"] ?? 'Default...',
+    rank: data?["Rank"] ?? 'Default...',
     interests: List<String>.from(data?["Interests"] ?? [
       'Default...',
       'Default...',

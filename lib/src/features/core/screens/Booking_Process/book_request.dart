@@ -1,7 +1,9 @@
+import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/home_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,6 +29,7 @@ class BookRequestScreen extends StatelessWidget {
             children: [
 
               HostCard(
+                userId: FirebaseAuth.instance.currentUser!.uid,
                 screenWidth: screenWidth,
                 name: 'Emily Todd',
                 review: '24 Reviews',
@@ -193,6 +196,28 @@ class BookRequestScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+      bottomNavigationBar: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      OutlinedButton(onPressed: () {
+                        Get.offAll(() => const NavigationMenu());
+                      }, child:  const Text('Cancel'),
+                      ),
+                      const SizedBox(width: 10.0,),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: (){
+                            //
+                          }, 
+                          child: const Text('Request To Book')
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ) ,    );
   }
 }

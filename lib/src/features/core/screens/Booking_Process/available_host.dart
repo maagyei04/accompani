@@ -3,6 +3,8 @@ import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/book_request.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,9 +16,29 @@ class AvailableHosts extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context).size;
     var screenWidth = mediaQuery.width;
 
+    final controller = Get.put(UserRepository());
+
+    return FutureBuilder(
+      future: controller.getUserInfoByType(),
+      builder: (context, snapshot) {
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+        }
+
+        if (snapshot.hasError || snapshot.data == null) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.red,
+            ),
+          ); // Replace with a suitable error widget
+        }
+
+        final user = snapshot.data!;
 
 
-    return Scaffold(
+
+      return  Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () { Get.back(); }
         , icon: const Icon(Icons.arrow_back_ios_new_rounded)),
@@ -35,34 +57,23 @@ class AvailableHosts extends StatelessWidget {
                   Get.to(() => const BookRequestScreen());
                 },
                 child: HostCard(
+                  userId: user.userId!,
                   screenWidth: screenWidth,
-                  name: 'Emily Todd',
+                  name: user.firstName + user.lastName,
                   review: '24 Reviews',
-                  rank: 'SuperHost',
-                  rate: '4.78',
-                  bio: "Hello! I'm Emily, a passionate explorer with an insatiable curiosity for the world around me. Whether it's traversing through dense jungles, unraveling historical mysteries",
+                  rank: user.rank!,
+                  rate: user.reviewRate!,
+                  bio: user.bio,
                   hostTimeJoined: '1 year hosting',
                 ),
               ),
-              InkWell(
-                onTap: () {
-                  Get.to(() => const BookRequestScreen());
-                },
-                child: HostCard(
-                  screenWidth: screenWidth,
-                  name: 'Emily Todd',
-                  review: '24 Reviews',
-                  rank: 'SuperHost',
-                  rate: '4.78',
-                  bio: "Hello! I'm Emily, a passionate explorer with an insatiable curiosity for the world around me. Whether it's traversing through dense jungles, unraveling historical mysteries",
-                  hostTimeJoined: '1 year hosting',
-                ),
-              ),
-              
                           ],
           ),
         ),
       ),
     );
+      }
+    );
+   
   }
 }

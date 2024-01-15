@@ -1,8 +1,9 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Explore/explore_screen.dart';
-import 'package:accompani/src/features/core/screens/Inbox/inbox_screen.dart';
+import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
 import 'package:accompani/src/features/core/screens/Profile/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,10 +49,10 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
 
-  final screens = const [
-    ExploreScreen(),
-    ExperienceScreen(),
-    InboxScreen(),
-    ProfileScreen(),
+  final screens = [
+    const ExploreScreen(),
+    const ExperienceScreen(),
+    ChatScreen(userId: FirebaseAuth.instance.currentUser!.uid),
+    const ProfileScreen(),
   ];
 }

@@ -89,7 +89,7 @@ class GetTripStarted extends StatelessWidget {
           width: double.infinity,
           child: Expanded(
             child: ElevatedButton(onPressed: () {
-              Get.to(() => const SurveyScreen());
+              Get.to(() => const TripDetailsScreen());
             }, child: const Text('Get Started')),
           ),
         ),

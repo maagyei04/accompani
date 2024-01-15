@@ -10,14 +10,14 @@ import 'package:image_picker/image_picker.dart';
 
 
 class ImagePickerController2 extends GetxController {
-  Rx<File> image = File('').obs;
+  Rx<File> image = File('assets/logo/pick.png').obs;
 
   Future<void> pickImage() async {
     try {
       final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
 
       if (imagePick == null) {
-        image.value = File('assets/logo/accompani.png');
+        image.value = File('assets/logo/pick.png');
         return;
       }
 

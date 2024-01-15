@@ -3,18 +3,44 @@ import 'package:accompani/src/features/core/screens/Explore/widgets/explore_appb
 import 'package:accompani/src/features/core/screens/Explore/widgets/home_card.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/interest_widget.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/review_card.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final controller = Get.put(UserRepository());
+
+
+
     var mediaQuery = MediaQuery.of(context);
     var widthSize = mediaQuery.size.width;
     var heightSize = mediaQuery.size.height;
 
-    return Scaffold(
+    return FutureBuilder(
+      future: controller.getUserInfoByType(),
+      builder: (context, snapshot) {
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+        }
+
+        if (snapshot.hasError || snapshot.data == null) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.red,
+            ),
+          ); // Replace with a suitable error widget
+        }
+
+        final user = snapshot.data!;
+
+      return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -27,10 +53,11 @@ class ExploreScreen extends StatelessWidget {
                 widthSize: widthSize, 
                 heightSize: heightSize,
                 picture: tWelcomeImage4,  
-                name: 'Emily Todd',
-                rank: 'Superhost',
-                rate: '4.78',
-                bio: "Hello! I'm Emily, a passionate explorer with an insatiable curiosity for the world around me. Whether it's traversing through dense jungles, unraveling historical mysteries, or indulging in culinary delights from every corner of the globe, I'm always up for a new adventure",
+                userId: user.userId!,
+                name: user.firstName + user.lastName,
+                rank: user.rank!,
+                rate: user.reviewRate!,
+                bio: user.bio,
               ),
             ),
 
@@ -46,7 +73,7 @@ class ExploreScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('About Me', style: Theme.of(context).textTheme.displayLarge,),
-                  Text("Hello! I'm Emily, a passionate explorer with an insatiable curiosity for the world around me. Whether it's traversing through dense jungles, unraveling historical mysteries, or indulging in culinary delights from every corner of the globe, I'm always up for a new adventure", style: Theme.of(context).textTheme.displayMedium,),
+                  Text(user.bio, style: Theme.of(context).textTheme.displayMedium,),
                 ],
               ),
             ),
@@ -62,14 +89,17 @@ class ExploreScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('My Interests', style: Theme.of(context).textTheme.displayLarge,),
-                  const Wrap(
+                  Wrap(
                     alignment: WrapAlignment.start,
                     children: [
-                      InterestWidget(interest: 'Art',),      
-                      InterestWidget(interest: 'Road Trips',),   
-                      InterestWidget(interest: 'Church',),       
-                      InterestWidget(interest: 'Music',),   
-                      InterestWidget(interest: 'Nutrition',)                    
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: user.interests.length, 
+                        itemBuilder: (_, index) {
+                        return InterestWidget(interest: user.interests[index]);
+                                              
+                      }),       
+                                             
                     ],
                   )
                 ],
@@ -109,5 +139,14 @@ class ExploreScreen extends StatelessWidget {
         ),
       ),
     );
+
+      }
+    );
+    
+    
+    
+    
+    
+    
   }
 }

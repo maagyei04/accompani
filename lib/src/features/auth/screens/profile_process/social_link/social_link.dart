@@ -106,7 +106,9 @@ class AddSocialMedia extends StatelessWidget {
                       const SizedBox(width: 10.0,),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            stepController.nextPage();
+                          },
                           child: const Text(tNext)
                         ),
                       )

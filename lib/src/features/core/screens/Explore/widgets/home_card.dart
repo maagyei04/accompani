@@ -1,5 +1,8 @@
 import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomeCard extends StatelessWidget {
   const HomeCard({
@@ -11,6 +14,7 @@ class HomeCard extends StatelessWidget {
     required this.rank,
     required this.rate,
     required this.bio,
+    required this.userId,
   });
 
   final double widthSize;
@@ -20,6 +24,7 @@ class HomeCard extends StatelessWidget {
   final String rank;
   final String rate;
   final String bio;
+  final String userId;
 
   @override
   Widget build(BuildContext context) {
@@ -89,13 +94,17 @@ class HomeCard extends StatelessWidget {
                   backgroundImage: AssetImage(picture),
                 )
               ),   
-              const Positioned(
+              Positioned(
                 bottom: 30,
                 right: 30,
                 child: CircleAvatar(
                   radius: 35,
                   backgroundColor: tPrimaryColor,
-                  child: Icon(Icons.send, color: tWhiteColor, size: 30.0,),
+                  child: IconButton(onPressed: () {
+                    Get.to(() => ChatScreen(userId: userId));
+                  }, icon: const Icon(Icons.send, color: tWhiteColor, size: 30.0,),)
+                  
+                  
                 )
               ),                                     
     
