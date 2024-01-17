@@ -44,7 +44,7 @@ class PersonalInfoScreen extends StatelessWidget {
 
               const Text('Languages You Speak',style: TextStyle(fontWeight: FontWeight.bold),),
               const Text('Input the languages you speak',style: TextStyle(fontSize: 12),),
-              const Text('Press Enter after every language you input',style: TextStyle(fontSize: 12),),
+              const Text('Press Enter/Done after every language you input',style: TextStyle(fontSize: 12),),
 
               const SizedBox(height: 10,),
 
