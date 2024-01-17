@@ -1,6 +1,7 @@
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
+import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ class ProfileCompleteScreen extends StatelessWidget {
 
 
       bottomNavigationBar: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(tDefaultSize - 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(

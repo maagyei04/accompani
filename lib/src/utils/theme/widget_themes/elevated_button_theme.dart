@@ -16,7 +16,7 @@ class TElevatedButtonTheme {
       side: const BorderSide(
         color: tPrimaryColor,
       ),
-      padding: const EdgeInsets.symmetric(vertical: tButtomHeight),
+      padding: const EdgeInsets.symmetric(vertical: tButtomHeight - 5),
     ),
   );
 
@@ -32,7 +32,7 @@ class TElevatedButtonTheme {
       side: const BorderSide(
         color: tWhiteColor,
       ),
-      padding: const EdgeInsets.symmetric(vertical: tButtomHeight),
+      padding: const EdgeInsets.symmetric(vertical: tButtomHeight - 5),
     ),
   );
 }

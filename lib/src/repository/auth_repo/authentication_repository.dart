@@ -125,7 +125,7 @@ class AuthenticationRepository extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.green.withOpacity(0.1),
             colorText: Colors.green,
-            duration: const Duration(seconds: 5),
+            duration: const Duration(seconds: 3),
           );  
      //firebaseUser.value != null ? Get.offAll(() => const SchoolSelectScreen()) : Get.to(() => const WelcomeScreen());
     } on FirebaseAuthException catch(e) {
@@ -136,7 +136,7 @@ class AuthenticationRepository extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.redAccent.withOpacity(0.1),
             colorText: Colors.red,
-            duration: const Duration(seconds: 5),
+            duration: const Duration(seconds: 3),
           );      
       throw ex;
     }  catch (_) {
@@ -147,7 +147,7 @@ class AuthenticationRepository extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.redAccent.withOpacity(0.1),
             colorText: Colors.red,
-            duration: const Duration(seconds: 5),
+            duration: const Duration(seconds: 3),
           );      
       throw ex;
     }

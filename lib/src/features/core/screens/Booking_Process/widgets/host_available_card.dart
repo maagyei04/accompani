@@ -1,6 +1,7 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
+import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -118,7 +119,7 @@ class HostCard extends StatelessWidget {
               ),
     
                     IconButton(onPressed: () {
-                      Get.to(() => ChatScreen(userId: userId));
+                      Get.to(() => ChatDetail(userId: userId));
                     }, icon: const Icon(Icons.send, size: 30.0, color: tPrimaryColor,))
                                                                        ],
           ),

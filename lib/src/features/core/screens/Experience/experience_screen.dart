@@ -29,13 +29,6 @@ class ExperienceScreen extends StatelessWidget {
               name: "Emily Todd",
               verified: true,
             ),
-            TripCard(
-              widthSize: widthSize,
-              description: "Nestled among snow-capped mountains, Snowflake Valley is a picturesque retreat that transforms into a magical haven during the holiday season.",
-              title: 'Christmas Holidays',
-              name: "Emilly Todd",
-              verified: true,
-            ),
           ],
         ),
       ),

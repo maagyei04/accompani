@@ -52,7 +52,7 @@ class NavigationController extends GetxController {
   final screens = [
     const ExploreScreen(),
     const ExperienceScreen(),
-    ChatScreen(userId: FirebaseAuth.instance.currentUser!.uid),
+    const ChatScreen(),
     const ProfileScreen(),
   ];
 }

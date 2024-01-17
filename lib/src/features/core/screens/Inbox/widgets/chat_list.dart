@@ -21,11 +21,8 @@ class ChatList extends StatelessWidget {
             : []; // Or another default value if needed
 
         if (chats.isEmpty) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: Text('No Chats Currently Available...'));
         }
-
-        print(chats);
-        print(chats.length);
 
         return ListView.builder(
           itemCount: chats.length,

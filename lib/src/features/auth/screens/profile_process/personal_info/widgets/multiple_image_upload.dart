@@ -86,8 +86,9 @@ class MultipleImageUpload extends StatelessWidget {
                   )
                   
                   
-                          :  Image.network(
-                              controller.image.value.path, fit: BoxFit.cover,
+                          :  ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(controller.image.value.path, fit: BoxFit.cover)
                             ) 
                                 
                             :
@@ -135,9 +136,10 @@ class MultipleImageUpload extends StatelessWidget {
                 );
                 },
               )
-                          : Image.file(
-                            File(controller.image.value.path), fit: BoxFit.cover,
-                          ),
+                          :  ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file( File(controller.image.value.path), fit: BoxFit.cover,),
+                            )
                    
                                 ),
                               ),
@@ -205,9 +207,10 @@ class MultipleImageUpload extends StatelessWidget {
                   );
                   },
                                 )
-                          :  Image.network(
-                              controller2.image.value.path, fit: BoxFit.cover,
-                            ) 
+                          :   ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(controller2.image.value.path, fit: BoxFit.cover,),
+                            )
                                 
                             :
                                 
@@ -254,9 +257,11 @@ class MultipleImageUpload extends StatelessWidget {
                   );
                   },
                                 )
-                          : Image.file(
-                            File(controller2.image.value.path), fit: BoxFit.cover,
-                          ),
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file( File(controller2.image.value.path), fit: BoxFit.cover,),
+                            )
+                          
                                 
                               ),
                             ),
@@ -318,9 +323,10 @@ class MultipleImageUpload extends StatelessWidget {
                   );
                   },
                                 )
-                          :  Image.network(
-                              controller3.image.value.path, fit: BoxFit.cover,
-                            ) 
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(controller3.image.value.path, fit: BoxFit.cover,) 
+                            )
                                 
                             :
                                 
@@ -367,9 +373,10 @@ class MultipleImageUpload extends StatelessWidget {
                   );
                   },
                                 )
-                          : Image.file(
-                            File(controller3.image.value.path), fit: BoxFit.cover,
-                          ),
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(File(controller3.image.value.path), fit: BoxFit.cover,), 
+                            )
                                
                               ),
                             ),

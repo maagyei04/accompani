@@ -16,7 +16,7 @@ class MessagesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MessageController messagesController = Get.find<MessageController>();
+    final MessageController messagesController = Get.put(MessageController());
     final myUid = FirebaseAuth.instance.currentUser!.uid;
 
     // Load messages when the widget is first built

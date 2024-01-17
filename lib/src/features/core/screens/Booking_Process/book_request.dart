@@ -197,14 +197,17 @@ class BookRequestScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(tDefaultSize - 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(
                     children: [
                       OutlinedButton(onPressed: () {
                         Get.offAll(() => const NavigationMenu());
-                      }, child:  const Text('Cancel'),
+                      }, child:  const Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text('Cancel'),
+                      ),
                       ),
                       const SizedBox(width: 10.0,),
                       Expanded(

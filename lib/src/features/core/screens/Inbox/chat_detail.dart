@@ -26,7 +26,7 @@ class _ChatDetailState extends State<ChatDetail> {
     late File imageFile;
     late File videoFile;
 
-    final data = Get.arguments;
+    final data = Get.arguments ?? 'Null';
     late final ChatRepository chatController;
 
     late final TextEditingController messageController;
@@ -36,7 +36,7 @@ class _ChatDetailState extends State<ChatDetail> {
     @override
     void initState() {
       super.initState();
-      chatController = Get.find();
+      chatController = Get.put(ChatRepository());
       messageController = TextEditingController();
       fetchChatroomId();
     }
@@ -93,8 +93,9 @@ class _ChatDetailState extends State<ChatDetail> {
         final controller =  Get.put(ChatRepository());
 
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(tDefaultSize - 10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
             icon: const Icon(Icons.image, color: Colors.grey,),

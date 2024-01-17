@@ -1,5 +1,6 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
+import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class HomeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           width: widthSize,
-          height: heightSize /1.3,
+          height: heightSize /1.4,
           margin: const EdgeInsets.all(20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
@@ -101,7 +102,7 @@ class HomeCard extends StatelessWidget {
                   radius: 35,
                   backgroundColor: tPrimaryColor,
                   child: IconButton(onPressed: () {
-                    Get.to(() => ChatScreen(userId: userId));
+                    Get.to(() => ChatDetail(userId: userId));
                   }, icon: const Icon(Icons.send, color: tWhiteColor, size: 30.0,),)
                   
                   

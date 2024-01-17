@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
 import 'dart:math';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller.dart';
 import 'package:accompani/src/features/auth/controllers/image_picker_controller_2.dart';
@@ -50,7 +51,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.3),
         colorText: Colors.green,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
     } catch (error) {
       Get.snackbar(
@@ -59,7 +60,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       rethrow;
     }
@@ -75,7 +76,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.3),
         colorText: Colors.green,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
     } catch (error) {
       Get.snackbar(
@@ -84,7 +85,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       rethrow;
     }
@@ -132,11 +133,11 @@ class UserRepository extends GetxController {
        final result = await _db.collection("Users").doc(user.id).update(user.toJson());
       Get.snackbar(
         'Success',
-        'Your account has been successfully created.',
+        'Your account has been successfully updated.',
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.3),
         colorText: Colors.green,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return result; // Return the DocumentReference
     } catch (error) {
@@ -146,7 +147,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       rethrow;
     }
@@ -161,7 +162,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.3),
         colorText: Colors.green,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return result; // Return the DocumentReference
     } catch (error) {
@@ -171,7 +172,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       rethrow;
     }
@@ -186,7 +187,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.green.withOpacity(0.3),
         colorText: Colors.green,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return result; // Return the DocumentReference
     } catch (error) {
@@ -196,7 +197,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       rethrow;
     }
@@ -210,7 +211,9 @@ class UserRepository extends GetxController {
     try {
       Reference ref = _storage.ref().child('UserImages/$fileName');
 
-      UploadTask uploadTask = ref.putFile(controller2.image.value);
+      var file = controller2.image.value ?? File('assets/logo/pick.png');
+
+      UploadTask uploadTask = ref.putFile(file);
 
       TaskSnapshot snapshot = await uploadTask;
       String downloadUrl =  await snapshot.ref.getDownloadURL();
@@ -223,7 +226,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return 'Error';
     }
@@ -237,7 +240,9 @@ class UserRepository extends GetxController {
     try {
       Reference ref = _storage.ref().child('UserImages/$fileName');
 
-      UploadTask uploadTask = ref.putFile(controller3.image.value);
+      var file = controller2.image.value ?? File('assets/logo/pick.png');  
+
+      UploadTask uploadTask = ref.putFile(file);
 
       TaskSnapshot snapshot = await uploadTask;
        String downloadUrl =  await snapshot.ref.getDownloadURL();
@@ -250,7 +255,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return 'Error';
     }
@@ -264,7 +269,9 @@ class UserRepository extends GetxController {
     try {
       Reference ref = _storage.ref().child('UserImages/$fileName');
 
-      UploadTask uploadTask = ref.putFile(controller4.image.value);
+      var file = controller2.image.value ?? File('assets/logo/pick.png');
+
+      UploadTask uploadTask = ref.putFile(file);
 
       TaskSnapshot snapshot = await uploadTask;
        String downloadUrl =  await snapshot.ref.getDownloadURL();
@@ -277,7 +284,7 @@ class UserRepository extends GetxController {
         snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.redAccent.withOpacity(0.3),
         colorText: Colors.red,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 3),
       );
       return 'Error';
     }

@@ -3,6 +3,7 @@ import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/destination_selection.dart';
+import 'package:accompani/src/features/core/screens/Booking_Process/widgets/overlay_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,116 +31,44 @@ class LocalsScreen extends StatelessWidget {
             children: [
               const Text('What are you looking to do...', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: tDarkColor),),
               const SizedBox(height: 10.0,),
-              TSearchContainer(width: widthSize, text: 'Search Tour Guide'),
+              TSearchContainer(width: widthSize, text: 'Search...'),
               const SizedBox(height: 10.0,),
-              SizedBox(width: double.infinity,
+              const SizedBox(width: double.infinity,
                 child: Row(
                   children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const DestinationSelectionScreen());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: tDarkColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 130,
-                            margin: const EdgeInsets.all(20),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: const Image(image: AssetImage(tWelcomeImage3), fit: BoxFit.cover,),
-                            ),
-                          ),
-                        ),
-                      ), 
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const DestinationSelectionScreen());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: tDarkColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 130 ,
-                            margin: const EdgeInsets.all(20),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: const Image(image: AssetImage(tWelcomeImage2), fit: BoxFit.cover,),
-                            ),
-                          ),
-                        ),
-                      ),                  ],
+                    OverlayContainer(
+                      text: 'Learn & Explore',
+                      image: tWelcomeImage2,
+                    ),
+
+                    OverlayContainer(
+                      text: 'Must-Visit',
+                      image: tWelcomeImage,
+                    ),],
                 ),
               ),
-              SizedBox(width: double.infinity,
+              const SizedBox(width: double.infinity,
                 child: Row(
                   children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const DestinationSelectionScreen());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: tDarkColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 130,
-                            margin: const EdgeInsets.all(20),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: const Image(image: AssetImage(tWelcomeImage), fit: BoxFit.cover,),
-                            ),
-                          ),
-                        ),
-                      ), 
+                    OverlayContainer(
+                      text: 'Entertainment',
+                      image: tWelcomeImage3,
+                    ), 
                 ],
                 ),
-              ),              SizedBox(width: double.infinity,
+              ),           
+              const SizedBox(width: double.infinity,
                 child: Row(
                   children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const DestinationSelectionScreen());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: tDarkColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 130,
-                            margin: const EdgeInsets.all(20),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: const Image(image: AssetImage(tWelcomeImage4), fit: BoxFit.cover,),
-                            ),
-                          ),
-                        ),
-                      ), 
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            Get.to(() => const DestinationSelectionScreen());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: tDarkColor,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            height: 130 ,
-                            margin: const EdgeInsets.all(20),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: const Image(image: AssetImage(tWelcomeImage3), fit: BoxFit.cover,),
-                            ),
-                          ),
-                        ),
-                      ),                  ],
+                    OverlayContainer(
+                      text: 'Professional Needs',
+                      image: tWelcomeImage4,
+                    ), 
+                    OverlayContainer(
+                      text: 'OutdoorActivities',
+                      image: tWelcomeImage2,
+                    ),        
+                              ],
                 ),
               ),            ],
           ),

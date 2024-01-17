@@ -90,7 +90,7 @@ class AddSocialMedia extends StatelessWidget {
         ),
       ),
       bottomNavigationBar:  Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(tDefaultSize - 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(

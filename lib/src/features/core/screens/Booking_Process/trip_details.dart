@@ -67,61 +67,59 @@ class TripDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.all(tDefaultSize - 10),
           child: SizedBox(
             width: double.infinity,
-            child: Expanded(
-              child: ElevatedButton(onPressed: () {
-                      if(formKey.currentState!.validate()) {
-                        /* ---- sign in via email method
-                        SignUpController.instance.registerUser(
-                          controller.email.text.trim(), 
-                          controller.password.text.trim(),
-                        );
-                        ---- */
-
-                        /* --
-                        SignUpController.instance.phoneAuthentication(
-                          controller.phoneNumber.text.trim()
-                        );
-                        Get.to(() => const OTPScreen());
-                        -- */
-                        if (title.text.isNotEmpty &&
-                            description.text.isNotEmpty
-                          ) {
-
-                          final trip = TripModel(
-                              title: title.text.trim(),
-                              description: description.text.trim(),
-                              activity: 'Default...',
-                              destination: 'Default...',
-                              arrivalDate: 'Default..',
-                              cost: 'Default...',
-                              guestAdded: [
-                                'Default...',
-                                'Default...',
-                              ],
-                              status: 'Default...',
-                              purpose: 'Default...',
-                              host: 'Default...',
-                              duration: 'Default...',
-
-                            );
-
-                          userRepo.createTrip(trip);
-
-                          Get.to(() => const SurveyScreen());
-                          
-                      } else {
-                          // Handle case where not all fields are filled
-                        Get.snackbar(
-                          "Error",
-                          "Please fill all the fields",
-                          snackPosition: SnackPosition.TOP,
-                          backgroundColor: Colors.redAccent.withOpacity(0.3),
-                          colorText: Colors.red,
-                          duration: const Duration(seconds: 7),
-                        );
-                      }
-                    }}, child: const Text('Next')), 
-            ),
+            child: ElevatedButton(onPressed: () {
+                    if(formKey.currentState!.validate()) {
+                      /* ---- sign in via email method
+                      SignUpController.instance.registerUser(
+                        controller.email.text.trim(), 
+                        controller.password.text.trim(),
+                      );
+                      ---- */
+            
+                      /* --
+                      SignUpController.instance.phoneAuthentication(
+                        controller.phoneNumber.text.trim()
+                      );
+                      Get.to(() => const OTPScreen());
+                      -- */
+                      if (title.text.isNotEmpty &&
+                          description.text.isNotEmpty
+                        ) {
+            
+                        final trip = TripModel(
+                            title: title.text.trim(),
+                            description: description.text.trim(),
+                            activity: 'Default...',
+                            destination: 'Default...',
+                            arrivalDate: 'Default..',
+                            cost: 'Default...',
+                            guestAdded: [
+                              'Default...',
+                              'Default...',
+                            ],
+                            status: 'Default...',
+                            purpose: 'Default...',
+                            host: 'Default...',
+                            duration: 'Default...',
+            
+                          );
+            
+                        userRepo.createTrip(trip);
+            
+                        Get.to(() => const SurveyScreen());
+                        
+                    } else {
+                        // Handle case where not all fields are filled
+                      Get.snackbar(
+                        "Error",
+                        "Please fill all the fields",
+                        snackPosition: SnackPosition.TOP,
+                        backgroundColor: Colors.redAccent.withOpacity(0.3),
+                        colorText: Colors.red,
+                        duration: const Duration(seconds: 7),
+                      );
+                    }
+                  }}, child: const Text('Next')),
           ),
         ),      
       );

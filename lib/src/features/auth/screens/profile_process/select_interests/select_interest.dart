@@ -1,4 +1,5 @@
 import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
 import 'package:accompani/src/features/auth/models/interest_model.dart';
@@ -93,7 +94,7 @@ class SelectionScreenState extends State<SelectionScreen> {
         ),
       ),
       bottomNavigationBar:               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(tDefaultSize - 10),
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(

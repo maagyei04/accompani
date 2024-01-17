@@ -87,11 +87,9 @@ class GetTripStarted extends StatelessWidget {
         padding: const EdgeInsets.all(tDefaultSize - 10),
         child: SizedBox(
           width: double.infinity,
-          child: Expanded(
-            child: ElevatedButton(onPressed: () {
-              Get.to(() => const TripDetailsScreen());
-            }, child: const Text('Get Started')),
-          ),
+          child: ElevatedButton(onPressed: () {
+            Get.to(() => const SurveyScreen());
+          }, child: const Text('Get Started')),
         ),
       ),
     );
