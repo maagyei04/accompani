@@ -17,10 +17,11 @@ class GetTripStarted extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         leading: IconButton(onPressed: () {
           Get.back();
         }, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-        title: const Text(''),
+        title: Text("Experience", style: Theme.of(context).textTheme.displayLarge),
       ),
       body: SingleChildScrollView(
         child: Padding(

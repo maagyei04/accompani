@@ -1,3 +1,4 @@
+import 'package:accompani/src/features/auth/controllers/login_controller.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/auth/models/user_model2.dart';
 import 'package:accompani/src/features/auth/screens/mail_verification/mail_verification.dart';
@@ -21,12 +22,16 @@ class SignUpController extends GetxController {
 
   final userRepo = Get.put(UserRepository());
 
+  final controller = Get.put(LoginController());
+
   void phoneAuthentication(String phoneNumber) {
     AuthenticationRepository.instance.phoneAuthentication(phoneNumber);
   }
 
 Future<void> registerUser(UserModel user) async {
   try {
+     controller.isLoading.value = true;
+
     final auth = AuthenticationRepository.instance;
 
     // Create user in Firebase Authentication
@@ -40,6 +45,7 @@ Future<void> registerUser(UserModel user) async {
     // Navigate to verification screen
     Get.offAll(() => const MailVerificationScreen());
   } catch (e) {
+     controller.isLoading.value = false;
     // Handle authentication or Firestore errors
     Get.snackbar(
       "Error",
@@ -50,8 +56,30 @@ Future<void> registerUser(UserModel user) async {
       duration: const Duration(seconds: 5),
     );
   }
-}  
+} 
 
+
+Future<void> registerUserGoogle(UserModel user) async {
+  try {
+     controller.isLoading.value = true;
+
+    await Future.delayed(const Duration(seconds: 2), () async {
+      await userRepo.createUser(user);
+    });
+
+  } catch (e) {
+     controller.isLoading.value = false;
+    // Handle authentication or Firestore errors
+    Get.snackbar(
+      "Error",
+      e.toString(),
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.redAccent.withOpacity(0.3),
+      colorText: Colors.red,
+      duration: const Duration(seconds: 5),
+    );
+  }
+} 
   Future<UserModel?> getUserData() {
 
   if (email != null) {

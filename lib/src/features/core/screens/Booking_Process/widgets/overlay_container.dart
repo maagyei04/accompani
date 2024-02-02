@@ -18,7 +18,7 @@ class OverlayContainer extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          Get.to(() => const DestinationSelectionScreen());
+          Get.to(() => DestinationSelectionScreen(), arguments: text);
         },
         child: Container(
           decoration: BoxDecoration(

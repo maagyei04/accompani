@@ -54,20 +54,20 @@ factory TripModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) 
 
   return TripModel(
     userId: document.id,
-    activity: data?["UserType"] ?? 'Default...',
-    arrivalDate: data?["UserId"] ?? 'Default...',
-    cost: data?["FirstName"] ?? 'Default...',
-    description: data?["LastName"] ?? 'Default...',
-    duration: data?["Email"] ?? 'Default...',
-    host: data?["Phone"] ?? 'Default...',
-    purpose: data?["Bio"] ?? 'Default...',
-    guestAdded: List<String>.from(data?["Interests"] ?? [
+    activity: data?["Activity"] ?? 'Default...',
+    arrivalDate: data?["ArrivalDate"] ?? 'Default...',
+    cost: data?["Cost"] ?? 'Default...',
+    description: data?["Description"] ?? 'Default...',
+    duration: data?["Duration"] ?? 'Default...',
+    host: data?["Host"] ?? 'Default...',
+    purpose: data?["Purpose"] ?? 'Default...',
+    guestAdded: List<String>.from(data?["GuestAdded"] ?? [
       'Default...',
       'Default...',
     ]),
-    status: 'Default..',
-    title: data?["PriceTag"] ?? 'Default..',
-    destination: data?["Location"] ?? 'Default...',
+    status: data?['Status'],
+    title: data?["Title"] ?? 'Default..',
+    destination: data?["Destination"] ?? 'Default...',
     );
 }
 

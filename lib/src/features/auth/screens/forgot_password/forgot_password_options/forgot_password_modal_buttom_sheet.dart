@@ -9,8 +9,11 @@ import 'package:get/get.dart';
  static Future<dynamic> buildShowModalBottomSheet(BuildContext context) {
     return showModalBottomSheet(
                   context: context, 
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(tFormHeight - 10),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(tFormHeight -10),
+                      topRight: Radius.circular(tFormHeight -10),
+                    ),
                   ),
                   builder: (context) => Container(
                     padding: const EdgeInsets.all(tDefaultSize),

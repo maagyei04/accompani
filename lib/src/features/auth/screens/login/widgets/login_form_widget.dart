@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accompani/src/common_widgets/loading/loading_widget2.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/controllers/login_controller.dart';
@@ -204,25 +205,43 @@ class _LoginFormState extends State<LoginForm> {
             
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  /* --
-                  if(formKey.currentState!.validate()) {
-                    LoginController.instance.loginUser(
-                      controller.email.text.trim(), 
-                      controller.password.text.trim(),
-                    );
-                  },
-                  -- */
-                  if(formKey.currentState!.validate()) {
-                    LoginController.instance.loginUser(
-                      controller.email.text.trim(),
-                      controller.password.text.trim(),
-                    );
+              child: Obx(
+                () => ElevatedButton(
+                  onPressed: () {
+                    /* --
+                    if(formKey.currentState!.validate()) {
+                      LoginController.instance.loginUser(
+                        controller.email.text.trim(), 
+                        controller.password.text.trim(),
+                      );
+                    },
+                    -- */
+                    if(formKey.currentState!.validate()) {
 
-                  }                       
-                }, 
-                child: const Text(tLogin, style: TextStyle(fontWeight: FontWeight.bold),),
+                      if (controller.email.text.isNotEmpty && controller.password.text.isNotEmpty) {
+                        LoginController.instance.loginUser(
+                          controller.email.text.trim(),
+                          controller.password.text.trim(),
+                        );
+                      } else {
+                        Get.snackbar(
+                          "Error",
+                          "Please fill all the fields",
+                          snackPosition: SnackPosition.TOP,
+                          backgroundColor: Colors.redAccent.withOpacity(0.3),
+                          colorText: Colors.red,
+                          duration: const Duration(seconds: 7),
+                        );
+                      }
+
+                
+                    }                       
+                  }, 
+                  child: controller.isGoogleLoading.value ?
+                    const ButtonLoadingWidget2()
+                  : const Text(tLogin, style: TextStyle(fontWeight: FontWeight.bold),)
+                
+                ),
               ),
             ) 
           ],

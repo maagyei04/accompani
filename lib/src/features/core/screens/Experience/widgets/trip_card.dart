@@ -24,7 +24,7 @@ class TripCard extends StatelessWidget {
         border: Border.all(color: Colors.grey, width: 1.0),
       ),
       width: widthSize,
-      margin: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(7),
       padding: const EdgeInsets.all(10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -76,7 +76,9 @@ class PersonalInfoScreen extends StatelessWidget {
                         backgroundColor: tPrimaryColor,
                         textColor: tWhiteColor,
                         title: controller.languageList[index],
-                        onTap: (){},
+                        onTap: (){
+                          controller.removeFromLanguageList(controller.languageList[index]);
+                        },
                       );
                       
                     }),

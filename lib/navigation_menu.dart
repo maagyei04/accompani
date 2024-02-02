@@ -1,4 +1,5 @@
 import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/features/core/screens/Booking_Process/get_started.dart';
 import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Explore/explore_screen.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
@@ -33,10 +34,10 @@ class NavigationMenu extends StatelessWidget {
           onDestinationSelected: (index) => controller.selectedIndex.value = index,
           destinations: 
           [        
-            NavigationDestination(icon: Icon(Icons.search_outlined, color:tIconColor, size: 25.0,), label: 'Explore',),
-            NavigationDestination(icon: Icon(Icons.refresh_outlined, color: tIconColor, size: 25.0), label: 'Experience'),
-            NavigationDestination(icon: Icon(Icons.message_outlined, color: tIconColor, size: 25.0), label: 'Inbox'),
-            NavigationDestination(icon: Icon(Icons.person_3_outlined, color: tIconColor, size: 25.0), label: 'Profile'),
+            NavigationDestination(icon: Icon(Icons.search_outlined, color:tIconColor, size: 23.0,), label: 'Explore',),
+            NavigationDestination(icon: Icon(Icons.refresh_outlined, color: tIconColor, size: 23.0), label: 'Experience'),
+            NavigationDestination(icon: Icon(Icons.message_outlined, color: tIconColor, size: 23.0), label: 'Inbox'),
+            NavigationDestination(icon: Icon(Icons.person_3_outlined, color: tIconColor, size: 23.0), label: 'Profile',),
           ]
       
         ),
@@ -51,7 +52,7 @@ class NavigationController extends GetxController {
 
   final screens = [
     const ExploreScreen(),
-    const ExperienceScreen(),
+    const GetTripStarted(),
     const ChatScreen(),
     const ProfileScreen(),
   ];

@@ -4,6 +4,7 @@ import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
+import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Profile/widgets/button_tile.dart';
 import 'package:accompani/src/features/core/screens/Profile/widgets/profile_card.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
@@ -62,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
 
               ProfileCard(
                 widthSize: widthSize,
-                picture: user.photos[0] != null ? NetworkImage(user.photos[0]) : const NetworkImage(tWelcomeImage),
+                picture: NetworkImage(user.photos[0]),
                 name: user.firstName,
                 userType: user.userType!,
               ),
@@ -101,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
 
                                 const SizedBox(height: 10.0,),
 
-                  const ButtonTile(title: 'Trips'), 
+                  InkWell(onTap: () => Get.to(() => const ExperienceScreen()), child: const ButtonTile(title: 'Trips',)),
 
 
                                 const SizedBox(height: 10.0,),

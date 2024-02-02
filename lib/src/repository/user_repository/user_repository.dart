@@ -69,7 +69,7 @@ class UserRepository extends GetxController {
 
    Future<void> createTrip(TripModel trip) async {
     try {
-      await _db.collection("Trips").doc(controller.getUserID).set(trip.toJson());
+      await _db.collection("Trips").doc().set(trip.toJson());
       Get.snackbar(
         'Success',
         'Your Trip has been successfully created.',
@@ -121,6 +121,24 @@ class UserRepository extends GetxController {
       final userInfo = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
       return userInfo;
   }
+
+  Future<List<UserModel>> getAllUserInfoByType() async {
+    final snapshot = await _db.collection("Users")
+    .where("UserType", isEqualTo: 'Host')
+      .get();
+
+      final userInfo = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
+      return userInfo;
+  }
+  Future<List<TripModel>> getUserTrips(userId) async {
+    final snapshot = await _db.collection("Trips")
+    .where("UserId", isEqualTo: userId)
+      .get();
+
+      final userTrips = snapshot.docs.map((e) => TripModel.fromSnapshot(e)).toList();
+      return userTrips;
+  }
+
 
   Future<List<UserModel>> allUsers() async {
     final snapshot = await _db.collection("Users").get();

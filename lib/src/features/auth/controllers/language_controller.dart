@@ -11,6 +11,9 @@ class LanguageController extends GetxController {
     textEditingController.clear();
   }
 
+  void removeFromLanguageList(String text) {
+    languageList.remove(text);
+  }
   @override
   void onClose() {
     textEditingController.dispose();

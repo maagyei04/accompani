@@ -19,7 +19,7 @@ class AvailableHosts extends StatelessWidget {
     final controller = Get.put(UserRepository());
 
     return FutureBuilder(
-      future: controller.getUserInfoByType(),
+      future: controller.getAllUserInfoByType(),
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -28,9 +28,7 @@ class AvailableHosts extends StatelessWidget {
 
         if (snapshot.hasError || snapshot.data == null) {
           return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.red,
-            ),
+            child: Text('No Host Available At The Moment...')
           ); // Replace with a suitable error widget
         }
 
@@ -56,16 +54,24 @@ class AvailableHosts extends StatelessWidget {
                 onTap: () {
                   Get.to(() => const BookRequestScreen());
                 },
-                child: HostCard(
-                  userId: user.userId!,
-                  screenWidth: screenWidth,
-                  name: user.firstName + user.lastName,
-                  review: '24 Reviews',
-                  rank: user.rank!,
-                  rate: user.reviewRate!,
-                  bio: user.bio,
-                  hostTimeJoined: '1 year hosting',
-                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: user.length,
+                  itemBuilder: (_, index) {
+                    return HostCard(
+                      userId: user[index].userId!,
+                      screenWidth: screenWidth,
+                      name: user[index].firstName + user[index].lastName,
+                      review: '24 Reviews',
+                      rank: user[index].rank!,
+                      rate: user[index].reviewRate!,
+                      bio: user[index].bio,
+                      hostTimeJoined: '1 year hosting',
+                    );
+                  },
+
+                )
+                
               ),
                           ],
           ),

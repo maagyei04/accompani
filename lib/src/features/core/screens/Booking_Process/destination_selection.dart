@@ -1,13 +1,18 @@
+import 'package:accompani/src/common_widgets/categories/vertical_categories.dart';
 import 'package:accompani/src/common_widgets/searchbar/search_bar.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
+import 'package:accompani/src/features/auth/controllers/guest_controller.dart';
+import 'package:accompani/src/features/core/controllers/date_range_controller.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/available_host.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DestinationSelectionScreen extends StatelessWidget {
-  const DestinationSelectionScreen({super.key});
+  DestinationSelectionScreen({super.key});
+
+  final text = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +20,10 @@ class DestinationSelectionScreen extends StatelessWidget {
   var screenWidth = mediaQuery.width;
   var screenHeight = mediaQuery.height;
 
+  final GuestController controller = Get.put(GuestController());
+  final DateRangeController dateRangeController = Get.put(DateRangeController());
+
+  
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () { Get.back(); }, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
@@ -60,7 +69,7 @@ class DestinationSelectionScreen extends StatelessWidget {
               ),
               GestureDetector(
                     onTap: () {
-                      //
+                      dateRangeController.selectDateRange();
                     },
                     child: Container(
                       width: double.infinity,
@@ -75,36 +84,50 @@ class DestinationSelectionScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Select arrival date', style: Theme.of(context).textTheme.displayMedium,),
-                          const Icon(Icons.arrow_forward_ios_rounded)
+                          Obx(() => Text('Selected Trip Duration: ${dateRangeController.startDate.value.day} - ${dateRangeController.endDate.value.day}', style: Theme.of(context).textTheme.displayMedium,)),
+                          const Icon(Icons.calendar_month_rounded)
                         ],
                       ),
                     ),
                   ),       
                   const SizedBox(height: 20.0,),
-              GestureDetector(
-                    onTap: () {
-                      //
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.0),
-                        border:Border.all(
-                          color: Colors.grey,
-                          width: 1.0,
-                        )
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Add Guests', style: Theme.of(context).textTheme.displayMedium,),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
+
+                TextFormField(
+                  controller: controller.textEditingController,
+                  onFieldSubmitted: (text) {
+                    controller.addToTopOfGuestList(text);
+                  },
+                  style: const TextStyle(fontSize: 15.0),
+                  decoration: const InputDecoration(
+                    labelText: 'Add Guests',
+                    hintText: 'Input the email of guest and press Enter...',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
                     ),
-                  ),                            
+                  ),
+                ), 
+              const SizedBox(height: 10,),
+
+                 Obx(
+                   () => SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.guestList.length, 
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (_, index) {
+                      return TVerticalCategories(
+                        backgroundColor: tPrimaryColor,
+                        textColor: tWhiteColor,
+                        title: controller.guestList[index],
+                        onTap: (){
+                          controller.removeFromGuestList(controller.guestList[index]);
+                        },
+                      );
+                      
+                    }),
+                                   ),
+                 ),                            
                         ],
           ),
         ),

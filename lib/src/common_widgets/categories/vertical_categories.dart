@@ -27,13 +27,21 @@ class TVerticalCategories extends StatelessWidget {
           children: [
             Container(
               height: 30,
-              width: 90,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(15)
               ),
-              child: Text(title, style: TextStyle(color: textColor,fontSize: 13,fontWeight: FontWeight.normal),textAlign: TextAlign.center,),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(title, style: TextStyle(color: textColor,fontSize: 13,fontWeight: FontWeight.normal)),       
+                  const Icon(Icons.cancel, color: tWhiteColor,)   
+                ],
+              )
+              
+              
+
             )
           ],
         ),
