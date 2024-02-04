@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/features/auth/controllers/signup_controller.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
@@ -209,11 +211,14 @@ class AuthenticationRepository extends GetxController {
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
-      throw e.message!;
-    } on FormatException catch (e) {
-      throw e.message;
-    } catch (e) {
-      throw 'Unable to logout. Try again';
-    }
+    print('FirebaseAuthException: ${e.message}');
+    throw e.message!;
+  } on FormatException catch (e) {
+    print('FormatException: ${e.message}');
+    throw e.message;
+  } catch (e) {
+    print('Error: $e');
+    throw 'Unable to logout. Try again';
+  }
   }
 } 

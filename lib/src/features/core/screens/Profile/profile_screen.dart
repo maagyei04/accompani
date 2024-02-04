@@ -189,7 +189,9 @@ class ProfileScreen extends StatelessWidget {
         return CustomDialog(
           title: 'Logout',
           content: 'Are you sure you want to Logout?',
-          widget: AuthenticationRepository.instance.logout(),
+          onConfirm: () {
+            AuthenticationRepository.instance.logout();
+          },
         );
       },
     );

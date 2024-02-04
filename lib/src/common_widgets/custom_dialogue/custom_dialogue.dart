@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomDialog extends StatelessWidget {
   final String title;
   final String content;
-  final widget;
+  final Widget? widget;
+  final Function()? onConfirm;
 
-  const CustomDialog({super.key, required this.title, required this.content, this.widget});
+  const CustomDialog({super.key, required this.title, required this.content, this.widget, this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,21 @@ class CustomDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            widget!;
+            if (widget != null) {
+              Get.back(); // Close the dialog
+              Get.off(widget!);
+            }
+            if (onConfirm != null) {
+              Get.back(); // Close the dialog
+              onConfirm!(); // Call the provided callback
+            }
           },
           child: const Text('Confirm'),
         ),
         const SizedBox(width: 20.0,),
         TextButton(
           onPressed: () {
-            Navigator.of(context).pop(); // Close the dialog
+            Get.back();
           },
           child: const Text('Close'),
         ),
