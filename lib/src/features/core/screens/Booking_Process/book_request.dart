@@ -254,11 +254,15 @@ class BookRequestScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return CustomDialog(
+        return const CustomDialog(
           title: 'Booking Accompani',
           content: 'Are you sure you want to cancel Booking a local guide?',
-          widget: Get.offAll(() => const NavigationMenu()),
         );
       },
-    );
+    ).then((value) {
+    if (value == true) {
+      // User confirmed, navigate to NavigationMenu
+      Get.offAll(() => const NavigationMenu());
+    }
+  });;
   }

@@ -99,9 +99,9 @@ class DestinationSelectionScreen extends StatelessWidget {
                                             color: Colors.black.withOpacity(0.5),
                                           ),
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            trip.destination,
-                                            style: const TextStyle(
+                                          child: const Text(
+                                            'New York, USA',
+                                            style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -208,7 +208,7 @@ class DestinationSelectionScreen extends StatelessWidget {
                                   title:trip.title,
                                   description: trip.description,
                                   activity: trip.activity,
-                                  destination: trip.destination,
+                                  destination: 'New York, USA',
                                   arrivalDate: formattedStartDate,
                                   cost: trip.cost,
                                   guestAdded: controller.guestList,

@@ -5,7 +5,7 @@ class CustomDialog extends StatelessWidget {
   final String content;
   final widget;
 
-  const CustomDialog({super.key, required this.title, required this.content, required this.widget});
+  const CustomDialog({super.key, required this.title, required this.content, this.widget});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:accompani/src/constants/colors.dart';
-import 'package:accompani/src/features/core/screens/Booking_Process/booking_complete.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/get_started.dart';
 import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Explore/explore_screen.dart';
@@ -54,7 +53,7 @@ class NavigationController extends GetxController {
   final screens = [
     const ExploreScreen(),
     const GetTripStarted(),
-    const BookingComplete(),
+    const ChatScreen(),
     const ProfileScreen(),
   ];
 }
