@@ -1,6 +1,7 @@
 import 'package:accompani/src/common_widgets/searchbar/search_bar.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
+import 'package:accompani/src/features/core/models/trip_model.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/book_request.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
@@ -9,7 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AvailableHosts extends StatelessWidget {
-  const AvailableHosts({super.key});
+  AvailableHosts({super.key});
+
+  final trip = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,21 @@ class AvailableHosts extends StatelessWidget {
               const SizedBox(height: 10.0,),
               InkWell(
                 onTap: () {
-                  Get.to(() => const BookRequestScreen());
+                                final tripp = TripModel(
+                                  title:trip.title,
+                                  description: trip.description,
+                                  activity: trip.activity,
+                                  destination: trip.destination,
+                                  arrivalDate: trip.arrivalDate,
+                                  cost: trip.cost,
+                                  guestAdded: trip.guestAdded,
+                                  status: trip.status,
+                                  purpose: trip.purpose,
+                                  host: user[0].userId!,
+                                  duration: trip.duration,
+                                );
+
+                  Get.to(() => BookRequestScreen(), arguments: tripp);
                 },
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -66,7 +83,7 @@ class AvailableHosts extends StatelessWidget {
                       rank: user[index].rank!,
                       rate: user[index].reviewRate!,
                       bio: user[index].bio,
-                      hostTimeJoined: '1 year hosting',
+                      hostTimeJoined: '2 months hosting',
                     );
                   },
 

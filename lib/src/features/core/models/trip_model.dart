@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class TripModel {
   final String? userId;
+  final String? id;
   final String activity;
   final List<String> guestAdded;
   final String arrivalDate;
@@ -19,6 +20,7 @@ class TripModel {
 
   const TripModel({
     this.userId,
+    this.id,
     required this.activity,
     required this.guestAdded,
     required this.arrivalDate, 
@@ -53,7 +55,8 @@ factory TripModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) 
   final data = document.data();
 
   return TripModel(
-    userId: document.id,
+    id: document.id,
+    userId: data?["UserId"] ?? 'Default...',
     activity: data?["Activity"] ?? 'Default...',
     arrivalDate: data?["ArrivalDate"] ?? 'Default...',
     cost: data?["Cost"] ?? 'Default...',

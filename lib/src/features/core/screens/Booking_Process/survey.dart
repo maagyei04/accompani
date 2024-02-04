@@ -14,6 +14,8 @@ class SurveyScreen extends StatefulWidget {
   State<SurveyScreen> createState() => _SurveyScreenState();
 }
 
+  final trip = Get.arguments;
+
 class _SurveyScreenState extends State<SurveyScreen> {
   int _selectedValue = 1;
 
@@ -87,8 +89,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                           child: ElevatedButton(
                             onPressed: () {
                               _selectedValue == 2 
-                              ? Get.to(() => const LocalsScreen()) 
-                              : Get.to(() => const VisitorScreen());
+                              ? Get.to(() => LocalsScreen(), arguments: trip) 
+                              : Get.to(() => VisitorScreen(), arguments: trip);
                             },
                             child: const Text(tNext),
                           ),

@@ -1,4 +1,5 @@
 import 'package:accompani/src/constants/colors.dart';
+import 'package:accompani/src/features/core/models/trip_model.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/destination_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,10 +16,26 @@ class OverlayContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = Get.arguments;
+
+                              final trip = TripModel(
+                                  title: data.title,
+                                  description: data.description,
+                                  activity: text,
+                                  destination: data.destination,
+                                  arrivalDate: data.arrivalDate,
+                                  cost: data.cost,
+                                  guestAdded: data.guestAdded,
+                                  status: data.status,
+                                  purpose: data.purpose,
+                                  host: data.host,
+                                  duration: data.duration,
+                                );    
+
     return Expanded(
       child: InkWell(
         onTap: () {
-          Get.to(() => DestinationSelectionScreen(), arguments: text);
+          Get.to(() => DestinationSelectionScreen(), arguments: trip,);
         },
         child: Container(
           decoration: BoxDecoration(

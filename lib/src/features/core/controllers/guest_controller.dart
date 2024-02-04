@@ -5,6 +5,11 @@ class GuestController extends GetxController {
   final TextEditingController textEditingController = TextEditingController();
   final guest = TextEditingController();
   RxList<String> guestList = <String>[].obs;
+  Rx<int?> selectedContainerIndex = Rx<int?>(null);
+
+  void selectContainer(int index) {
+    selectedContainerIndex(index);
+  }
 
   void addToTopOfGuestList(String text) {
     guestList.insert(0, text);

@@ -1,21 +1,44 @@
 import 'package:accompani/navigation_menu.dart';
+import 'package:accompani/src/common_widgets/custom_dialogue/custom_dialogue.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
+import 'package:accompani/src/features/core/screens/Booking_Process/booking_complete.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/home_card.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookRequestScreen extends StatelessWidget {
-  const BookRequestScreen({super.key});
+  BookRequestScreen({super.key});
+
+  final trip = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     var screenWidth = mediaQuery.width;
+    final controller = Get.put(UserRepository());
 
-    return Scaffold(
+    return FutureBuilder(
+      future: controller.getUserInfoById(trip.host),
+      builder: (context, snapshot) {
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+        }
+
+        if (snapshot.hasError || snapshot.data == null) {
+          return const Center(
+            child: Text('No Host Available At The Moment...')
+          ); // Replace with a suitable error widget
+        }
+
+        final user = snapshot.data!;
+        
+        
+      return Scaffold(
       appBar: AppBar(
         leading: IconButton(onPressed: () { Get.back();}, icon: const Icon(Icons.arrow_back_ios_new_rounded)),
         title: const Text('Request To Book', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: tDarkColor),),
@@ -29,14 +52,14 @@ class BookRequestScreen extends StatelessWidget {
             children: [
 
               HostCard(
-                userId: FirebaseAuth.instance.currentUser!.uid,
+                userId: user.id! ?? 'Default',
                 screenWidth: screenWidth,
-                name: 'Emily Todd',
+                name: '${user.firstName} ${user.lastName}',
                 review: '24 Reviews',
-                rank: 'SuperHost',
-                rate: '4.78',
-                bio: "Hello! I'm Emily, a passionate explorer with an insatiable curiosity for the world around me. Whether it's traversing through dense jungles, unraveling historical mysteries",
-                hostTimeJoined: '1 year hosting',
+                rank: user.rank! ?? 'Default',
+                rate: user.reviewRate! ?? 'Default',
+                bio: user.bio,
+                hostTimeJoined: '2 month hosting',
               ),
               
               const SizedBox(height: 10.0,),
@@ -67,9 +90,9 @@ class BookRequestScreen extends StatelessWidget {
                               color: Colors.yellow,
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            child: const Text(
-                              'Cooking',
-                              style: TextStyle(
+                            child: Text(
+                              trip.activity,
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12.0,
@@ -108,7 +131,7 @@ class BookRequestScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Date', style: Theme.of(context).textTheme.labelMedium,),
-                        Text('1 - 10 Sept', style: Theme.of(context).textTheme.bodySmall,)
+                        Text(trip.duration, style: Theme.of(context).textTheme.bodySmall,)
                       ],
                     ),
                     ElevatedButton(onPressed: () {
@@ -135,7 +158,7 @@ class BookRequestScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Location', style: Theme.of(context).textTheme.labelMedium,),
-                        Text('New York, USA', style: Theme.of(context).textTheme.bodySmall,)
+                        Text(trip.destination, style: Theme.of(context).textTheme.bodySmall,)
                       ],
                     ),
                     ElevatedButton(onPressed: () {
@@ -203,7 +226,7 @@ class BookRequestScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       OutlinedButton(onPressed: () {
-                        Get.offAll(() => const NavigationMenu());
+                        _showCustomDialog(context);
                       }, child:  const Padding(
                         padding: EdgeInsets.all(5.0),
                         child: Text('Cancel'),
@@ -213,7 +236,8 @@ class BookRequestScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: (){
-                            //
+                            UserRepository.instance.createTrip(trip);
+                            Get.offAll(() => const BookingComplete());
                           }, 
                           child: const Text('Request To Book')
                         ),
@@ -222,5 +246,19 @@ class BookRequestScreen extends StatelessWidget {
                   ),
                 ),
               ) ,    );
+  });
   }
 }
+
+  void _showCustomDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          title: 'Booking Accompani',
+          content: 'Are you sure you want to cancel Booking a local guide?',
+          widget: Get.offAll(() => const NavigationMenu()),
+        );
+      },
+    );
+  }

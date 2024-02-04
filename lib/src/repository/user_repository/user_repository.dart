@@ -171,6 +171,31 @@ class UserRepository extends GetxController {
     }
   } 
 
+    Future<void> updateUserTrip(TripModel trip) async {
+    try {
+       final result = await _db.collection("Trips").doc(trip.id).update(trip.toJson());
+      Get.snackbar(
+        'Success',
+        'Your trip has been successfully updated.',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.green.withOpacity(0.3),
+        colorText: Colors.green,
+        duration: const Duration(seconds: 3),
+      );
+      return result; // Return the DocumentReference
+    } catch (error) {
+      Get.snackbar(
+        "Error",
+        "Something went wrong. Try Again",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.redAccent.withOpacity(0.3),
+        colorText: Colors.red,
+        duration: const Duration(seconds: 3),
+      );
+      rethrow;
+    }
+  } 
+
     Future<void> updatePersonalRecord(PersonalInfoModel user) async {
         try {
        final result = await _db.collection("Users").doc(user.id).update(user.toJson());

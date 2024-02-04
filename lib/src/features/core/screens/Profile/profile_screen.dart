@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:accompani/navigation_menu.dart';
+import 'package:accompani/src/common_widgets/custom_dialogue/custom_dialogue.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
@@ -64,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
               ProfileCard(
                 widthSize: widthSize,
                 picture: NetworkImage(user.photos[0]),
-                name: user.firstName,
+                name: user.firstName ?? AuthenticationRepository.instance.getDisplayName,
                 userType: user.userType!,
               ),
 
@@ -147,7 +148,7 @@ class ProfileScreen extends StatelessWidget {
 
                 GestureDetector(
                       onTap: () {
-                         AuthenticationRepository.instance.logout();
+                         _showCustomDialog(context);
                       },
                       child: Container(
                         width: double.infinity,
@@ -180,3 +181,16 @@ class ProfileScreen extends StatelessWidget {
   
   }
 }
+
+  void _showCustomDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CustomDialog(
+          title: 'Logout',
+          content: 'Are you sure you want to Logout?',
+          widget: AuthenticationRepository.instance.logout(),
+        );
+      },
+    );
+  }

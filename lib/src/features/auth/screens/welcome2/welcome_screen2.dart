@@ -51,7 +51,7 @@ class WelcomeScreen2 extends StatelessWidget {
                   Text(
                     tWelcomeScreenTitle2,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context).textTheme.labelSmall,
                   ),
                   const SizedBox(
                     height: 40.0,

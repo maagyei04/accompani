@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VisitorScreen extends StatelessWidget {
-  const VisitorScreen({super.key});
+  VisitorScreen({super.key});
+
+  final trip = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var widthSize = mediaQuery.size.width;
-
+    
 
     return Scaffold(
       appBar: AppBar(

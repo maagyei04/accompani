@@ -30,8 +30,44 @@ class MultipleImageUpload extends StatelessWidget {
                 Obx(
                   () => GestureDetector(
                     onTap: () {
-                      // -- coming
-                    },              
+                      showModalBottomSheet(
+                    context: context, 
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(tFormHeight - 10),
+                    ),
+                    builder: (context) => Container(
+                      padding: const EdgeInsets.all(tDefaultSize),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(tForgotPasswordTitle, style: Theme.of(context).textTheme.displayLarge,),
+                            Text('Select one of the options below, to add image', style: Theme.of(context).textTheme.displayMedium,),
+                            const SizedBox(height: tFormHeight,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.camera_enhance_rounded,
+                              title: 'Camera',
+                              subTitle: 'Take live image',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller.pickImageCamera();
+                              },
+                            ),
+                            const SizedBox(height: tFormHeight - 10,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.photo_album_rounded,
+                              title: 'Gallery',
+                              subTitle: 'Select from Gallery',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller.pickImage();                          },
+                            ),
+                          ]
+                        ),
+                      )
+                    ),
+                  );
+                                  },              
                                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 180, 180, 180),
@@ -153,8 +189,44 @@ class MultipleImageUpload extends StatelessWidget {
                 Obx(
                   () => GestureDetector(
                     onTap: () {
-                      
-                    },            
+                      showModalBottomSheet(
+                    context: context, 
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(tFormHeight - 10),
+                    ),
+                    builder: (context) => Container(
+                      padding: const EdgeInsets.all(tDefaultSize),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(tForgotPasswordTitle, style: Theme.of(context).textTheme.displayLarge,),
+                            Text('Select one of the options below, to add image', style: Theme.of(context).textTheme.displayMedium,),
+                            const SizedBox(height: tFormHeight,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.camera_enhance_rounded,
+                              title: 'Camera',
+                              subTitle: 'Take live image',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller2.pickImageCamera();
+                              },
+                            ),
+                            const SizedBox(height: tFormHeight - 10,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.photo_album_rounded,
+                              title: 'Gallery',
+                              subTitle: 'Select from Gallery',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller2.pickImage();                          },
+                            ),
+                          ]
+                        ),
+                      )
+                    ),
+                  );
+                                      },            
                               child: Container(
                                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 180, 180, 180),
@@ -270,8 +342,43 @@ class MultipleImageUpload extends StatelessWidget {
                 Obx(
                   () => GestureDetector(
                     onTap: () {
-                     
-                    },            
+                      showModalBottomSheet(
+                    context: context, 
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(tFormHeight - 10),
+                    ),
+                    builder: (context) => Container(
+                      padding: const EdgeInsets.all(tDefaultSize),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(tForgotPasswordTitle, style: Theme.of(context).textTheme.displayLarge,),
+                            Text('Select one of the options below, to add image', style: Theme.of(context).textTheme.displayMedium,),
+                            const SizedBox(height: tFormHeight,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.camera_enhance_rounded,
+                              title: 'Camera',
+                              subTitle: 'Take live image',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller3.pickImageCamera();
+                              },
+                            ),
+                            const SizedBox(height: tFormHeight - 10,),
+                            ForgotPasswordBtnWidget(
+                              btnIcon: Icons.photo_album_rounded,
+                              title: 'Gallery',
+                              subTitle: 'Select from Gallery',
+                              onTap: () {
+                                Navigator.pop(context);
+                                controller3.pickImage();                          },
+                            ),
+                          ]
+                        ),
+                      )
+                    ),
+                  );                    },            
                               child: Container(
                                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 180, 180, 180),

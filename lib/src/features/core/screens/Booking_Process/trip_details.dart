@@ -103,10 +103,8 @@ class TripDetailsScreen extends StatelessWidget {
                             duration: 'Default...',
             
                           );
-            
-                        userRepo.createTrip(trip);
-            
-                        Get.to(() => const SurveyScreen());
+                        
+                        Get.to(() => const SurveyScreen(), arguments: trip);
                         
                     } else {
                         // Handle case where not all fields are filled
