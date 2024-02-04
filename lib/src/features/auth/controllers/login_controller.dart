@@ -114,7 +114,7 @@ class LoginController extends GetxController {
                         });    
 
       } else {
-        print("User Info already exists in Firestore. Skipping save.");
+                print("User Info already exists in Firestore. Skipping save.");
                         await Future.delayed(const Duration(seconds: 2), () async {
                           Get.offAll(() => const NavigationMenu());
                         });      }

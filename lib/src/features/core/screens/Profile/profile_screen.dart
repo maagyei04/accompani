@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
               ProfileCard(
                 widthSize: widthSize,
                 picture: NetworkImage(user.photos[0]),
-                name: user.firstName ?? AuthenticationRepository.instance.getDisplayName,
+                name: user.firstName == 'Default...' ? AuthenticationRepository.instance.getDisplayName : user.firstName,
                 userType: user.userType!,
               ),
 
