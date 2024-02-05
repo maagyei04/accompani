@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '32942490702',
     projectId: 'accompani-app',
     storageBucket: 'accompani-app.appspot.com',
+    androidClientId: '32942490702-0sn8rvghtvm55hoqh56trviml0h30vrk.apps.googleusercontent.com',
+    iosClientId: '32942490702-imo469h41g09u4d2h3lnn0e9hb57nao8.apps.googleusercontent.com',
     iosBundleId: 'com.ios.accompani',
   );
 
@@ -76,6 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '32942490702',
     projectId: 'accompani-app',
     storageBucket: 'accompani-app.appspot.com',
+    androidClientId: '32942490702-0sn8rvghtvm55hoqh56trviml0h30vrk.apps.googleusercontent.com',
+    iosClientId: '32942490702-d1tp6ie361bhbof0r7dkpnrqm05qon73.apps.googleusercontent.com',
     iosBundleId: 'com.example.accompani.RunnerTests',
   );
 }
