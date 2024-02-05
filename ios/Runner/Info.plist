@@ -71,7 +71,6 @@
 		<string>Microphone Usage</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 		<string>Location Access Always</string>		
-    <key>CFBundleURLTypes</key>
 	<key>GIDClientID</key>
 	<string>32942490702-imo469h41g09u4d2h3lnn0e9hb57nao8.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
