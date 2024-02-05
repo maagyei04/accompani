@@ -107,17 +107,14 @@ class LoginController extends GetxController {
                               ]
                             );
 
-                        SignUpController.instance.registerUserGoogle(user);    
+                        SignUpController.instance.registerUserGoogle(user);
 
-                        await Future.delayed(const Duration(seconds: 2), () async {
                           Get.offAll(() => const WelcomeScreen2());
-                        });    
 
       } else {
                 print("User Info already exists in Firestore. Skipping save.");
-                        await Future.delayed(const Duration(seconds: 2), () async {
                           Get.offAll(() => const NavigationMenu());
-                        });      }
+     }
                         
 
     } catch (e) {
