@@ -3,6 +3,7 @@
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/features/auth/controllers/signup_controller.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
+import 'package:accompani/src/features/auth/screens/email/email.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
 import 'package:accompani/src/features/auth/screens/welcome2/welcome_screen2.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
@@ -83,9 +84,9 @@ class LoginController extends GetxController {
                           var user = UserModel(
                               email: auth.getUserEmail,
                               password: 'Default...',
-                              firstName: auth.getDisplayName,
+                              firstName: 'Default',
                               lastName: 'Default...',
-                              phoneNumber: auth.getUserPhone,
+                              phoneNumber: 'Default',
                               bio: 'Default...',
                               interests: [
                                 'Default...',
@@ -109,7 +110,7 @@ class LoginController extends GetxController {
 
                         SignUpController.instance.registerUserGoogle(user);
 
-                          Get.offAll(() => const WelcomeScreen2());
+                          Get.offAll(() => const EmailForm());
 
       } else {
                 print("User Info already exists in Firestore. Skipping save.");
