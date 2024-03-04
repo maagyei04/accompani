@@ -25,7 +25,7 @@ class ButtonTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(title, style: Theme.of(context).textTheme.displayMedium,),
-          const Icon(Icons.arrow_forward_ios_rounded)
+          const Icon(Icons.arrow_forward_ios_rounded, size: 10.0,)
         ],
       ),
     );
