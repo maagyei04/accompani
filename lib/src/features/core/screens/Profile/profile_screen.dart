@@ -10,7 +10,6 @@ import 'package:accompani/src/features/core/screens/Profile/widgets/button_tile.
 import 'package:accompani/src/features/core/screens/Profile/widgets/profile_card.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
-import 'package:colorful_iconify_flutter/icons/emojione.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
