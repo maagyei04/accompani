@@ -10,7 +10,7 @@ class ExploreAppBar extends StatelessWidget {
     return TAppBar(
       title: const TSearchContainer(
         width: double.infinity,
-        text: 'Search To Guide',
+        text: 'Search Tour Guide',
       ),
       actions: [
         IconButton(onPressed: () {}, icon: const Icon(Icons.view_comfortable_outlined, size: 33,)),

@@ -1,4 +1,3 @@
-import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -7,7 +6,7 @@ class AppBarWidget extends StatelessWidget {
     required this.data,
   });
 
-  final UserModel data;
+  final data;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +14,7 @@ class AppBarWidget extends StatelessWidget {
       padding: const EdgeInsets.all(15.0),
       child: Row(
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(data.photos[0]),
+          const CircleAvatar(
             backgroundColor: Colors.black,
             radius: 20,
           ),
@@ -24,7 +22,7 @@ class AppBarWidget extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(data.firstName, style: Theme.of(context).textTheme.headlineLarge),
+              Text(data, style: Theme.of(context).textTheme.headlineLarge),
               Text('Accompani', style: Theme.of(context).textTheme.displayMedium),
             ],
           )

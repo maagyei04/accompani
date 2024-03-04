@@ -61,7 +61,7 @@ class ChatTile extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () {
-                Get.to(() => ChatDetail(userId: userId,), arguments: user);
+                Get.to(() => ChatDetail(userId: userId,), arguments: user.firstName);
               },
               child: Row(
                 children: [
