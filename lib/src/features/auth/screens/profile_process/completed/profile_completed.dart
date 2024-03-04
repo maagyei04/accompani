@@ -15,19 +15,21 @@ class ProfileCompleteScreen extends StatelessWidget {
     return Scaffold(
       body: const Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+        
             RiveWidget(
               asset: 'assets/rive/success.riv',
               width: 200,
               height: 200,              
             ),
-
-            SizedBox(height: 15.0,),
-
+        
+            SizedBox(height: 12.0,),
+        
             SizedBox(
               width: 260,
-              child: Text('Youv\'e completed your Profile Setup Process', textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold),)),
+              child: Text('Youv\'e completed your Profile Setup Process', textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),)),
           ],
         ),
       ),

@@ -1,9 +1,6 @@
 import 'package:accompani/src/common_widgets/searchbar/search_bar.dart';
-import 'package:accompani/src/features/core/controllers/chat_controller.dart';
-import 'package:accompani/src/features/core/screens/Inbox/providers/get_all_messages_provider.dart';
 import 'package:accompani/src/features/core/screens/Inbox/widgets/chat_list.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -13,6 +10,7 @@ class ChatScreen extends StatelessWidget {
 
     return
        Scaffold(
+        backgroundColor: const Color.fromARGB(255, 244, 244, 244),
           appBar: AppBar(
             centerTitle: true,
             title: Text('Inbox', style: Theme.of(context).textTheme.displayLarge,),

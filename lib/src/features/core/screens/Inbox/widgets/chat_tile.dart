@@ -32,19 +32,17 @@ class ChatTile extends StatelessWidget {
           return const Center(
             child: RiveWidget(
               asset: 'assets/rive/loading.riv',
-              width: 10,
-              height: 10,
+              width: 100,
+              height: 100,
             ),
-          ); // Replace with a suitable widget for the loading state
+          ); 
         }
 
         if (snapshot.hasError || snapshot.data == null) {
-          return const Center(
-            child: RiveWidget(
-              asset: 'assets/rive/error.riv',
-              width: 10,
-              height: 10,
-            ),
+          return const RiveWidget(
+            asset: 'assets/rive/error.riv',
+            width: 100,
+            height: 100,
           );
         }
 
@@ -55,52 +53,59 @@ class ChatTile extends StatelessWidget {
             horizontal: 8.0,
             vertical: 8.0,
           ),
-          child: InkWell(
-            onTap: () {
-              Get.to(() => ChatDetail(userId: userId,), arguments: user.firstName);
-            },
-            child: Row(
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: tSecondaryColor,
-                  backgroundImage: user.photos[0].isNotEmpty 
-                          ? NetworkImage(user.photos[0])
-                          : null,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                         user.firstName, 
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: Text(
-                              lastMessage,
-                              style: const TextStyle(color: tSecondaryColor),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const Icon(Icons.arrow_right_outlined),
-                          Text(
-                            '${lastMessageTs.minute} min ago...',
-                            style: const TextStyle(color: tSecondaryColor),
-                          )
-                        ],
-                      )
-                    ],
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: InkWell(
+              onTap: () {
+                Get.to(() => ChatDetail(userId: userId,), arguments: user);
+              },
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: tSecondaryColor,
+                    backgroundImage: user.photos[0].isNotEmpty 
+                            ? NetworkImage(user.photos[0])
+                            : null,
                   ),
-                )
-              ],
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                           user.firstName, 
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                lastMessage,
+                                style: const TextStyle(color: tSecondaryColor),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const Icon(Icons.arrow_right_outlined),
+                            Text(
+                              '${lastMessageTs.minute} min ago...',
+                              style: const TextStyle(color: tSecondaryColor),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );

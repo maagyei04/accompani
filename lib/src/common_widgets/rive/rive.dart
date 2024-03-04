@@ -10,16 +10,12 @@ class RiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: width,
-          height: height,
-          child: RiveAnimation.asset(
-            asset,
-            fit: BoxFit.contain,
-          ),
-        ),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: RiveAnimation.asset(
+        asset,
+        fit: BoxFit.contain,
       ),
     );
   }

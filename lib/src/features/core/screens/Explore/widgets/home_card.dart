@@ -39,7 +39,7 @@ class HomeCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
           width: widthSize,
-          height: heightSize /1.4,
+          height: heightSize /1.5,
           margin: const EdgeInsets.all(20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),

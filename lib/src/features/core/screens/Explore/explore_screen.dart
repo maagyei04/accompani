@@ -44,9 +44,10 @@ class ExploreScreen extends StatelessWidget {
           );
         }
 
-        final List<UserModel> users = snapshot.data!; // Assuming your data type is List<User>
+        final List<UserModel> users = snapshot.data!;
 
         return Scaffold(
+          backgroundColor: const Color.fromARGB(255, 244, 244, 244),
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +56,7 @@ class ExploreScreen extends StatelessWidget {
                 const ExploreAppBar(),
 
                 SizedBox(
-                  height: 1100,
+                  height: 1210,
                   child: PageView.builder(
                     itemCount: users.length,
                     itemBuilder: (context, index) {
@@ -76,8 +77,8 @@ class ExploreScreen extends StatelessWidget {
                   
                           Container(
                             decoration: BoxDecoration(
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(color: Colors.grey, width: 1.0),
                             ),
                             width: widthSize,
                             margin: const EdgeInsets.all(15),
@@ -93,6 +94,7 @@ class ExploreScreen extends StatelessWidget {
                   
                           Container(
                             decoration: BoxDecoration(
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(15.0),
                             ),
                             width: widthSize,
@@ -122,28 +124,30 @@ class ExploreScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Text("${users[index].firstName}'s Reviews", style: Theme.of(context).textTheme.displayLarge),
                           ),
+
+                          SizedBox(
+                            height: 180.0,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: 3,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (_, index) {
+                                return ReviewCard(
+                                  widthSize: widthSize,
+                                  review: '“... Emily received us very well, showed us the whole place, very communicative, and made us super comfortable. She gave the best restaurant referrals too...”   ',
+                                  name: 'Charles',
+                                  time: '2 Weeks ago...',
+                                );
+                              },
+                            ),
+                          ),
                         ],
                       );
                     },
                   ),
                 ),
 
-                SizedBox(
-                  height: 180.0,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 3,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) {
-                      return ReviewCard(
-                        widthSize: widthSize,
-                        review: '“... Emily received us very well, showed us the whole place, very communicative, and made us super comfortable. She gave the best restaurant referrals too...”   ',
-                        name: 'Charles',
-                        time: '2 Weeks ago...',
-                      );
-                    },
-                  ),
-                ),
+
               ],
             ),
           ),

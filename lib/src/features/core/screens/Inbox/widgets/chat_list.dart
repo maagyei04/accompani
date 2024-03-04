@@ -22,18 +22,17 @@ class ChatList extends StatelessWidget {
             : []; // Or another default value if needed
 
         if (chats.isEmpty) {
-          return const Center(
-            child: Column(
-              children: [
-                RiveWidget(
-                  asset: 'assets/rive/error.riv',
-                  width: 200,
-                  height: 200,
-                ),
-                SizedBox(height: 50.0,),
-                Text('No Chats Currently Available...')
-              ],
-            ),
+          return const Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              RiveWidget(
+                asset: 'assets/rive/error.riv',
+                width: 200,
+                height: 200,
+              ),
+              SizedBox(height: 50.0,),
+              Text('No Chats Currently Available...', textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),)
+            ],
           );
         }
 
