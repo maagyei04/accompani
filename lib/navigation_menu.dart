@@ -1,10 +1,8 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/get_started.dart';
-import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Explore/explore_screen.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
 import 'package:accompani/src/features/core/screens/Profile/profile_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

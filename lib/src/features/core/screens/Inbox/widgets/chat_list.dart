@@ -19,7 +19,7 @@ class ChatList extends StatelessWidget {
       () {
         final List<ChatroomModel> chats = chatroomController.chatrooms.value.isNotEmpty
             ? chatroomController.chatrooms.value
-            : []; // Or another default value if needed
+            : [];
 
         if (chats.isEmpty) {
           return const Column(
@@ -41,18 +41,16 @@ class ChatList extends StatelessWidget {
           itemBuilder: (context, index) {
             final chat = chats[index];
 
-            // Add null checks or default values to handle potential null values
             final userId = chat.members.isNotEmpty
               ? chat.members.firstWhere(
                   (userId) => userId != FirebaseAuth.instance.currentUser!.uid,
-                  orElse: () => 'FcbBjTIyPu4V8NlrInZj', // Provide a default user ID or handle the null case
+                  orElse: () => 'FcbBjTIyPu4V8NlrInZj', 
                 )
-              : 'FcbBjTIyPu4V8NlrInZj'; // Provide a default user ID or handle the null case
+              : 'FcbBjTIyPu4V8NlrInZj';
 
 
-            // Add conditions to handle null values or provide default values for chat properties
             return ChatTile(
-              userId: userId, // Use default value if userId is null
+              userId: userId,
               lastMessage: chat.lastMessage,
               lastMessageTs: chat.lastMessageTs,
               chatroomId: chat.chatroomId,

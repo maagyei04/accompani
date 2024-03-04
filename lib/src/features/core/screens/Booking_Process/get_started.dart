@@ -1,7 +1,6 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
-import 'package:accompani/src/features/core/screens/Booking_Process/survey.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/trip_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
