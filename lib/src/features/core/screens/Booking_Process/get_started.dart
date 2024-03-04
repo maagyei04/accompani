@@ -37,7 +37,7 @@ class GetTripStarted extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               width: widthSize,
-              height: heightSize / 2,
+              height: heightSize / 2.5,
               margin: const EdgeInsets.all(20),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(7),

@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
 class RiveWidget extends StatelessWidget {
@@ -8,10 +8,17 @@ class RiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: RiveAnimation.asset(
-        asset,
-      )
+    return Scaffold(
+      body: Center(
+        child: SizedBox(
+          width: 200,
+          height: 200,
+          child: RiveAnimation.asset(
+            asset,
+            fit: BoxFit.contain,
+          ),
+        ),
+      ),
     );
   }
 }

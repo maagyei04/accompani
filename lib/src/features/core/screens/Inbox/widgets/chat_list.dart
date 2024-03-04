@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/features/core/models/chatroom_model.dart';
 import 'package:accompani/src/features/core/screens/Inbox/providers/get_all_chats_provider.dart';
 import 'package:accompani/src/features/core/screens/Inbox/widgets/chat_tile.dart';
@@ -21,7 +22,15 @@ class ChatList extends StatelessWidget {
             : []; // Or another default value if needed
 
         if (chats.isEmpty) {
-          return const Center(child: Text('No Chats Currently Available...'));
+          return const Center(
+            child: Column(
+              children: [
+                RiveWidget(asset: 'assets/rive/error.riv'),
+                SizedBox(height: 50.0,),
+                Text('No Chats Currently Available...')
+              ],
+            ),
+          );
         }
 
         return ListView.builder(

@@ -19,7 +19,8 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, width: 1),
+        color: Colors.white,
+        border: Border.all(color: Colors.white, width: 1),
         borderRadius: BorderRadius.circular(20.0),
       ),
       width: widthSize,

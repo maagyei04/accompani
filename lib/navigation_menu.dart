@@ -20,7 +20,7 @@ class NavigationMenu extends StatelessWidget {
         () => NavigationBar(
           backgroundColor: tWhiteColor,
           indicatorColor: tPrimaryColor.withOpacity(0.1),
-          height: 60.0,
+          height: 65.0,
           elevation: 1,
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) => controller.selectedIndex.value = index,
