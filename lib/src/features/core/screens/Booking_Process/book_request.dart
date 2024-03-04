@@ -28,7 +28,11 @@ class BookRequestScreen extends StatelessWidget {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
-            child: RiveWidget(asset: 'assets/rive/loading.riv'),
+            child: RiveWidget(
+              asset: 'assets/rive/loading.riv',
+              width: 200,
+              height: 200,              
+            ),
           );       
         }
 
@@ -36,7 +40,11 @@ class BookRequestScreen extends StatelessWidget {
           return const Center(
             child: Column(
               children: [
-                RiveWidget(asset: 'assets/rive/error.riv'),
+                RiveWidget(
+                  asset: 'assets/rive/error.riv',
+                  width: 200,
+                  height: 200,                  
+                ),
                 SizedBox(height: 8,),
                 Text('Host Not Available At The Moment...')
               ]

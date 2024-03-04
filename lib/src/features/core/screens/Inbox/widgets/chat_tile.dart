@@ -29,11 +29,23 @@ class ChatTile extends StatelessWidget {
       future: userInfoController.getUserInfoById(userId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const RiveWidget(asset: 'assets/rive/loading,riv'); // Replace with a suitable widget for the loading state
+          return const Center(
+            child: RiveWidget(
+              asset: 'assets/rive/loading.riv',
+              width: 10,
+              height: 10,
+            ),
+          ); // Replace with a suitable widget for the loading state
         }
 
         if (snapshot.hasError || snapshot.data == null) {
-          return const RiveWidget(asset: 'assets/rive/error.riv');
+          return const Center(
+            child: RiveWidget(
+              asset: 'assets/rive/error.riv',
+              width: 10,
+              height: 10,
+            ),
+          );
         }
 
         final user = snapshot.data!;

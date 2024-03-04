@@ -27,6 +27,8 @@ class ExperienceScreen extends StatelessWidget {
           return const Center(
             child: RiveWidget(
               asset: 'assets/rive/loading.riv',
+              width: 200,
+              height: 200,
             ),
           );
         }

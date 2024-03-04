@@ -20,7 +20,11 @@ class BookingComplete extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const RiveWidget(asset: 'assets/rive/success,riv'),
+              const RiveWidget(
+                asset: 'assets/rive/success,riv',
+                width: 200,
+                height: 200,              
+              ),
               const SizedBox(height: 20.0,),
               Text('Your Request Has Been Sent To Your Accompani', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge,),
               const SizedBox(height: 20.0,),

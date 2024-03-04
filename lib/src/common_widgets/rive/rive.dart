@@ -3,16 +3,18 @@ import 'package:rive/rive.dart';
 
 class RiveWidget extends StatelessWidget {
   final String asset;
+  final double width;
+  final double height;
 
-  const RiveWidget({super.key, required this.asset});
+  const RiveWidget({super.key, required this.asset, required this.width, required this.height});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: 200,
-          height: 200,
+          width: width,
+          height: height,
           child: RiveAnimation.asset(
             asset,
             fit: BoxFit.contain,

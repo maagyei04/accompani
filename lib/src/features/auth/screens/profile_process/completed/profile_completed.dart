@@ -17,8 +17,12 @@ class ProfileCompleteScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RiveWidget(asset: 'assets/rive/success.riv'),
-            
+            RiveWidget(
+              asset: 'assets/rive/success.riv',
+              width: 200,
+              height: 200,              
+            ),
+
             SizedBox(height: 15.0,),
 
             SizedBox(

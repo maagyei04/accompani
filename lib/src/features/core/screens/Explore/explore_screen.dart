@@ -28,6 +28,8 @@ class ExploreScreen extends StatelessWidget {
           return const Center(
             child: RiveWidget(
               asset: 'assets/rive/loading.riv',
+              width: 200,
+              height: 200,
             ),
           );
         }
@@ -36,6 +38,8 @@ class ExploreScreen extends StatelessWidget {
           return const Center(
             child: RiveWidget(
               asset: 'assets/rive/no_internet_connection.riv',
+              width: 300,
+              height: 300,
             )
           );
         }

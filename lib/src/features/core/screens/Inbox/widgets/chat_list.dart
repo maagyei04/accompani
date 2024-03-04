@@ -25,7 +25,11 @@ class ChatList extends StatelessWidget {
           return const Center(
             child: Column(
               children: [
-                RiveWidget(asset: 'assets/rive/error.riv'),
+                RiveWidget(
+                  asset: 'assets/rive/error.riv',
+                  width: 200,
+                  height: 200,
+                ),
                 SizedBox(height: 50.0,),
                 Text('No Chats Currently Available...')
               ],
