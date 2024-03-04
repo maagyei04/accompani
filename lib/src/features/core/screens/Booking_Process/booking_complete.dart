@@ -1,4 +1,5 @@
 import 'package:accompani/navigation_menu.dart';
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +20,13 @@ class BookingComplete extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.verified, size: 120.0, color: tPrimaryColor),
+              const RiveWidget(asset: 'assets/rive/success,riv'),
               const SizedBox(height: 20.0,),
               Text('Your Request Has Been Sent To Your Accompani', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge,),
               const SizedBox(height: 20.0,),
                 Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: const Color.fromARGB(255, 180, 180, 180),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: const EdgeInsets.all(12.0),

@@ -1,3 +1,4 @@
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/explore_appbar.dart';
@@ -24,14 +25,18 @@ class ExploreScreen extends StatelessWidget {
       future: controller.getUserInfoByType(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: RiveWidget(
+              asset: 'assets/rive/loading.riv',
+            ),
+          );
         }
 
         if (snapshot.hasError || snapshot.data == null) {
           return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.red,
-            ),
+            child: RiveWidget(
+              asset: 'assets/rive/no_internet_connection.riv',
+            )
           );
         }
 

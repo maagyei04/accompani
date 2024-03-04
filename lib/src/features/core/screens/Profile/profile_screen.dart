@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:accompani/src/common_widgets/custom_dialogue/custom_dialogue.dart';
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
@@ -29,15 +30,19 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: RiveWidget(
+              asset: 'assets/rive/loading.rive',
+            ),
+          );
         }
 
         if (snapshot.hasError || snapshot.data == null) {
           return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.red,
-            ),
-          ); // Replace with a suitable error widget
+            child: RiveWidget(
+              asset: 'assets/rive/no_internet_connection.riv',
+            )
+          );
         }
 
         final user = snapshot.data!;

@@ -1,4 +1,5 @@
 import 'package:accompani/navigation_menu.dart';
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
@@ -16,8 +17,8 @@ class ProfileCompleteScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(image: AssetImage(tCheckLogo), color: tPrimaryColor,),
-
+            RiveWidget(asset: 'assets/rive/success.riv'),
+            
             SizedBox(height: 15.0,),
 
             SizedBox(

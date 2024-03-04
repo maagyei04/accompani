@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     _mounted = true;
 
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 5),
       () {
         if (_mounted) {
           Navigator.pushAndRemoveUntil(

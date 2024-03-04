@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/get_started.dart';
 import 'package:accompani/src/features/core/screens/Experience/widgets/trip_card.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
@@ -23,7 +24,11 @@ class ExperienceScreen extends StatelessWidget {
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: RiveWidget(
+              asset: 'assets/rive/loading.riv',
+            ),
+          );
         }
 
         if (snapshot.hasError || snapshot.data == null) {

@@ -33,7 +33,7 @@ class CustomDialog extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          child: const Text('Close'),
+          child: const Text('Back'),
         ),
       ],
     );

@@ -1,3 +1,4 @@
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/common_widgets/searchbar/search_bar.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
@@ -26,13 +27,22 @@ class AvailableHosts extends StatelessWidget {
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+          return const Center(
+            child: RiveWidget(asset: 'assets/rive/loading.riv'),
+          );
         }
 
         if (snapshot.hasError || snapshot.data == null) {
           return const Center(
-            child: Text('No Host Available At The Moment...')
-          ); // Replace with a suitable error widget
+            child: Column(
+              children: [
+                RiveWidget(asset: 'assets/rive/error.riv'),
+                SizedBox(height: 8,),
+                Text('No Host Available At The Moment...')
+              ]
+            )
+            
+          ); 
         }
 
         final user = snapshot.data!;
