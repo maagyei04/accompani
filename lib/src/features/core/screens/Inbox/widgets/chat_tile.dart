@@ -1,4 +1,5 @@
 
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
@@ -28,13 +29,11 @@ class ChatTile extends StatelessWidget {
       future: userInfoController.getUserInfoById(userId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // Replace with a suitable widget for the loading state
+          return const RiveWidget(asset: 'assets/rive/loading,riv'); // Replace with a suitable widget for the loading state
         }
 
         if (snapshot.hasError || snapshot.data == null) {
-          return const CircularProgressIndicator(
-            color: Colors.red,
-          ); // Replace with a suitable error widget
+          return const RiveWidget(asset: 'assets/rive/error.riv');
         }
 
         final user = snapshot.data!;
