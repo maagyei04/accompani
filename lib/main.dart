@@ -36,8 +36,13 @@ class MainApp extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       themeMode: ThemeMode.light,
-      home: const SplashScreen(
-        child: WelcomeScreen(),
+      home: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: const SplashScreen(
+          child: WelcomeScreen(),
+        ),
       ),
       );
   }
