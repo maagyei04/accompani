@@ -29,7 +29,7 @@ class UserRepository extends GetxController {
   Future<bool> doesEmailExist(String email) async {
     try {
       final querySnapshot = await _db
-          .collection('Users') // Replace 'users' with your collection name
+          .collection('Users')
           .where('Emali', isEqualTo: email)
           .get();
 
@@ -113,12 +113,12 @@ class UserRepository extends GetxController {
       return userInfo;
   } 
 
-  Future<UserModel> getUserInfoByType() async {
+  Future<List<UserModel>> getUserInfoByType() async {
     final snapshot = await _db.collection("Users")
     .where("UserType", isEqualTo: 'Host')
       .get();
 
-      final userInfo = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+      final userInfo = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
       return userInfo;
   }
 

@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_print
 
-import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/common_widgets/custom_dialogue/custom_dialogue.dart';
 import 'package:accompani/src/constants/colors.dart';
-import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/screens/Experience/experience_screen.dart';
 import 'package:accompani/src/features/core/screens/Profile/widgets/button_tile.dart';
@@ -31,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator()); // Replace with a suitable widget for the loading state
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (snapshot.hasError || snapshot.data == null) {
@@ -188,7 +186,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return CustomDialog(
           title: 'Logout',
-          content: 'Are you sure you want to Logout?',
+          content: 'Are you sure you want to Logout ?',
           onConfirm: () {
             AuthenticationRepository.instance.logout();
           },

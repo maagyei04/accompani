@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
@@ -41,7 +43,14 @@ class HomeCard extends StatelessWidget {
           margin: const EdgeInsets.all(20),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image(image: AssetImage(picture), fit: BoxFit.cover,),
+            child: Image.network(
+              picture,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                print("Error loading image: $error");
+                return const Text("Error loading image");
+              },
+            ),
           ),
         ),         
                Positioned(
@@ -92,7 +101,7 @@ class HomeCard extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.yellow,
-                  backgroundImage: AssetImage(picture),
+                  backgroundImage: NetworkImage(picture),
                 )
               ),   
               Positioned(
