@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_options/forgot_password_btn_widget.dart';
@@ -63,7 +64,14 @@ class _ChatDetailState extends State<ChatDetail> {
       future: chatController.createChatroom(userId: widget.userId), 
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const Center(
+            child:
+            RiveWidget(
+              asset: 'assets/rive/loading.riv',
+              width: 300,
+              height: 300,
+            ),
+          );
         }
 
       return Scaffold(

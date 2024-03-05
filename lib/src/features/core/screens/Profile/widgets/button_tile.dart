@@ -17,7 +17,7 @@ class ButtonTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(screen!);
+        Get.to(() => screen);
       },
       child: Container(
         width: double.infinity,
