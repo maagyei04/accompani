@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  final Widget? child;
+  final Widget child;
 
-  const SplashScreen({super.key, this.child});
+  const SplashScreen({super.key, required this.child});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (_mounted) {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => widget.child!),
+            MaterialPageRoute(builder: (context) => widget.child),
             (route) => false,
           );
         }

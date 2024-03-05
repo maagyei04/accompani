@@ -14,68 +14,66 @@ class BookingComplete extends StatelessWidget {
     var widthSize = mediaQuery.size.width;
 
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(tDefaultSize),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const RiveWidget(
-                asset: 'assets/rive/success,riv',
-                width: 200,
-                height: 200,              
-              ),
-              const SizedBox(height: 20.0,),
-              Text('Your Request Has Been Sent To Your Accompani', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge,),
-              const SizedBox(height: 20.0,),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 180, 180, 180),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: [
-                          const Icon(Icons.verified_rounded, color: tDarkColor),
-                          const SizedBox(width: 10.0),
-                          Text(
-                            'Your booking process is almost complete, wait Accompani confirmation',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        ],
-                      ),
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: [
-                          const Icon(Icons.verified_rounded, color: tDarkColor),
-                          const SizedBox(width: 10.0),
-                          Text(
-                            'Proceed to make payment after Accompani has accepted request',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        ],
-                      ),
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: [
-                          const Icon(Icons.verified_rounded, color: tDarkColor),
-                          const SizedBox(width: 10.0),
-                          Text(
-                            'You can continue to message Accompani for further info',
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(tDefaultSize),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const RiveWidget(
+              asset: 'assets/rive/success,riv',
+              width: 200,
+              height: 200,              
+            ),
+            const SizedBox(height: 20.0,),
+            Text('Your Request Has Been Sent To Your Accompani', textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge,),
+            const SizedBox(height: 20.0,),
+              Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 180, 180, 180),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      children: [
+                        const Icon(Icons.verified_rounded, color: tDarkColor),
+                        const SizedBox(width: 10.0),
+                        Text(
+                          'Your booking process is almost complete, wait Accompani confirmation',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ],
+                    ),
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      children: [
+                        const Icon(Icons.verified_rounded, color: tDarkColor),
+                        const SizedBox(width: 10.0),
+                        Text(
+                          'Proceed to make payment after Accompani has accepted request',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ],
+                    ),
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      children: [
+                        const Icon(Icons.verified_rounded, color: tDarkColor),
+                        const SizedBox(width: 10.0),
+                        Text(
+                          'You can continue to message Accompani for further info',
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+      
+          ],
         ),
       ),
       bottomNavigationBar: Padding(

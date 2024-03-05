@@ -16,7 +16,7 @@ class AppBarWidget extends StatelessWidget {
         children: [
           const CircleAvatar(
             backgroundColor: Colors.black,
-            radius: 20,
+            radius: 20, 
           ),
           const SizedBox(width: 5.0,),
           Column(

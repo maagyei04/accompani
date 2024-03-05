@@ -33,7 +33,7 @@ class ProfileCard extends StatelessWidget {
                 CircleAvatar(
                   radius: 30.0,
                   backgroundColor: tSecondaryColor,
-                  backgroundImage: picture!,
+                  backgroundImage: picture,
                 ),
               const SizedBox(width: 15.0,),
               Row(

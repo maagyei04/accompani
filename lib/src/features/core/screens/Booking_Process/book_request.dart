@@ -70,6 +70,7 @@ class BookRequestScreen extends StatelessWidget {
             children: [
 
               HostCard(
+                pic: user.photos[0],
                 userId: user.id! ?? 'Default',
                 screenWidth: screenWidth,
                 name: '${user.firstName} ${user.lastName}',

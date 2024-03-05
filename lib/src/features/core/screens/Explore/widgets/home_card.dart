@@ -1,9 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:accompani/src/constants/colors.dart';
-import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,10 +44,6 @@ class HomeCard extends StatelessWidget {
             child: Image.network(
               picture,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                print("Error loading image: $error");
-                return const Text("Error loading image");
-              },
             ),
           ),
         ),         

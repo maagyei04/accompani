@@ -5,19 +5,19 @@ class ButtonTile extends StatelessWidget {
   const ButtonTile({
     super.key,
     required this.title,
-    this.icon,
+    required this.icon,
     this.screen,
   });
 
   final String title;
-  final Widget? icon;
+  final Widget icon;
   final Widget? screen;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => screen!);
+        Get.to(() => screen);
       },
       child: Container(
         width: double.infinity,
@@ -35,7 +35,7 @@ class ButtonTile extends StatelessWidget {
           children: [
             Row(
               children: [
-                icon!,
+                icon,
                 const SizedBox(width: 15.0,),
                 Text(title, style: Theme.of(context).textTheme.displayMedium,), 
               ],

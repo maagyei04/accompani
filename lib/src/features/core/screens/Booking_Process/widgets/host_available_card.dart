@@ -1,6 +1,5 @@
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/image_strings.dart';
-import 'package:accompani/src/features/core/screens/Inbox/chat.dart';
 import 'package:accompani/src/features/core/screens/Inbox/chat_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,6 +15,7 @@ class HostCard extends StatelessWidget {
     required this.rate,
     required this.review,
     required this.userId,
+    required this.pic,
   });
 
   final double screenWidth;
@@ -26,6 +26,7 @@ class HostCard extends StatelessWidget {
   final String review;
   final String hostTimeJoined;
   final String userId;
+  final String pic;
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +46,9 @@ class HostCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 45.0,
-                    backgroundImage: AssetImage(tWelcomeImage4),
+                    backgroundImage: NetworkImage(pic),
                     backgroundColor: Colors.yellow,
                   ),
                   const SizedBox(width: 10.0,),

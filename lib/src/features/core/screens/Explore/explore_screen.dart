@@ -1,12 +1,10 @@
 import 'package:accompani/src/common_widgets/rive/rive.dart';
-import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/explore_appbar.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/home_card.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/interest_widget.dart';
 import 'package:accompani/src/features/core/screens/Explore/widgets/review_card.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

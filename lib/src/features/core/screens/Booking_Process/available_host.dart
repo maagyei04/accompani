@@ -6,7 +6,6 @@ import 'package:accompani/src/features/core/models/trip_model.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/book_request.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -94,6 +93,7 @@ class AvailableHosts extends StatelessWidget {
                   itemCount: user.length,
                   itemBuilder: (_, index) {
                     return HostCard(
+                      pic: user[index].photos[0],
                       userId: user[index].userId!,
                       screenWidth: screenWidth,
                       name: user[index].firstName + user[index].lastName,
