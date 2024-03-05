@@ -143,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
         
                                 const SizedBox(height: 10.0,),
         
-                  const ButtonTile(title: 'Submit Feedback', icon: CustomIcon(color: Color.fromARGB(255, 190, 0, 137), icon: Icon(Icons.send_and_archive, color: Colors.white,),)),
+                  const ButtonTile(title: 'Submit Feedback', icon: CustomIcon(color: Color.fromARGB(255, 136, 0, 98), icon: Icon(Icons.send_and_archive, color: Colors.white,),)),
         
         
                                 const SizedBox(height: 10.0,),
