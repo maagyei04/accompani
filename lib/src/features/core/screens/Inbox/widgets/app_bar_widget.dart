@@ -6,7 +6,7 @@ class AppBarWidget extends StatelessWidget {
     required this.data,
   });
 
-  final data;
+  final String data;
 
   @override
   Widget build(BuildContext context) {

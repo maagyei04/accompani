@@ -65,7 +65,7 @@ class DestinationSelectionScreen extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: true ? Colors.blue : tDarkColor,
+                                  color: Colors.blue,
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 width: 130,

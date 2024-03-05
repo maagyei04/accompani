@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: RiveWidget(
-              asset: 'assets/rive/loading.rive',
+              asset: 'assets/rive/loading.riv',
               width: 200,
               height: 200,
             ),
