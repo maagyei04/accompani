@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options:
@@ -24,7 +25,8 @@ void main() async {
 
 }
 
-class MainApp extends StatelessWidget { 
+
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
@@ -41,4 +43,5 @@ class MainApp extends StatelessWidget {
       ),
       );
   }
+
 }
