@@ -1,3 +1,4 @@
+import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/controllers/signup_controller.dart';
@@ -26,12 +27,12 @@ class _SignupFormState extends State<SignupForm> {
 
     final formKey = GlobalKey<FormState>();
 
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: Form(
-        key: formKey,
+    return Form(
+      key: formKey,
+      child: GestureDetector(
+        onTap: () {
+           FocusManager.instance.primaryFocus?.unfocus();
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: tFormHeight - 20),
           child: Column(
@@ -73,19 +74,19 @@ class _SignupFormState extends State<SignupForm> {
                 ),
                 
               ),
-      
+            
               const SizedBox(height: tFormHeight - 20,),
-      
+            
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if(formKey.currentState!.validate()) {
-      
+            
                           if (controller.email.text.isNotEmpty &&
                               controller.password.text.isNotEmpty
                             ) {
-      
+            
                             final user = UserModel(
                                 email: controller.email.text.trim(),
                                 password: controller.password.text.trim(),
@@ -112,8 +113,25 @@ class _SignupFormState extends State<SignupForm> {
                                   'Deafult...',
                                 ]
                               );
-      
-                          SignUpController.instance.registerUser(user);
+            
+                          var success = await SignUpController.instance.registerUser(user);
+
+                          Get.showOverlay(
+                            asyncFunction: success,
+                            loadingWidget: const AlertDialog(
+                              backgroundColor: Colors.white,
+                              shadowColor:  Color.fromARGB(255, 244, 244, 244),
+                              content: Column(
+                                children: [
+                                  RiveWidget(asset: 'assets/rive/loading.riv', width: 100, height: 100),
+                                  SizedBox(height: 10.0,),
+                                  Text('Please Wait...'),
+                                ]
+                              ),
+                            ),
+
+                          );
+                          
                         } else {
                             // Handle case where not all fields are filled
                           Get.snackbar(
@@ -131,8 +149,8 @@ class _SignupFormState extends State<SignupForm> {
                   ),
             ],
           ),
-        )
-      ),
+        ),
+      )
     );
   }
   

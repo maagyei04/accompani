@@ -45,7 +45,7 @@ class LoginController extends GetxController {
     isVerified ? Get.offAll(const NavigationMenu()) : Get.back();
   }
 
-  Future<bool> loginUser(String email, String password) async {
+  Future<dynamic> loginUser(String email, String password) async {
     try {
 
       final auth = AuthenticationRepository.instance;
@@ -54,7 +54,7 @@ class LoginController extends GetxController {
 
       Get.offAll(() => const NavigationMenu());
 
-      return true;
+      return await auth.loginUserWithEmailAndPassword(email, password);
     } catch (e) {
 
        Get.snackbar(
@@ -66,7 +66,7 @@ class LoginController extends GetxController {
         duration: const Duration(seconds: 5),
       );
 
-      return false;
+      return;
     }
   }
 

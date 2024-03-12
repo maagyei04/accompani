@@ -28,7 +28,7 @@ class SignUpController extends GetxController {
     AuthenticationRepository.instance.phoneAuthentication(phoneNumber);
   }
 
-Future<void> registerUser(UserModel user) async {
+Future<dynamic>registerUser(UserModel user) async {
   try {
 
     final auth = AuthenticationRepository.instance;
@@ -43,6 +43,8 @@ Future<void> registerUser(UserModel user) async {
 
     // Navigate to verification screen
     Get.offAll(() => const MailVerificationScreen());
+    
+    return await userRepo.createUser(user);
   } catch (e) {
 
     // Handle authentication or Firestore errors
@@ -54,6 +56,8 @@ Future<void> registerUser(UserModel user) async {
       colorText: Colors.red,
       duration: const Duration(seconds: 5),
     );
+
+    return;
   }
 } 
 
