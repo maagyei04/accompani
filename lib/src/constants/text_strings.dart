@@ -21,6 +21,7 @@ const String tWelcomeScreenTitle2 = "Set up Your Accompani Profile In A Few Seco
 // -- Signup & Login Screen Text
 const String tSignInWithGoogle = "Continue with Google";
 const String tAlreadyHaveAnAccount = "Already have an account ? ";
+const String tNewAccount = "New here? Register";
 const String tForgotPassword = "Forgot Password ?";
 const String tLoginTitle = "Accompani";
 const String tSignupSubTitle = "Let's get you started in few seconds";

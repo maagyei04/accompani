@@ -3,6 +3,7 @@ import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
 import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
 import 'package:accompani/src/features/auth/models/interest_model.dart';
+import 'package:accompani/src/features/auth/models/personal_info_model.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class SelectionScreen extends StatefulWidget {
 
 class SelectionScreenState extends State<SelectionScreen> {
   List<String> selectedInterests = [];
+  PersonalInfoModel? data = Get.find<DataController>().data.value as PersonalInfoModel?;
 
   void toggleInterest(String interest) {
     setState(() {
@@ -114,11 +116,12 @@ class SelectionScreenState extends State<SelectionScreen> {
                             final user = InterestModel(
                                 id: controller.getUserID,
                                 interests: selectedInterests,
-                              );
-                 
-                              controller2.updateUserInterest(user);
-                              
-                              stepController.nextPage();                            
+                                languages: data!.languages,
+                                bio: data!.bio,
+                                photos: data!.photos,
+                            );
+                            
+                              stepController.nextPageWithData(user);                            
                           },
                           child: const Text(tNext)
                         ),

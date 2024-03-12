@@ -5,9 +5,7 @@ import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/booking_complete.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
-import 'package:accompani/src/features/core/screens/Explore/widgets/home_card.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

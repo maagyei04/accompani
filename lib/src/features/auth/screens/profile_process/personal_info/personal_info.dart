@@ -27,81 +27,86 @@ class PersonalInfoScreen extends StatelessWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(tDefaultSize - 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10,),
-        
-              const Text('Upload Your Photos',style: TextStyle(fontWeight: FontWeight.bold),),
-        
-              const SizedBox(height: 5,),
-        
-              const MultipleImageUpload(),
-        
-              const SizedBox(height: 5,),
-
-              const Text('Languages You Speak',style: TextStyle(fontWeight: FontWeight.bold),),
-              const Text('Input the languages you speak',style: TextStyle(fontSize: 12),),
-              const Text('Press Enter/Done after every language you input',style: TextStyle(fontSize: 12),),
-
-              const SizedBox(height: 10,),
-
-                TextFormField(
-                  controller: controller.textEditingController,
-                  onFieldSubmitted: (text) {
-                    controller.addToTopOfList(text);
-                  },
-                  style: const TextStyle(fontSize: 15.0),
-                  decoration: const InputDecoration(
-                    labelText: 'Input Languages',
-                    hintText: 'Input the languages you speak with \',\' seperating them',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Container(
+            padding: const EdgeInsets.all(tDefaultSize - 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10,),
+          
+                const Text('Upload Your Photos',style: TextStyle(fontWeight: FontWeight.bold),),
+          
+                const SizedBox(height: 5,),
+          
+                const MultipleImageUpload(),
+          
+                const SizedBox(height: 5,),
+          
+                const Text('Languages You Speak',style: TextStyle(fontWeight: FontWeight.bold),),
+                const Text('Input the languages you speak',style: TextStyle(fontSize: 12),),
+                const Text('Press Enter/Done after every language you input',style: TextStyle(fontSize: 12),),
+          
+                const SizedBox(height: 10,),
+          
+                  TextFormField(
+                    controller: controller.textEditingController,
+                    onFieldSubmitted: (text) {
+                      controller.addToTopOfList(text);
+                    },
+                    style: const TextStyle(fontSize: 15.0),
+                    decoration: const InputDecoration(
+                      labelText: 'Input Languages',
+                      hintText: 'Input the languages you speak with \',\' seperating them',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
                     ),
-                  ),
-                ), 
-              const SizedBox(height: 10,),
-
-                 Obx(
-                   () => SizedBox(
-                    height: 50,
-                    child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.languageList.length, 
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) {
-                      return TVerticalCategories(
-                        backgroundColor: tPrimaryColor,
-                        textColor: tWhiteColor,
-                        title: controller.languageList[index],
-                        onTap: (){
-                          controller.removeFromLanguageList(controller.languageList[index]);
-                        },
-                      );
-                      
-                    }),
-                                   ),
-                 ),
-
-              const Text('Your Bio',style: TextStyle(fontWeight: FontWeight.bold),),
-        
-              const SizedBox(height: 10,),
-
-                TextFormField(
-                  style: const TextStyle(fontSize: 15.0),
-                  controller: controller.bio,
-                  maxLines: 8,
-                  decoration: const InputDecoration(
-                    hintText: 'About You',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                  ), 
+                const SizedBox(height: 10,),
+          
+                   Obx(
+                     () => SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.languageList.length, 
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, index) {
+                        return TVerticalCategories(
+                          backgroundColor: tPrimaryColor,
+                          textColor: tWhiteColor,
+                          title: controller.languageList[index],
+                          onTap: (){
+                            controller.removeFromLanguageList(controller.languageList[index]);
+                          },
+                        );
+                        
+                      }),
+                                     ),
+                   ),
+          
+                const Text('Your Bio',style: TextStyle(fontWeight: FontWeight.bold),),
+          
+                const SizedBox(height: 10,),
+          
+                  TextFormField(
+                    style: const TextStyle(fontSize: 15.0),
+                    controller: controller.bio,
+                    maxLines: 8,
+                    decoration: const InputDecoration(
+                      hintText: 'About You',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                      ),
                     ),
-                  ),
-                ),  
-     
-            ]
+                  ),  
+               
+              ]
+            ),
           ),
         ),
       ),
@@ -149,9 +154,7 @@ class PersonalInfoScreen extends StatelessWidget {
                                     ],
                                   );
 
-                                  await controller6.updatePersonalRecord(user);
-
-                                  stepController.nextPage();
+                                  stepController.nextPageWithData(user);
                               } else {
                                 Get.snackbar(
                                   "Error",

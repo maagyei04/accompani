@@ -1,9 +1,10 @@
 import 'package:accompani/navigation_menu.dart';
 import 'package:accompani/src/common_widgets/rive/rive.dart';
-import 'package:accompani/src/constants/colors.dart';
-import 'package:accompani/src/constants/image_strings.dart';
 import 'package:accompani/src/constants/sizes.dart';
 import 'package:accompani/src/constants/text_strings.dart';
+import 'package:accompani/src/features/auth/controllers/proccess_controller.dart';
+import 'package:accompani/src/features/auth/models/interest_model.dart';
+import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,10 @@ class ProfileCompleteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      final controller = Get.put(UserRepository());
+  InterestModel? data = Get.find<DataController>().data.value as InterestModel?;
+
+
     return Scaffold(
       body: const Center(
         child: Column(
@@ -44,6 +49,8 @@ class ProfileCompleteScreen extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: (){
+                            controller.updateUserInterest(data!);
+                            
                             Get.offAll(() => const NavigationMenu());
                           },
                           child: const Text(tGetStarted)

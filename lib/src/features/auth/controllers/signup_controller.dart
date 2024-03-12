@@ -30,14 +30,13 @@ class SignUpController extends GetxController {
 
 Future<void> registerUser(UserModel user) async {
   try {
-     controller.isLoading.value = true;
 
     final auth = AuthenticationRepository.instance;
 
     // Create user in Firebase Authentication
     await auth.createUserWithEmailAndPassword(user.email, user.password);
 
-    // Delay the execution of createUser function by 2 seconds (adjust as needed)
+    // Delay the execution of createUser function by 2 seconds
     await Future.delayed(const Duration(seconds: 3), () async {
       await userRepo.createUser(user);
     });
@@ -45,7 +44,7 @@ Future<void> registerUser(UserModel user) async {
     // Navigate to verification screen
     Get.offAll(() => const MailVerificationScreen());
   } catch (e) {
-     controller.isLoading.value = false;
+
     // Handle authentication or Firestore errors
     Get.snackbar(
       "Error",

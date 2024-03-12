@@ -5,7 +5,6 @@ import 'package:accompani/src/features/auth/controllers/signup_controller.dart';
 import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/auth/screens/email/email.dart';
 import 'package:accompani/src/features/auth/screens/forgot_password/forgot_password_otp/login_otp_screen.dart';
-import 'package:accompani/src/features/auth/screens/welcome2/welcome_screen2.dart';
 import 'package:accompani/src/repository/auth_repo/authentication_repository.dart';
 import 'package:accompani/src/repository/user_repository/user_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,15 +45,17 @@ class LoginController extends GetxController {
     isVerified ? Get.offAll(const NavigationMenu()) : Get.back();
   }
 
-  void loginUser(String email, String password) async {
+  Future<bool> loginUser(String email, String password) async {
     try {
-      isLoading.value = true;
 
       final auth = AuthenticationRepository.instance;
+
       await auth.loginUserWithEmailAndPassword(email, password);
+
       Get.offAll(() => const NavigationMenu());
+
+      return true;
     } catch (e) {
-      isLoading.value = false;
 
        Get.snackbar(
         'Oh Snap!!',
@@ -64,6 +65,8 @@ class LoginController extends GetxController {
         colorText: Colors.red,
         duration: const Duration(seconds: 5),
       );
+
+      return false;
     }
   }
 

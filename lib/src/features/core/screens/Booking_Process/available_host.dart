@@ -2,6 +2,7 @@ import 'package:accompani/src/common_widgets/rive/rive.dart';
 import 'package:accompani/src/common_widgets/searchbar/search_bar.dart';
 import 'package:accompani/src/constants/colors.dart';
 import 'package:accompani/src/constants/sizes.dart';
+import 'package:accompani/src/features/auth/models/user_model.dart';
 import 'package:accompani/src/features/core/models/trip_model.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/book_request.dart';
 import 'package:accompani/src/features/core/screens/Booking_Process/widgets/host_available_card.dart';
@@ -45,7 +46,7 @@ class AvailableHosts extends StatelessWidget {
                   height: 200,
                 ),
                 SizedBox(height: 8,),
-                Text('No Host Available At The Moment...')
+                Text('No Host Available At The Moment...'),
               ]
             )
             
@@ -69,30 +70,29 @@ class AvailableHosts extends StatelessWidget {
           child: Column(
             children: [
               TSearchContainer(width: screenWidth, text: 'New York'),
-              const SizedBox(height: 10.0,),
-              InkWell(
-                onTap: () {
-                                final tripp = TripModel(
-                                  title:trip.title,
-                                  description: trip.description,
-                                  activity: trip.activity,
-                                  destination: trip.destination,
-                                  arrivalDate: trip.arrivalDate,
-                                  cost: trip.cost,
-                                  guestAdded: trip.guestAdded,
-                                  status: trip.status,
-                                  purpose: trip.purpose,
-                                  host: user[0].userId!,
-                                  duration: trip.duration,
-                                );
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: user.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return InkWell(
+                    onTap: () {
+                      final tripp = TripModel(
+                        title: trip.title,
+                        description: trip.description,
+                        activity: trip.activity,
+                        destination: trip.destination,
+                        arrivalDate: trip.arrivalDate,
+                        cost: trip.cost,
+                        guestAdded: trip.guestAdded,
+                        status: trip.status,
+                        purpose: trip.purpose,
+                        host: user[index].userId!,
+                        duration: trip.duration,
+                      );
 
-                  Get.to(() => BookRequestScreen(), arguments: tripp);
-                },
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: user.length,
-                  itemBuilder: (_, index) {
-                    return HostCard(
+                      Get.to(() => BookRequestScreen(), arguments: tripp);
+                    },
+                    child: HostCard(
                       pic: user[index].photos[0],
                       userId: user[index].userId!,
                       screenWidth: screenWidth,
@@ -102,12 +102,11 @@ class AvailableHosts extends StatelessWidget {
                       rate: user[index].reviewRate!,
                       bio: user[index].bio,
                       hostTimeJoined: '2 months hosting',
-                    );
-                  },
+                    ),
+                  );
+                },
+              )
 
-                )
-                
-              ),
                           ],
           ),
         ),
@@ -118,3 +117,4 @@ class AvailableHosts extends StatelessWidget {
    
   }
 }
+

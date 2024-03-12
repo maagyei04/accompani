@@ -26,41 +26,46 @@ class TripDetailsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(tDefaultSize - 10),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  style: const TextStyle(fontSize: 15.0),
-                  controller: title,
-                  decoration: const InputDecoration(
-                    labelText: 'Title',
-                    hintText: 'title',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(tDefaultSize - 10),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    style: const TextStyle(fontSize: 15.0),
+                    controller: title,
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                      hintText: 'title',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
                     ),
                   ),
-                ),
-                
-                const SizedBox(height: tFormHeight,),
-          
-                TextFormField(
-                  style: const TextStyle(fontSize: 15.0),
-                  maxLines: 5,
-                  controller: description,
-                  decoration: const InputDecoration(
-                    labelText: 'Trip Description',
-                    hintText: 'description',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                  
+                  const SizedBox(height: tFormHeight,),
+            
+                  TextFormField(
+                    style: const TextStyle(fontSize: 15.0),
+                    maxLines: 5,
+                    controller: description,
+                    decoration: const InputDecoration(
+                      labelText: 'Trip Description',
+                      hintText: 'description',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
                     ),
-                  ),
-                ),              
-              ],
-            )
-            ),
+                  ),              
+                ],
+              )
+              ),
+          ),
         )
         ),
         bottomNavigationBar: Padding(

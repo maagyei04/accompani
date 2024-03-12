@@ -51,7 +51,7 @@ class SignupFooterWidget extends StatelessWidget {
         },
         child: Text.rich(
           TextSpan(
-            text: tAlreadyHaveAnAccount,
+            text: tNewAccount,
             style: Theme.of(context).textTheme.bodySmall,
             children: const [
               TextSpan(

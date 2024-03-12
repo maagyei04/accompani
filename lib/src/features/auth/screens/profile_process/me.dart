@@ -53,22 +53,22 @@ class StepIndicatorScreen extends StatelessWidget {
                       child: FlutterStepIndicator(
                         list: stepController.steps,
                         onChange: (int index) {
-                          // Do something when step changes (optional)
+                          //
                         },
                         page: stepController.currentPage.value,
-                        positiveColor: tPrimaryColor, // Customize active step color
-                        negativeColor: Colors.grey.withOpacity(0.1), // Customize inactive step color
-                        progressColor: tPrimaryColor, // Customize progress line color
+                        positiveColor: tPrimaryColor,
+                        negativeColor: Colors.grey.withOpacity(0.1),
+                        progressColor: tPrimaryColor,
                         division: 4, 
-                         height: 25, // Number of divisions (adjust based on your steps)
+                         height: 25,
                       ),
                     )),
           Expanded(
             child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: stepController.pageController,
               onPageChanged: stepController.onPageChangeCallback,
               children: const [
-                // Replace these with your actual screens
                 PersonalInfoScreen(),
                 SelectionScreen(),
                 AddSocialMedia(),

@@ -20,7 +20,7 @@ class BookingComplete extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const RiveWidget(
-              asset: 'assets/rive/success,riv',
+              asset: 'assets/rive/success.riv',
               width: 200,
               height: 200,              
             ),

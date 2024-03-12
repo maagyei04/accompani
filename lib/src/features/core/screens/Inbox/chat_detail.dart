@@ -83,12 +83,17 @@ class _ChatDetailState extends State<ChatDetail> {
           title: AppBarWidget(data: data),
           elevation: 5.0,
         ),
-        body: Column(
-          children: [
-            Expanded(child: MessagesList(chatroomId: chatroomId),),
-            const Divider(),
-            _buildMessageInput(),
-          ],
+        body: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Column(
+            children: [
+              Expanded(child: MessagesList(chatroomId: chatroomId),),
+              const Divider(),
+              _buildMessageInput(),
+            ],
+          ),
         )
     );
       }
